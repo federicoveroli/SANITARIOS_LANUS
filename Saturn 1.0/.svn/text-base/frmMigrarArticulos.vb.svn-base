@@ -1,0 +1,126 @@
+Imports Fachada
+Imports Modelo
+
+
+Public Class frmMigrarArticulos
+
+
+    Dim facarticulo As New FachadaArticulo
+
+
+    Dim art As Articulo
+    Private Sub cmdMigrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdMigrar.Click
+
+        MIgrarArticulos()
+    End Sub
+    Private Sub MIgrarArticulos()
+
+        Dim facPro As New FachadaProveedor
+        Dim dt As DataTable
+        Dim facArt As New FachadaArticulo
+        Dim dt1 As DataTable
+
+        dt1 = facArt.traerDESCvalmar() ''traigo todo
+        Dim str As String
+        Dim idCategoria As Integer, idProveedor As Integer, idMarca As Integer
+        Dim art As Articulo
+
+        For Each fila As DataRow In dt1.Rows
+
+            Dim datt As DataTable
+
+            art = New Articulo
+
+            str = fila.Item(2)
+            datt = facArt.traerIDSdeMIbaseCAT(str)
+            idCategoria = 1
+            If datt.Rows.Count <> 0 Then idCategoria = datt.Rows(0).Item(0)
+            idProveedor = facPro.TraerIdPorNombre(fila(3))
+            idMarca = facArt.TraerIdMarcaPorDescripcion(fila(1))
+
+            'Cargo las propiedades del articulo a agregar
+            With art
+                .Descripcion = fila("DESCRIPCION")
+                .Medida = fila("MEDIDA")
+
+                If .Descripcion.Contains("M") And .Descripcion.Contains("CANO") Then
+                    If .Descripcion.IndexOf("M") <> 0 Then
+                        If IsNumeric(.Descripcion.Substring(.Descripcion.IndexOf("M") - 1, 1)) Then
+                            .esFraccionable = True
+                            Dim i As Integer, indice As Integer
+                            i = .Descripcion.IndexOf("M") - 1
+                            indice = .Descripcion.IndexOf("M") - 1
+                            For i = 0 To .Descripcion.IndexOf("M") - 1
+                                If .Descripcion.Substring(indice, 1) = " " Then
+                                    Exit For
+                                End If
+                                indice -= 1
+                            Next
+                            .Medida = .Descripcion.Substring(indice, .Descripcion.IndexOf("M") - indice)
+                        Else
+
+                        End If
+                    End If
+
+
+                End If
+
+                .IdMarca = idMarca
+                .Idcategoria = idCategoria
+                .Idproveedor = idProveedor
+                .Costo = fila("PRECIO_COSTO")
+                .PorcDesc = fila("PORCENTAJE_DESCUENTO")
+                .Utilidad = fila("PORCENTAJE_GANANCIA")
+                .Precio = fila("PRECIO_CLIENTE")
+                .Stock = fila("STOCK")
+
+            End With
+
+            facArt.ingresarArticulo(art)
+           
+        Next
+
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim fachada As New FachadaArticulo
+        Dim dt As DataTable
+        dt = fachada.TraerCategoriasDeValmar
+        Dim cat As New TipoArticulo
+        For Each fila As DataRow In dt.Rows
+            cat.Descripcion = fila.Item(0)
+            Dim fff As New FachadaArticulo
+            fff.ingresarTipo(cat.Descripcion)
+        Next
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Dim fachada As New FachadaArticulo
+        Dim dt As DataTable
+        dt = fachada.TraerMarcasDeValmar
+        Dim cat As New Marca("", 0)
+        For Each fila As DataRow In dt.Rows
+            cat.Descripcion = fila.Item(0)
+            Dim fff As New FachadaArticulo
+            fff.ingresarMarca(cat.Descripcion)
+        Next
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Dim fachada As New FachadaArticulo
+        Dim facPro As New FachadaProveedor
+        Dim dt As DataTable
+        dt = fachada.ProveedoresValmar
+        Dim p As New Proveedor
+        For Each fila As DataRow In dt.Rows
+            p.RazonSocial = fila.Item(0)
+            p.CUIT = "11-11111111-1"
+            p.IdRubro = 1 'el rubro por defecto es desconocido
+            p.Lista = ""
+            p.Bonificaciones = ""
+            p.Email = ""
+            p.FechaAlta = Date.Now
+            facPro.AltaProveedor(p)
+        Next
+    End Sub
+End Class

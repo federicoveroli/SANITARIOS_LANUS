@@ -1,0 +1,66 @@
+Imports Modelo
+Imports MySql.Data.MySqlClient
+
+Public Class RegistroCajaDiaria
+    Public Sub ModificarCajaDiaria(ByVal caja As CajaDiaria)
+        Dim params As New List(Of MySqlParameter)
+        params.Add(New MySqlParameter("infecha", caja.Fecha))
+        params.Add(New MySqlParameter("inSaldoInicio", caja.SaldoInicial))
+        params.Add(New MySqlParameter("inSaldoFinal", caja.SaldoFinal))
+        params.Add(New MySqlParameter("inSaldo", caja.Saldo))
+        params.Add(New MySqlParameter("inCerrada", 1))
+        AccesoDatos.Instancia.EjecutarComando("cajadiaria_update", params)
+
+    End Sub
+    Public Function listarHistoricoCajaDiaria() As DataTable
+        Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("Select fecha as Fecha,saldoinicio as Apertura,saldofinal as Cierre,saldo as 'Ingreso Diario' from CajaDiaria order by fecha desc")
+        Return dt
+    End Function
+    Public Function TraerSaldoInicial(ByVal fecha As Date) As Double
+        Dim strFecha As String
+        strFecha = CStr(fecha.Year) & "-" & CStr(fecha.Month) & "-" & CStr(fecha.Day)
+        Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("Select saldoinicio from CajaDiaria where fecha= '" & strFecha & "'")
+        Return dt.Rows(0).Item(0)
+    End Function
+    Public Sub IngresarCaja(ByVal caja As CajaDiaria)
+        Dim params As New List(Of MySqlParameter)
+        params.Add(New MySqlParameter("infecha", caja.Fecha))
+        params.Add(New MySqlParameter("inSaldoInicio", caja.SaldoInicial))
+        params.Add(New MySqlParameter("inSaldoFinal", caja.SaldoFinal))
+        params.Add(New MySqlParameter("inSaldo", caja.Saldo))
+        AccesoDatos.Instancia.EjecutarComando("cajadiaria_insert", params)
+    End Sub
+    Public Function EstaAbierta(ByVal fecha As Date) As Boolean
+        Dim strFecha As String
+        strFecha = CStr(fecha.Year) & "-" & CStr(fecha.Month) & "-" & CStr(fecha.Day)
+        Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("Select * from CajaDiaria where fecha= '" & strFecha & "'")
+        Return dt.Rows.Count
+    End Function
+
+    Public Function EstaCerrada(ByVal fecha As Date) As Boolean
+        Dim strFecha As String
+        strFecha = CStr(fecha.Year) & "-" & CStr(fecha.Month) & "-" & CStr(fecha.Day)
+        Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("Select cerrada from CajaDiaria where fecha= '" & strFecha & "'")
+        Return dt.Rows(0).Item(0)
+    End Function
+
+    Public Sub IngresarOperacion(ByVal ope As OperacionCaja)
+        Dim params As New List(Of MySqlParameter)
+        params.Add(New MySqlParameter("inFecha", ope.Fecha))
+        params.Add(New MySqlParameter("inOperacion", ope.Operacion))
+        params.Add(New MySqlParameter("inMonto", ope.Monto))
+        AccesoDatos.Instancia.EjecutarComando("operacioncaja_insert", params)
+    End Sub
+    Public Function ListarOperaciones(ByVal fecha As Date) As DataTable
+        Dim strFecha As String
+        strFecha = CStr(fecha.Year) & "-" & CStr(fecha.Month) & "-" & CStr(fecha.Day)
+        Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("Select fecha as Fecha,operacion as Deposito,monto as Monto from OperacionCaja where fecha= '" & strFecha & "'")
+        Return dt
+    End Function
+    Public Function ListarFacturas(ByVal fecha As Date) As DataTable
+        Dim strFecha As String
+        strFecha = CStr(fecha.Year) & "-" & CStr(fecha.Month) & "-" & CStr(fecha.Day)
+        Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("Select DATE_FORMAT(hora,'%T') as Hora,numero as 'N Fac',condicionVenta as Condicion,total as Total from venta v inner join comprobante c on c.idcomprobante = v.idcomprobante where fechaemision= '" & strFecha & "' and condicionVenta <> 'P' and idTipoVenta = 0")
+        Return dt
+    End Function
+End Class

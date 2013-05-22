@@ -1,0 +1,237 @@
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmFacturasBuscar
+    Inherits System.Windows.Forms.Form
+
+    'Form reemplaza a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Requerido por el Diseñador de Windows Forms
+    Private components As System.ComponentModel.IContainer
+
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Me.cmdDetalles = New System.Windows.Forms.Button
+        Me.cmdBuscar = New System.Windows.Forms.Button
+        Me.cmdAnular = New System.Windows.Forms.Button
+        Me.cmdCancelar = New System.Windows.Forms.Button
+        Me.dgvFacturas = New System.Windows.Forms.DataGridView
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.cmbCliente = New System.Windows.Forms.ComboBox
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.cmbTipo = New System.Windows.Forms.ComboBox
+        Me.Label3 = New System.Windows.Forms.Label
+        Me.txtNumero = New System.Windows.Forms.TextBox
+        Me.cmdNotaDeCredito = New System.Windows.Forms.Button
+        Me.cmdImportar = New System.Windows.Forms.Button
+        Me.cmdImprimir = New System.Windows.Forms.Button
+        CType(Me.dgvFacturas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'cmdDetalles
+        '
+        Me.cmdDetalles.Location = New System.Drawing.Point(510, 436)
+        Me.cmdDetalles.Name = "cmdDetalles"
+        Me.cmdDetalles.Size = New System.Drawing.Size(80, 23)
+        Me.cmdDetalles.TabIndex = 47
+        Me.cmdDetalles.Text = "&Detalles"
+        Me.cmdDetalles.UseVisualStyleBackColor = True
+        '
+        'cmdBuscar
+        '
+        Me.cmdBuscar.Location = New System.Drawing.Point(677, 12)
+        Me.cmdBuscar.Name = "cmdBuscar"
+        Me.cmdBuscar.Size = New System.Drawing.Size(75, 23)
+        Me.cmdBuscar.TabIndex = 46
+        Me.cmdBuscar.Text = "&Buscar"
+        Me.cmdBuscar.UseVisualStyleBackColor = True
+        '
+        'cmdAnular
+        '
+        Me.cmdAnular.Location = New System.Drawing.Point(596, 436)
+        Me.cmdAnular.Name = "cmdAnular"
+        Me.cmdAnular.Size = New System.Drawing.Size(75, 23)
+        Me.cmdAnular.TabIndex = 45
+        Me.cmdAnular.Text = "&Eliminar"
+        Me.cmdAnular.UseVisualStyleBackColor = True
+        '
+        'cmdCancelar
+        '
+        Me.cmdCancelar.Location = New System.Drawing.Point(677, 436)
+        Me.cmdCancelar.Name = "cmdCancelar"
+        Me.cmdCancelar.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCancelar.TabIndex = 44
+        Me.cmdCancelar.Text = "&Cancelar"
+        Me.cmdCancelar.UseVisualStyleBackColor = True
+        '
+        'dgvFacturas
+        '
+        Me.dgvFacturas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvFacturas.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvFacturas.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvFacturas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.dgvFacturas.Location = New System.Drawing.Point(12, 42)
+        Me.dgvFacturas.MultiSelect = False
+        Me.dgvFacturas.Name = "dgvFacturas"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvFacturas.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvFacturas.Size = New System.Drawing.Size(740, 381)
+        Me.dgvFacturas.TabIndex = 43
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 18)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(42, 13)
+        Me.Label2.TabIndex = 38
+        Me.Label2.Text = "Cliente:"
+        '
+        'cmbCliente
+        '
+        Me.cmbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCliente.FormattingEnabled = True
+        Me.cmbCliente.Location = New System.Drawing.Point(77, 13)
+        Me.cmbCliente.Name = "cmbCliente"
+        Me.cmbCliente.Size = New System.Drawing.Size(132, 21)
+        Me.cmbCliente.TabIndex = 37
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(418, 16)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(31, 13)
+        Me.Label1.TabIndex = 48
+        Me.Label1.Text = "Tipo:"
+        '
+        'cmbTipo
+        '
+        Me.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTipo.FormattingEnabled = True
+        Me.cmbTipo.Items.AddRange(New Object() {"A", "B", "X", "P", "NC"})
+        Me.cmbTipo.Location = New System.Drawing.Point(455, 13)
+        Me.cmbTipo.Name = "cmbTipo"
+        Me.cmbTipo.Size = New System.Drawing.Size(62, 21)
+        Me.cmbTipo.TabIndex = 49
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(535, 17)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(47, 13)
+        Me.Label3.TabIndex = 50
+        Me.Label3.Text = "Número:"
+        '
+        'txtNumero
+        '
+        Me.txtNumero.Location = New System.Drawing.Point(586, 13)
+        Me.txtNumero.Name = "txtNumero"
+        Me.txtNumero.Size = New System.Drawing.Size(80, 20)
+        Me.txtNumero.TabIndex = 51
+        '
+        'cmdNotaDeCredito
+        '
+        Me.cmdNotaDeCredito.Enabled = False
+        Me.cmdNotaDeCredito.Location = New System.Drawing.Point(15, 436)
+        Me.cmdNotaDeCredito.Name = "cmdNotaDeCredito"
+        Me.cmdNotaDeCredito.Size = New System.Drawing.Size(119, 23)
+        Me.cmdNotaDeCredito.TabIndex = 52
+        Me.cmdNotaDeCredito.Text = "&Nota de credito"
+        Me.cmdNotaDeCredito.UseVisualStyleBackColor = True
+        '
+        'cmdImportar
+        '
+        Me.cmdImportar.Enabled = False
+        Me.cmdImportar.Location = New System.Drawing.Point(141, 436)
+        Me.cmdImportar.Name = "cmdImportar"
+        Me.cmdImportar.Size = New System.Drawing.Size(80, 23)
+        Me.cmdImportar.TabIndex = 53
+        Me.cmdImportar.Text = "&Importar"
+        Me.cmdImportar.UseVisualStyleBackColor = True
+        '
+        'cmdImprimir
+        '
+        Me.cmdImprimir.Location = New System.Drawing.Point(227, 436)
+        Me.cmdImprimir.Name = "cmdImprimir"
+        Me.cmdImprimir.Size = New System.Drawing.Size(80, 23)
+        Me.cmdImprimir.TabIndex = 54
+        Me.cmdImprimir.Text = "Imprimir"
+        Me.cmdImprimir.UseVisualStyleBackColor = True
+        '
+        'frmFacturasBuscar
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(777, 481)
+        Me.Controls.Add(Me.cmdImprimir)
+        Me.Controls.Add(Me.cmdImportar)
+        Me.Controls.Add(Me.cmdNotaDeCredito)
+        Me.Controls.Add(Me.txtNumero)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.cmbTipo)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.cmdDetalles)
+        Me.Controls.Add(Me.cmdBuscar)
+        Me.Controls.Add(Me.cmdAnular)
+        Me.Controls.Add(Me.cmdCancelar)
+        Me.Controls.Add(Me.dgvFacturas)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.cmbCliente)
+        Me.Name = "frmFacturasBuscar"
+        Me.Text = "Buscar Facturas"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.dgvFacturas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents cmdDetalles As System.Windows.Forms.Button
+    Friend WithEvents cmdBuscar As System.Windows.Forms.Button
+    Friend WithEvents cmdAnular As System.Windows.Forms.Button
+    Friend WithEvents cmdCancelar As System.Windows.Forms.Button
+    Friend WithEvents dgvFacturas As System.Windows.Forms.DataGridView
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents cmbCliente As System.Windows.Forms.ComboBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents cmbTipo As System.Windows.Forms.ComboBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents txtNumero As System.Windows.Forms.TextBox
+    Friend WithEvents cmdNotaDeCredito As System.Windows.Forms.Button
+    Friend WithEvents cmdImportar As System.Windows.Forms.Button
+    Friend WithEvents cmdImprimir As System.Windows.Forms.Button
+End Class

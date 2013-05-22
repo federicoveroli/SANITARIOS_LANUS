@@ -1,0 +1,43 @@
+Imports Modelo
+Imports Datos
+
+Public Class FachadaCajaDiaria
+    Public Function TraerSaldoInicial(ByVal fecha As Date) As Double
+        Dim regCaja As New RegistroCajaDiaria
+        Return regCaja.TraerSaldoInicial(fecha)
+    End Function
+    Public Function listarHistoricoCajaDiaria() As DataTable
+        Dim regCaja As New RegistroCajaDiaria
+        Return regCaja.listarHistoricoCajaDiaria
+    End Function
+    Public Sub AbrirCajaDiaria(ByVal Caja As CajaDiaria)
+        Dim regCaja As New RegistroCajaDiaria
+        regCaja.IngresarCaja(Caja)
+    End Sub
+    Public Function estaAbierta(ByVal fecha As Date)
+        Dim regCaja As New RegistroCajaDiaria
+        Return regCaja.EstaAbierta(fecha)
+    End Function
+    Public Function estaCerrada(ByVal fecha As Date)
+        Dim regCaja As New RegistroCajaDiaria
+        Return regCaja.estaCerrada(fecha)
+    End Function
+    Public Sub CerrarCaja(ByVal caja As CajaDiaria)
+        Dim regCaja As New RegistroCajaDiaria
+        'sumo todos los importes ingresados por ventas
+        'y las cantidad de depositos, y le resto las extraciones
+        regCaja.ModificarCajaDiaria(caja)
+    End Sub
+    Public Sub RealizarOperacion(ByVal ope As OperacionCaja)
+        Dim regCaja As New RegistroCajaDiaria
+        regCaja.IngresarOperacion(ope)
+    End Sub
+    Public Function ListarOperaciones(ByVal fecha As Date) As DataTable
+        Dim regCaja As New RegistroCajaDiaria
+        Return regCaja.ListarOperaciones(fecha)
+    End Function
+    Public Function ListarFacturas(ByVal fecha As Date) As DataTable
+        Dim regCaja As New RegistroCajaDiaria
+        Return regCaja.ListarFacturas(fecha)
+    End Function
+End Class

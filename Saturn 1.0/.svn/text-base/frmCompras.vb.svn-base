@@ -1,0 +1,102 @@
+Imports Fachada
+Imports Modelo
+
+Public Class frmCompras
+    Dim facProveedor As New FachadaProveedor
+    Dim facArticulo As New FachadaArticulo
+    Dim facComprobante As New FachadaCompra
+    Dim comp As New Compra
+    Private WithEvents frmArtBuscar As New FrmArticuloBuscar
+
+    Private Sub CmdArmarRenglon_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdArmarRenglon.Click
+        If frmArtBuscar.IsDisposed Then frmArtBuscar = New FrmArticuloBuscar
+        frmArtBuscar.cmdAgregarInexistente.Visible = False
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.MdiParent = FrmPrincipal
+        frmArtBuscar.seleccionBusqueda = True
+        frmArtBuscar.cmbBuscarPor.SelectedIndex = 4
+        frmArtBuscar.txtQueContenga.Text = cmbProveedores.Text
+        frmArtBuscar.GroupBox2.Visible = False
+        frmArtBuscar.cmdBuscar_Click(sender, e)
+        frmArtBuscar.Show()
+    End Sub
+    Private Sub AgregarRenglon(ByVal idArticulo As Integer, ByVal cantidad As Double, ByVal PU As Double) Handles frmArtBuscar.AgregarRenglon
+        Dim art As Articulo = facArticulo.TraerArticulo(idArticulo)
+        art.Precio = PU
+        comp.Renglones.Add(New RenglonComprobante(PU, cantidad, art))
+        dgvRenglonesCompra.DataSource = Nothing
+        ActualizarRenglones()
+    End Sub
+    Private Sub picBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles picBuscar.Click
+        frmProveedorBuscar.cmdNuevoProveedor.Visible = True
+        frmProveedorBuscar.cmdSeleccionar.Visible = True
+        'frmProveedorBuscar.MdiParent = FrmPrincipal
+        frmProveedorBuscar.ShowDialog()
+        If frmProveedorBuscar.idProveedorSeleccionado = 0 Then Exit Sub
+        For Each pro As IdProveedor In cmbProveedores.Items
+            If pro.Id = frmProveedorBuscar.idProveedorSeleccionado Then
+                cmbProveedores.SelectedItem = pro
+            End If
+        Next
+    End Sub
+
+    Private Sub cmdFinalizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdFinalizar.Click
+        If cmbProveedores.SelectedIndex = -1 Then
+            MessageBox.Show("Debe seleccionar un proveedor", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            cmbProveedores.Select()
+            Exit Sub
+        End If
+        comp.IdProveedor = CType(cmbProveedores.SelectedItem, IdProveedor).Id
+        comp.FechaEmision = dtpFecha.Value
+        If MessageBox.Show("Desea Finalizar la compra", "Finalizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            facComprobante.ingresarCompra(comp)
+            MessageBox.Show("La compra fue ingresada exitosamente", "compra ingresada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            comp = New Compra
+            ActualizarRenglones()
+        End If
+    End Sub
+
+    Private Sub frmCompras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        facProveedor.CargarCombo(cmbProveedores)
+    End Sub
+    Public Sub VerCompra(ByVal idCompra As Integer)
+        comp = facComprobante.TraerCompra(idCompra)
+        ActualizarRenglones()
+        For Each IdProvee As IdProveedor In cmbProveedores.Items
+            If IdProvee.Id = comp.IdProveedor Then
+                cmbProveedores.SelectedItem = IdProvee
+                Exit For
+            End If
+        Next
+        dtpFecha.Value = comp.FechaEmision
+        CmdArmarRenglon.Visible = False
+        cmdEliminar.Visible = False
+        cmdFinalizar.Visible = False
+        cmbProveedores.Enabled = False
+        dtpFecha.Enabled = False
+        picBuscar.Enabled = False
+    End Sub
+
+    Private Sub cmdEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdEliminar.Click
+        If dgvRenglonesCompra.Rows.Count = 0 Then
+            Exit Sub
+        End If
+        Dim indice As Integer
+        indice = dgvRenglonesCompra.SelectedRows(0).Index
+        comp.Renglones.RemoveAt(indice)
+        ActualizarRenglones()
+    End Sub
+    Private Sub ActualizarRenglones()
+        dgvRenglonesCompra.Rows.Clear()
+        If dgvRenglonesCompra.Columns.Count = 0 Then
+            dgvRenglonesCompra.Columns.Add("articulo", "articulo")
+            dgvRenglonesCompra.Columns.Add("articulo", "cantidad")
+            dgvRenglonesCompra.Columns.Add("articulo", "PU")
+            dgvRenglonesCompra.Columns.Add("articulo", "SubTotal")
+        End If
+        For Each rc As RenglonComprobante In comp.Renglones
+            dgvRenglonesCompra.Rows.Add(rc.Articulo.Descripcion, rc.Cantidad, Math.Round(rc.PrecioUnitario, 2), Math.Round(rc.SubTotal, 2))
+        Next
+        lblToTaL.Text = "" & Math.Round(comp.Total, 2)
+    End Sub
+End Class

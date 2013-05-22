@@ -1,0 +1,50 @@
+Imports Datos
+Imports Modelo
+
+Public Class FachadaCompra
+    Public Sub ingresarCompra(ByVal compra As Comprobante)
+        Dim facArt As New FachadaArticulo
+        Dim reg As New RegistroCompra
+        reg.ingresarCompra(compra)
+        For Each renglon As RenglonComprobante In compra.Renglones
+            renglon.Articulo.Costo = renglon.PrecioUnitario
+            If renglon.Articulo.Utilidad <> 0 Then
+                renglon.Articulo.Precio = renglon.PrecioUnitario + renglon.PrecioUnitario * (renglon.Articulo.Utilidad / 100)
+            End If
+            renglon.Articulo.Costo = renglon.PrecioUnitario
+            renglon.Articulo.Stock += renglon.Cantidad
+            facArt.ModificarArticulo2(renglon.Articulo)
+        Next
+    End Sub
+    Public Function TraerCompra(ByVal idCompra As Integer) As Compra
+        Dim reg As New RegistroCompra
+        Return reg.Traercompra(idCompra)
+    End Function
+    Public Function ListarCompras() As DataTable
+        Dim reg As New RegistroCompra
+        Return reg.ListarCompras
+    End Function
+    Public Function ListarCompras(ByVal idProveedor As Integer) As DataTable
+        Dim reg As New RegistroCompra
+        Return reg.ListarCompras(idProveedor)
+    End Function
+    Public Function ListarCompras(ByVal fechaDesde As Date, ByVal fechaHasta As Date) As DataTable
+        Dim reg As New RegistroCompra
+        Return reg.ListarCompras(fechaDesde, fechaHasta)
+    End Function
+    Public Function ListarCompras(ByVal idProveedor As Integer, ByVal fechaDesde As Date, ByVal fechaHasta As Date) As DataTable
+        Dim reg As New RegistroCompra
+        Return reg.ListarCompras(IdProveedor, fechaDesde, fechaHasta)
+    End Function
+    Public Sub Anular(ByVal idCompra As Integer)
+        Dim reg As New RegistroCompra
+        Dim regArt As New RegistroArticulo
+        Dim comp As Compra
+        comp = reg.Traercompra(idCompra)
+        For Each rc As RenglonComprobante In comp.Renglones
+            rc.Articulo.Stock -= rc.Cantidad
+            regArt.modificarArticulo2(rc.Articulo)
+        Next
+        reg.eliminarCompra(idCompra)
+    End Sub
+End Class

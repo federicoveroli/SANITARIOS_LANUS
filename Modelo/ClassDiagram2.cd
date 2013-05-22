@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Modelo.Comprobante">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Comprobante.vb</FileName>
+      <HashCode>AAAAAAAAAAAAgCAAAADAAAAACAAAQACAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.RenglonComprobante" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>RenglonComprobante.vb</FileName>
+      <HashCode>AAEQAAUAAAEAAAAAAACCAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Compra">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Compra.vb</FileName>
+      <HashCode>AAgEAAAAAAAAgAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.TipoArticulo" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TipoArticulo.vb</FileName>
+      <HashCode>AAAAAAIAAAQAAAIEAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Marca" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Marca.vb</FileName>
+      <HashCode>AAAAAIAAIAAAAAAEAAACAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.OperacionCaja">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>OperacionCaja.vb</FileName>
+      <HashCode>AACAAAAAAQAAAAEAAAAAAAAIAAAAAAACAAEAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Articulo" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Articulo.vb</FileName>
+      <HashCode>gACABAAIIAAIgCAEIAQCAIBRgAAAAEAAYAgAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.CajaDiaria" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CajaDiaria.vb</FileName>
+      <HashCode>EEABQAAAAAIAAAEAAAAAAAAAAAAAAAADAAIgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Cliente" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Cliente.vb</FileName>
+      <HashCode>CAAAAAAAQAAQAAAAQAAAgAAAACAAAQAAAAAABAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Domicilio" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domicilio.vb</FileName>
+      <HashCode>AAAAYAAAAgkAAAAAAAhAAAEAEAQEAAAAAAgCAACAAoo=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Ente" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Ente.vb</FileName>
+      <HashCode>AAAAoAAAAACAAwEAAAAAABAgAAAEAgAAAAoAAgIAEAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.IdProveedor" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>IdProveedor.vb</FileName>
+      <HashCode>AIACAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Iva" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Iva.vb</FileName>
+      <HashCode>AAAAAAAAAAAQAAAEQAACAAABAAAAAAAAAAAAABAAEAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Proveedor" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Proveedor.vb</FileName>
+      <HashCode>AIgAAAAAQGAAgAAAAIAAAAIAAAACAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Rubro" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Rubro.vb</FileName>
+      <HashCode>AAAAAAAAAAAAAAAEAAACAAABAAAAAAAAAAAAAAIAAAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Telefono" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Telefono.vb</FileName>
+      <HashCode>gAAAIAAAAAAAFAABACAAAAAAgAAAAAAAAAgAAAABIAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.TipoTelefono" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>TipoTelefono.vb</FileName>
+      <HashCode>AAAAAAAAAAAAAAAEACACAAABAAAAAAAAAAAAAAAAIAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Validar" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Validar.vb</FileName>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAABAAgAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.My.MySettings" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modelo.Venta">
+    <Position X="3.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Venta.vb</FileName>
+      <HashCode>AgAgEAAIQAAAAIAgAAACAAAAEEAAAAgAAAAABgAAAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Module Name="Modelo.My.Resources.Resources" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="Modelo.My.MySettingsProperty" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Module>
+</ClassDiagram>

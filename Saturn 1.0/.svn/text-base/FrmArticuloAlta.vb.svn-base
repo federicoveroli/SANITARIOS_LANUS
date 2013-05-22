@@ -1,0 +1,317 @@
+Imports Modelo
+Imports Fachada
+
+Public Class FrmArticuloAlta
+    Dim facArt As New Fachada.FachadaArticulo
+    Dim facProveedor As New FachadaProveedor
+
+    Private Sub cmdSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSalir.Click
+        Me.Close()
+    End Sub
+    Private Sub FrmArticuloAlta_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
+        If Asc(e.KeyChar) = Keys.Enter Then
+            My.Computer.Keyboard.SendKeys(Chr(Keys.Tab))
+        End If
+        
+        Dim SeparadorDecimal As String
+        SeparadorDecimal = System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator
+        If Asc(e.KeyChar) = 46 Or Asc(e.KeyChar) = 44 Then ' hay que cambiar el punto por la coma
+            e.KeyChar = Chr(Asc(SeparadorDecimal))
+        End If
+
+    End Sub
+    Private Sub FrmArticuloAlta_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        cmbTipoProducto.DataSource = facArt.listarTipos()
+        'cmbTipoProducto.SelectedIndex = 0
+        cmbTipoProducto.Text = "DESCONOCIDO"
+        facProveedor.CargarCombo(cmbProveedoR)
+        cmbProveedoR.Text = "DESCONOCIDO"
+        cmbMarca.DataSource = facArt.listarMarcas()
+        cmbMarca.Text = "DESCONOCIDA"
+        'cmbMarca.SelectedIndex = 0
+        txtDescripcION.Select()
+    End Sub
+    Private Sub cmbTipoArticuLO_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles cmbTipoProducto.KeyPress
+        'If e.KeyCode = Keys.Enter Then My.Computer.Keyboard.SendKeys(Chr(Keys.Tab))
+    End Sub
+
+    Public Sub CompletarArticulo(ByVal idArticulo As Integer)
+        Dim FacArt As New FachadaArticulo
+        Dim Art As New Articulo
+        Art = FacArt.TraerArticulo(idArticulo)
+        txtDescripcION.Text = Art.Descripcion
+        txtMedida.Text = Art.Medida
+        txtPorcDESC.Text = Art.PorcDesc
+        txtPorcGananciA.Text = Art.Utilidad
+        txtPrecioConDescuento.Text = Math.Round(Art.Costo - (Art.Costo * Art.PorcDesc / 100), 2)
+        txtPrecioCosto.Text = Math.Round(Art.Costo, 2)
+
+        txtPrecioVENTA.Text = Math.Round(txtPrecioConDescuento.Text + (txtPrecioConDescuento.Text * Art.Utilidad / 100), 2)
+        txtSTOcK.Text = Art.Stock
+        For Each m As Marca In cmbMarca.Items
+            If m.IdMarca = Art.IdMarca Then
+                cmbMarca.SelectedItem = m
+                Exit For
+            End If
+        Next
+        For Each m As IdProveedor In cmbProveedoR.Items
+            If m.Id = Art.Idproveedor Then
+                cmbProveedoR.SelectedItem = m
+                Exit For
+            End If
+        Next
+        For Each m As TipoArticulo In cmbTipoProducto.Items
+            If m.IdTipo = Art.Idcategoria Then
+                cmbTipoProducto.SelectedItem = m
+                Exit For
+            End If
+        Next
+
+        chFraccionable.Checked = Art.esFraccionable
+
+
+
+
+        'For Each r As Rubro In cmbRubro.Items
+        '    If r.IdRubro = objCliente.IdCliente Then
+        '        cmbRubro.SelectedItem = r
+        '        Exit For
+        '    End If
+        'Next
+
+
+
+
+
+
+    End Sub
+
+
+    Private Sub cmdAceptar_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAceptar.Click
+        txtPorcDESC.Focus()
+        txtPorcGananciA.Focus()
+        txtSTOcK.Focus()
+
+        If cmdAceptar.Text = "Modificar" Then
+            Dim Modif As New Articulo
+            With Modif
+                .Costo = txtPrecioCosto.Text
+                .Descripcion = txtDescripcION.Text
+                .IdArticulo = lblMisterioso.Text
+                .IdMarca = CType(cmbMarca.SelectedItem, Marca).IdMarca
+                .Idproveedor = CType(cmbProveedoR.SelectedItem, IdProveedor).Id
+                .Idcategoria = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo
+                .Medida = txtMedida.Text
+                .PorcDesc = txtPorcDESC.Text
+                .Precio = txtPrecioVENTA.Text
+                .Stock = txtSTOcK.Text
+                .Utilidad = txtPorcGananciA.Text
+                .esFraccionable = chFraccionable.Checked
+
+                Dim fachita As New FachadaArticulo
+                Dim iddd As Articulo
+                iddd = fachita.TraerArticulo(Modif.IdArticulo)
+                Dim precio_anterior As Double
+                precio_anterior = Math.Round(iddd.Precio, 2)
+                If precio_anterior <> Modif.Precio Then
+                    Dim facc As New FachadaBitacora
+                    Dim varSTRING As String
+                    varSTRING = Modif.Descripcion & " [el precio era " & precio_anterior & " y ahora es " & Modif.Precio & "]"
+                    facc.Mod_frmMod_bitacora(Sesion.getSesion.UsuarioActivo.Nick, Date.Now, varSTRING)
+                End If
+
+                Try
+                    facArt.ModificarArticulo2(Modif)
+                    MsgBox("Modificado exitosamente!!", MsgBoxStyle.Information, "Articulo Modificado")
+                    Me.Close()
+                Catch ex As Exception
+                    MsgBox("Ha ocurrido un error inesperado..", MsgBoxStyle.Critical, "Error")
+                End Try
+            End With
+           
+
+
+          
+        Else
+            If txtDescripcION.Text = "" Or txtPorcDESC.Text = "" Or txtPorcGananciA.Text = "" Or txtPrecioConDescuento.Text = "" Or txtPrecioCosto.Text = "" Or txtPrecioVENTA.Text = "" Or txtSTOcK.Text = "" Then
+                MsgBox("Debe completar todos los campos!!", MsgBoxStyle.Exclamation, "Campos incompletos")
+            Else
+                Try
+                    Dim alta As New Articulo
+                    alta.Idcategoria = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo
+                    alta.Costo = txtPrecioCosto.Text
+                    alta.Descripcion = txtDescripcION.Text
+                    alta.IdMarca = CType(cmbMarca.SelectedItem, Marca).IdMarca
+                    alta.Idproveedor = CType(cmbProveedoR.SelectedItem, IdProveedor).Id
+                    alta.Medida = txtMedida.Text
+                    alta.PorcDesc = txtPorcDESC.Text
+                    alta.Precio = txtPrecioVENTA.Text
+                    alta.Stock = txtSTOcK.Text
+                    alta.Utilidad = txtPorcGananciA.Text
+                    alta.esFraccionable = chFraccionable.Checked
+
+
+                    facArt.ingresarArticulo(alta)
+                    MsgBox("Artículo cargado exitosamente!", MsgBoxStyle.Information, "Articulo ingresado")
+                    cmbTipoProducto.Text = ""
+                    cmbMarca.Text = ""
+                    cmbProveedoR.Text = ""
+                    txtPrecioCosto.Text = ""
+                    txtDescripcION.Text = ""
+                    txtMedida.Text = ""
+                    txtPorcDESC.Text = ""
+                    txtPrecioVENTA.Text = ""
+                    txtSTOcK.Text = ""
+                    txtPorcGananciA.Text = ""
+                    txtPrecioConDescuento.Text = ""
+                    txtPrecioVENTA.Text = ""
+                    chFraccionable.Checked = False
+                Catch ex As Exception
+                    MsgBox("Error: " + ex.Message, MsgBoxStyle.Critical, "Error")
+                End Try
+
+                
+            End If
+        End If
+    End Sub
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAgregarSimilar.Click
+        If txtDescripcION.Text = "" Or txtPorcDESC.Text = "" Or txtPorcGananciA.Text = "" Or txtPrecioConDescuento.Text = "" Or txtPrecioCosto.Text = "" Or txtPrecioVENTA.Text = "" Or txtSTOcK.Text = "" Then
+            MsgBox("Debe completar todos los campos!!", MsgBoxStyle.Exclamation, "Campos incompletos")
+        Else
+            Dim alta As New Articulo
+            alta.Idcategoria = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo 'cmbTipoProducto.Text
+            alta.Costo = txtPrecioCosto.Text
+            alta.Descripcion = txtDescripcION.Text
+            alta.IdMarca = CType(cmbMarca.SelectedItem, Marca).IdMarca
+            alta.Idproveedor = CType(cmbProveedoR.SelectedItem, IdProveedor).Id
+            alta.Medida = txtMedida.Text
+            alta.PorcDesc = txtPorcDESC.Text
+            alta.Precio = txtPrecioVENTA.Text
+            alta.Stock = txtSTOcK.Text
+            alta.Utilidad = txtPorcGananciA.Text
+            Try
+                facArt.ingresarArticulo(alta)
+            Catch ex As Exception
+                MsgBox("Error: " + ex.Message)
+            End Try
+            MsgBox("Artículo cargado exitosamente!", MsgBoxStyle.Information, "Articulo ingresado")
+            txtPrecioCosto.Text = ""
+            txtMedida.Text = ""
+            txtPrecioVENTA.Text = ""
+            txtSTOcK.Text = ""
+            txtPrecioConDescuento.Text = ""
+            txtPrecioVENTA.Text = ""
+        End If
+    End Sub
+
+    Private Sub txtPorcDESC_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPorcDESC.KeyPress
+        e.Handled = Not Validar.EsFlotante(e.KeyChar.ToString())
+    End Sub
+    Private Sub txtPorcDESC_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPorcDESC.LostFocus
+        Dim precio As Double
+        Try
+            precio = txtPrecioCosto.Text
+            txtPrecioConDescuento.Text = Math.Round(precio - (precio * (txtPorcDESC.Text) / 100), 2)
+        Catch ex As Exception
+            'MsgBox("Debe completar los campos requeridos!")
+        End Try
+    End Sub
+
+    Private Sub txtPorcGananciA_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPorcGananciA.KeyPress
+        e.Handled = Not Validar.EsFlotante(e.KeyChar.ToString())
+    End Sub
+
+    Private Sub txtPorcGananciA_LocationChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPorcGananciA.LocationChanged
+
+    End Sub
+    Private Sub txtPorcGananciA_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPorcGananciA.LostFocus
+        Try
+            Dim precio As Double
+            precio = txtPrecioConDescuento.Text
+            txtPrecioVENTA.Text = Math.Round(precio + (precio * (txtPorcGananciA.Text) / 100), 2)
+        Catch ex As Exception
+        End Try
+    End Sub
+    Private Sub cmdCONVERTIR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCONVERTIR.Click
+        Try
+            txtPrecioCosto.Text = CDbl(txtValorDolar.Text) * txtPrecioCosto.Text
+            txtPorcDESC.Focus()
+            txtPorcGananciA.Focus()
+            txtSTOcK.Focus()
+        Catch ex As Exception
+            MsgBox("Debe escribir el valor del dolar y el precio de costo", MsgBoxStyle.Exclamation, "Campos incompletos")
+        End Try
+    End Sub
+
+    Private Sub cmdAgregarTipo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAgregarTipo.Click
+        Dim tipo As String
+        tipo = InputBox("Ingrese el tipo")
+        If tipo.Trim.Length <> 0 Then
+            facArt.ingresarTipo(tipo)
+            cmbTipoProducto.DataSource = facArt.listarTipos
+            cmbTipoProducto.SelectedIndex = 0
+        End If
+    End Sub
+
+    Private Sub cmdAgregarMarca_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAgregarMarca.Click
+        Dim tipo As String
+        tipo = InputBox("Ingrese la marca")
+        If tipo.Trim.Length <> 0 Then
+            facArt.ingresarMarca(tipo)
+            cmbMarca.DataSource = facArt.listarMarcas
+            cmbMarca.SelectedIndex = 0
+        End If
+    End Sub
+
+    Private Sub txtSTOcK_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtSTOcK.KeyPress
+        e.Handled = Not Validar.EsNumero(e.KeyChar.ToString())
+    End Sub
+
+    Private Sub txtPrecioCosto_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPrecioCosto.KeyPress
+        e.Handled = Not Validar.EsFlotante(e.KeyChar.ToString())
+    End Sub
+
+    Private Sub txtMedida_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtMedida.KeyPress
+        e.Handled = Not Validar.EsFlotante(e.KeyChar.ToString())
+    End Sub
+
+
+    Private Sub txtPrecioVENTA_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtPrecioVENTA.TextChanged
+
+    End Sub
+
+    Private Sub txtPorcGananciA_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtPorcGananciA.TextChanged
+
+    End Sub
+
+    Private Sub picEliminarTipoProducto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles picEliminarTipoProducto.Click
+
+        If MessageBox.Show("Realmente desea eliminar el tipo de producto" & vbCr & "'" & cmbTipoProducto.Text & "'", "Confirme la eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim idCategoria As Integer = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo
+            If facArt.TieneArticulosTipoArticulo(idCategoria) = False Then
+                facArt.eliminarTipoArticulo(idCategoria)
+                cmbTipoProducto.DataSource = facArt.listarTipos()
+                cmbTipoProducto.Text = "DESCONOCIDO"
+            Else
+                MessageBox.Show("Imposible eliminar el tipo de producto ya que se encuentra asignado a uno o más articulos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub picEliminarMarca_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles picEliminarMarca.Click
+
+        If MessageBox.Show("Realmente desea eliminar la marca" & vbCr & "'" & cmbMarca.Text & "'", "Confirme la eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            Dim idMarca As Integer = CType(cmbMarca.SelectedItem, Marca).IdMarca
+            If facArt.TieneArticulosMarca(idMarca) = False Then
+                facArt.eliminarMarca(idMarca)
+                cmbMarca.DataSource = facArt.listarMarcas()
+                cmbMarca.Text = "DESCONOCIDA"
+            Else
+                MessageBox.Show("Imposible eliminar la marca ya que se encuentra asignado a uno o más articulos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        End If
+    End Sub
+End Class

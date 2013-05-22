@@ -1,0 +1,42 @@
+Public Class frmHistorialCajaDiaria
+    Dim fac As New Fachada.FachadaCajaDiaria
+    Private Sub frmHistorialCajaDiaria_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        dgvHistorialCD.DataSource = fac.ListarHistoricoCajaDiaria()
+    End Sub
+
+    Private Sub dgvHistorialCD_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvHistorialCD.SelectionChanged
+        Try
+            If dgvHistorialCD.SelectedRows.Count > 0 Then
+                dgvOperaciones.DataSource = fac.ListarOperaciones(dgvHistorialCD.SelectedRows(0).Cells(0).Value)
+                dgvDetallesCaja.DataSource = fac.ListarFacturas(dgvHistorialCD.SelectedRows(0).Cells(0).Value)
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+
+    Private Sub dgvDetallesCaja_CellContentDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvDetallesCaja.CellContentDoubleClick
+
+
+        frmFacturasBuscar.MdiParent = Me.MdiParent
+        frmFacturasBuscar.Show()
+        frmFacturasBuscar.cmbTipo.Text = Me.dgvDetallesCaja.SelectedRows(0).Cells(2).Value
+        frmFacturasBuscar.txtNumero.Text = Me.dgvDetallesCaja.SelectedRows(0).Cells(1).Value
+        frmFacturasBuscar.cmdBuscar_Click(sender, e)
+
+    End Sub
+
+  
+    Private Sub dgvDetallesCaja_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dgvDetallesCaja.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+
+            frmFacturasBuscar.MdiParent = Me.MdiParent
+            frmFacturasBuscar.Show()
+            frmFacturasBuscar.cmbTipo.Text = Me.dgvDetallesCaja.SelectedRows(0).Cells(2).Value
+            frmFacturasBuscar.txtNumero.Text = Me.dgvDetallesCaja.SelectedRows(0).Cells(1).Value
+            frmFacturasBuscar.cmdBuscar_Click(sender, e)
+        End If
+    End Sub
+End Class

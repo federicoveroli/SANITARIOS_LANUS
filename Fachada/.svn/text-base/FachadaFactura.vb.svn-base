@@ -1,0 +1,137 @@
+Imports Datos
+Imports Modelo
+Public Class FachadaFactura
+    Public Function TraerNumero(ByVal tipoFac As String) As Integer
+        Dim regFacT As New RegistroFacturas
+        Return regFacT.TraerNumero(tipoFac)
+    End Function
+    Public Function TraerNumeroNotaDeCredito(ByVal tipofac As String) As Integer
+        Dim regFacT As New RegistroFacturas
+        Return regFacT.TraerNumeroNotaDeCredito(tipofac)
+    End Function
+    Public Function ListarFacturasEnCuentaCorriente(ByVal param As Integer)
+        Dim regFacT As New RegistroFacturas
+        Return regFacT.ListarFacturasCtaCte(param)
+    End Function
+
+    Public Sub InsertarPago(ByVal p As Pago)
+        Dim regPago As New RegistroPago
+        regPago.InsertarPago(p)
+    End Sub
+    Public Function ListarFacturasDetalles(ByVal numero As Integer, ByVal condicion As String)
+        Dim regFac As New RegistroFacturas
+        Return regFac.ListarFacturasConDetalle(numero, condicion)
+    End Function
+    Public Function ListarFacturas() As DataTable
+        Dim regFac As New RegistroFacturas
+        Return regFac.ListarFacturas()
+    End Function
+    Public Function ListarNotasDeCredito() As DataTable
+        Dim regFac As New RegistroFacturas
+        Return regFac.ListarNotasDeCredito()
+    End Function
+    Public Function ListarNotasDeCredito(ByVal numero As Integer) As DataTable
+        Dim regFac As New RegistroFacturas
+        Return regFac.ListarNotasDeCredito(numero)
+    End Function
+    Public Sub Eliminar(ByVal vta As Venta)
+        Dim regFac As New RegistroFacturas
+        Dim facArt As New FachadaArticulo
+        For Each renglon As RenglonComprobante In vta.Renglones
+            If Not IsNothing(renglon.Articulo) Then
+                renglon.Articulo = facArt.TraerArticulo(renglon.Articulo.IdArticulo)
+                renglon.Articulo.Stock += renglon.Cantidad
+                facArt.ModificarArticulo2(renglon.Articulo)
+            End If
+        Next
+        regFac.Eliminar(vta.Numero, vta.CondicionVenta)
+    End Sub
+    Public Function ListarFacturas(ByVal numero As Integer, ByVal condicion As String) As DataTable
+        Dim regFac As New RegistroFacturas
+        Return regFac.ListarFacturas(numero, condicion)
+    End Function
+    Public Function ListarFacturas(ByVal idCliente As Integer) As DataTable
+        Dim regFac As New RegistroFacturas
+        Return regFac.ListarFacturas(idCliente)
+    End Function
+    Public Function ListarFacturas(ByVal TIPO As String) As DataTable
+        Dim regFac As New RegistroFacturas
+        Return regFac.ListarFacturas(TIPO)
+    End Function
+    Public Sub FacturaPagadaCompletamente(ByVal numero As Integer, ByVal condicion As String)
+        Dim f As New RegistroFacturas
+        f.FacturaPagada(numero, condicion)
+    End Sub
+    Public Function TraerIds(ByVal numero As Integer, ByVal condicion As String)
+        Dim f As New RegistroFacturas
+        Return f.TraerId(numero, condicion)
+    End Function
+    Public Sub ingresarFactura(ByVal fac As Venta)
+        Dim facArt As New FachadaArticulo
+        Dim reg As New RegistroFacturas
+        Try
+            AccesoDatos.Instancia.IniciarTransaccion()
+            reg.ingresarFactura(fac)
+            If fac.CondicionVenta = "P" Then
+
+            Else
+                For Each renglon As RenglonComprobante In fac.Renglones
+                    If Not IsNothing(renglon.Articulo) Then
+                        renglon.Articulo = facArt.TraerArticulo(renglon.Articulo.IdArticulo)
+                        renglon.Articulo.Stock -= renglon.CantADisminuir
+                        facArt.ModificarArticulo2(renglon.Articulo)
+                    End If
+                Next
+            End If
+
+
+            AccesoDatos.Instancia.ConfirmarTransaccion()
+
+        Catch ex As Exception
+            AccesoDatos.Instancia.DeshacerTransaccion()
+            Throw New Exception("Error al ingresar el comprobante", ex)
+        End Try
+
+    End Sub
+
+    Public Sub ingresarNotaDeCredito(ByVal nota As NotaDeCredito)
+        Dim facArt As New FachadaArticulo
+        Dim reg As New RegistroFacturas
+
+        AccesoDatos.Instancia.IniciarTransaccion()
+        reg.ingresarNotaDeCredito(nota)
+        
+        For Each renglon As RenglonComprobante In nota.Renglones
+            If Not IsNothing(renglon.Articulo) Then
+                renglon.Articulo = facArt.TraerArticulo(renglon.Articulo.IdArticulo)
+                renglon.Articulo.Stock += renglon.Cantidad
+                facArt.ModificarArticulo2(renglon.Articulo)
+            End If
+        Next
+
+
+        AccesoDatos.Instancia.ConfirmarTransaccion()
+
+    End Sub
+    Public Function SumarLasVentas(ByVal id As Integer)
+        Dim fac As New RegistroFacturas
+        Return fac.SumarVentas(id)
+    End Function
+    Public Function ChequearCredito(ByVal id As Integer)
+        Dim fac As New RegistroFacturas
+        Return fac.ChequearLimite(id)
+    End Function
+
+    Public Function TraerFactura(ByVal numero As Integer, ByVal condicion As String) As Venta
+        Dim fac As New RegistroFacturas
+        Return fac.TraerFactura(numero, condicion)
+    End Function
+    Public Function TraerNotaDeCredito(ByVal numero As Integer, ByVal condicion As String) As NotaDeCredito
+        Dim fac As New RegistroFacturas
+        Return fac.TraerNotaDeCredito(numero, condicion)
+    End Function
+    Public Function SumarPagos(ByVal id As Integer)
+        Dim fac As New RegistroFacturas
+        Return fac.SumarLosPagos(id)
+    End Function
+End Class

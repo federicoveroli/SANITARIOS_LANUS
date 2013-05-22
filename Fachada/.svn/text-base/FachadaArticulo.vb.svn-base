@@ -1,0 +1,159 @@
+Imports Modelo
+Imports Datos
+Public Class FachadaArticulo
+    Public Sub aumentarprecio(ByVal IdsAactualizar As String, ByVal variable As Double)
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.ModificarCostoDeArticulos(IdsAactualizar, variable)
+    End Sub
+    Public Sub ingresarArticulo(ByVal art As Articulo)
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.ingresarArticulo(art)
+    End Sub
+    Public Function TraerArticulo(ByVal idArt As Integer)
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.traerArticuloPorId(idArt)
+    End Function
+    Public Function ListarArticulosXIds(ByVal ids As String) As DataTable
+        Dim RegArticulo As New RegistroArticulo
+        Return RegArticulo.ListarArticulosXIds(ids)
+    End Function
+    Public Function listarArticulos() As DataTable
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.listarArticulos()
+    End Function
+    Public Function ListarArticulosXTipo(ByVal desc As String) As DataTable
+        Dim d As String
+        d = desc
+        Dim RegArticulo As New RegistroArticulo
+        Return RegArticulo.TaerArticuloXTipo(d)
+    End Function
+    Public Function ListarArticulosXDescripcion(ByVal desc As String) As DataTable
+        Dim d As String
+        d = desc
+        Dim RegArticulo As New RegistroArticulo
+        Return RegArticulo.TraerArticuloPorDescripcion(d)
+    End Function
+    Public Function EjecutarConsulta(ByVal consulta As String) As DataTable
+        Dim RegArticulo As New RegistroArticulo
+        Return RegArticulo.EjecutarConsulta(consulta)
+    End Function
+    Public Function ListarArticulosXMarca(ByVal desc As String) As DataTable
+        Dim d As String
+        d = desc
+        Dim RegArticulo As New RegistroArticulo
+        Return RegArticulo.TaerArticuloXMarca(d)
+    End Function
+    Public Function ListarArticulosXProveedor(ByVal desc As String) As DataTable
+        Dim d As String
+        d = desc
+        Dim RegArticulo As New RegistroArticulo
+        Return RegArticulo.TaerArticuloXProveedor(d)
+    End Function
+    Public Function modificarArticulo(ByVal idArticulo As Integer) 'lo traigo de la base y lo muestro en el formulario de alta
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.modificarArticulo(idArticulo)
+    End Function
+    Public Sub ModificarArticulo2(ByVal art As Articulo) 'lo modifico en la base
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.modificarArticulo2(art)
+    End Sub
+    Public Sub eliminarArticulo(ByVal idArticulo As Integer)
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.eliminarArticulo(idArticulo)
+    End Sub
+   
+    Public Function listarTipos() As List(Of TipoArticulo)
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.listarTipos()
+    End Function
+    Public Function traerTipoPorId(ByVal idTipo As Integer) As String
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.traerTipoPorId(idTipo)
+    End Function
+    Public Function traerMarcaPorId(ByVal idMarca As Integer) As String
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.TraerMarcaPorId(idMarca)
+    End Function
+    Public Sub ingresarTipo(ByVal descripcion As String)
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.ingresarTipo(descripcion)
+    End Sub
+    Public Function listarMarcas() As List(Of Marca)
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.listarMarcas()
+    End Function
+    Public Sub ingresarMarca(ByVal descripcion As String)
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.ingresarMarca(descripcion)
+    End Sub
+    Public Sub ReemplazarArticulos(ByVal cons As String)
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.ReemplazoDeArticulos(cons)
+    End Sub
+    'Public Function traerIDSdearticulos(ByVal precio As Double)
+    '    Dim reg As New RegistroArticulo
+    '    return reg.
+    'End Function
+    Public Function TRAERtodosLOSarticulosDEvalmar()
+        Dim dt As DataTable
+        Dim r As New RegistroArticulo
+        dt = r.TRAERarticulosDEvalmar
+        Return dt
+    End Function
+    Public Function TraerCategoriasDeValmar()
+        Dim dt As DataTable
+        Dim fachada As New RegistroArticulo
+        dt = fachada.TrAeRCatValmAR
+        Return dt
+    End Function
+    Public Function TraerMarcasDeValmar()
+        Dim dt As DataTable
+        Dim fachada As New RegistroArticulo
+        dt = fachada.TrAeRMarcasValmAR
+        Return dt
+    End Function
+    Public Function ProveedoresValmar()
+        Dim dt As DataTable
+        Dim fachada As New RegistroArticulo
+        dt = fachada.TrAeRProveedoresValmar
+        Return dt
+    End Function
+    Public Function traerIDSdeMIbaseCAT(ByVal desc As String) As DataTable
+        Dim dt As DataTable
+        Dim d As New RegistroArticulo
+        dt = d.TraeridsDecatego(desc)
+        Return dt
+    End Function
+    Public Function traerDESCvalmar()
+        Dim dt As DataTable
+        Dim r As New RegistroArticulo
+        dt = r.TraerDESCdeVALMAR
+        Return dt
+    End Function
+    Public Function traerIdProveedor()
+        Dim dt As DataTable
+        Dim r As New RegistroArticulo
+        dt = r.TraerDESCdeVALMAR
+        Return dt
+    End Function
+    Public Function TraerIdMarcaPorDescripcion(ByVal descripcion As String) As Integer
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.TraerIdMarcaPorDescripcion(descripcion)
+    End Function
+    Public Sub eliminarTipoArticulo(ByVal idTipo As Integer)
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.eliminarTipoArticulo(idTipo)
+    End Sub
+    Public Sub eliminarMarca(ByVal idMarca As Integer)
+        Dim regArticulo As New RegistroArticulo
+        regArticulo.eliminarMarca(idMarca)
+    End Sub
+    Public Function TieneArticulosTipoArticulo(ByVal idtipo As Integer) As Boolean
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.TieneArticulosTipoArticulo(idtipo)
+    End Function
+    Public Function TieneArticulosMarca(ByVal idMarca As Integer) As Boolean
+        Dim regArticulo As New RegistroArticulo
+        Return regArticulo.TieneArticulosMarca(idMarca)
+    End Function
+End Class

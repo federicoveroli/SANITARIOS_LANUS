@@ -1,0 +1,336 @@
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FrmCajaDiaria
+    Inherits System.Windows.Forms.Form
+
+    'Form reemplaza a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Requerido por el Diseñador de Windows Forms
+    Private components As System.ComponentModel.IContainer
+
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.Label3 = New System.Windows.Forms.Label
+        Me.dgvOperaciones = New System.Windows.Forms.DataGridView
+        Me.dgvDetallesCaja = New System.Windows.Forms.DataGridView
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.cmdAbrirCaja = New System.Windows.Forms.Button
+        Me.txtMontoInicial = New System.Windows.Forms.TextBox
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox
+        Me.cmdRealizarOperacion = New System.Windows.Forms.Button
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.txtMonto = New System.Windows.Forms.TextBox
+        Me.RadioDeposito = New System.Windows.Forms.RadioButton
+        Me.RadioExtraccion = New System.Windows.Forms.RadioButton
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox
+        Me.cmdCerrarCaja = New System.Windows.Forms.Button
+        Me.txtEstado = New System.Windows.Forms.TextBox
+        Me.GroupBox1.SuspendLayout()
+        CType(Me.dgvOperaciones, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvDetallesCaja, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
+        Me.SuspendLayout()
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.dgvOperaciones)
+        Me.GroupBox1.Controls.Add(Me.dgvDetallesCaja)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(570, 283)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Detalle de movimientos del dia"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(319, 35)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(117, 13)
+        Me.Label4.TabIndex = 15
+        Me.Label4.Text = "Operaciones realizadas"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(21, 35)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(90, 13)
+        Me.Label3.TabIndex = 14
+        Me.Label3.Text = "Ventas realizadas"
+        '
+        'dgvOperaciones
+        '
+        Me.dgvOperaciones.AllowUserToAddRows = False
+        Me.dgvOperaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvOperaciones.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvOperaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvOperaciones.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvOperaciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.dgvOperaciones.Location = New System.Drawing.Point(322, 51)
+        Me.dgvOperaciones.Name = "dgvOperaciones"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvOperaciones.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvOperaciones.Size = New System.Drawing.Size(231, 213)
+        Me.dgvOperaciones.TabIndex = 13
+        '
+        'dgvDetallesCaja
+        '
+        Me.dgvDetallesCaja.AllowUserToAddRows = False
+        Me.dgvDetallesCaja.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvDetallesCaja.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        Me.dgvDetallesCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvDetallesCaja.DefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvDetallesCaja.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.dgvDetallesCaja.Location = New System.Drawing.Point(24, 51)
+        Me.dgvDetallesCaja.Name = "dgvDetallesCaja"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvDetallesCaja.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvDetallesCaja.Size = New System.Drawing.Size(271, 213)
+        Me.dgvDetallesCaja.TabIndex = 12
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.cmdAbrirCaja)
+        Me.GroupBox2.Controls.Add(Me.txtMontoInicial)
+        Me.GroupBox2.Controls.Add(Me.Label2)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 313)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(261, 53)
+        Me.GroupBox2.TabIndex = 1
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Abrir Caja"
+        '
+        'cmdAbrirCaja
+        '
+        Me.cmdAbrirCaja.Location = New System.Drawing.Point(180, 21)
+        Me.cmdAbrirCaja.Name = "cmdAbrirCaja"
+        Me.cmdAbrirCaja.Size = New System.Drawing.Size(75, 23)
+        Me.cmdAbrirCaja.TabIndex = 4
+        Me.cmdAbrirCaja.Text = "&Abrir caja"
+        Me.cmdAbrirCaja.UseVisualStyleBackColor = True
+        '
+        'txtMontoInicial
+        '
+        Me.txtMontoInicial.Location = New System.Drawing.Point(82, 22)
+        Me.txtMontoInicial.MaxLength = 9
+        Me.txtMontoInicial.Name = "txtMontoInicial"
+        Me.txtMontoInicial.Size = New System.Drawing.Size(81, 20)
+        Me.txtMontoInicial.TabIndex = 5
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 25)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(69, 13)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Monto inicial:"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.cmdRealizarOperacion)
+        Me.GroupBox4.Controls.Add(Me.Label1)
+        Me.GroupBox4.Controls.Add(Me.txtMonto)
+        Me.GroupBox4.Controls.Add(Me.RadioDeposito)
+        Me.GroupBox4.Controls.Add(Me.RadioExtraccion)
+        Me.GroupBox4.Location = New System.Drawing.Point(12, 372)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(570, 71)
+        Me.GroupBox4.TabIndex = 3
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Extraccion / Deposito"
+        '
+        'cmdRealizarOperacion
+        '
+        Me.cmdRealizarOperacion.Location = New System.Drawing.Point(403, 28)
+        Me.cmdRealizarOperacion.Name = "cmdRealizarOperacion"
+        Me.cmdRealizarOperacion.Size = New System.Drawing.Size(111, 23)
+        Me.cmdRealizarOperacion.TabIndex = 4
+        Me.cmdRealizarOperacion.Text = "&Realizar Operación"
+        Me.cmdRealizarOperacion.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(195, 33)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(40, 13)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Monto:"
+        '
+        'txtMonto
+        '
+        Me.txtMonto.Location = New System.Drawing.Point(237, 29)
+        Me.txtMonto.MaxLength = 9
+        Me.txtMonto.Name = "txtMonto"
+        Me.txtMonto.Size = New System.Drawing.Size(100, 20)
+        Me.txtMonto.TabIndex = 2
+        '
+        'RadioDeposito
+        '
+        Me.RadioDeposito.AutoSize = True
+        Me.RadioDeposito.Location = New System.Drawing.Point(96, 31)
+        Me.RadioDeposito.Name = "RadioDeposito"
+        Me.RadioDeposito.Size = New System.Drawing.Size(67, 17)
+        Me.RadioDeposito.TabIndex = 1
+        Me.RadioDeposito.TabStop = True
+        Me.RadioDeposito.Text = "Deposito"
+        Me.RadioDeposito.UseVisualStyleBackColor = True
+        '
+        'RadioExtraccion
+        '
+        Me.RadioExtraccion.AutoSize = True
+        Me.RadioExtraccion.Checked = True
+        Me.RadioExtraccion.Location = New System.Drawing.Point(15, 31)
+        Me.RadioExtraccion.Name = "RadioExtraccion"
+        Me.RadioExtraccion.Size = New System.Drawing.Size(75, 17)
+        Me.RadioExtraccion.TabIndex = 0
+        Me.RadioExtraccion.TabStop = True
+        Me.RadioExtraccion.Text = "Extraccion"
+        Me.RadioExtraccion.UseVisualStyleBackColor = True
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox5.Controls.Add(Me.cmdCerrarCaja)
+        Me.GroupBox5.Controls.Add(Me.txtEstado)
+        Me.GroupBox5.Location = New System.Drawing.Point(341, 313)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(241, 53)
+        Me.GroupBox5.TabIndex = 4
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Estado"
+        '
+        'cmdCerrarCaja
+        '
+        Me.cmdCerrarCaja.Location = New System.Drawing.Point(114, 21)
+        Me.cmdCerrarCaja.Name = "cmdCerrarCaja"
+        Me.cmdCerrarCaja.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCerrarCaja.TabIndex = 1
+        Me.cmdCerrarCaja.Text = "&Cerrar Caja"
+        Me.cmdCerrarCaja.UseVisualStyleBackColor = True
+        '
+        'txtEstado
+        '
+        Me.txtEstado.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.txtEstado.Location = New System.Drawing.Point(19, 22)
+        Me.txtEstado.Name = "txtEstado"
+        Me.txtEstado.ReadOnly = True
+        Me.txtEstado.Size = New System.Drawing.Size(89, 20)
+        Me.txtEstado.TabIndex = 0
+        Me.txtEstado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'FrmCajaDiaria
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(594, 455)
+        Me.Controls.Add(Me.GroupBox5)
+        Me.Controls.Add(Me.GroupBox4)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.KeyPreview = True
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "FrmCajaDiaria"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Caja diaria - Saturn 1.0"
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        CType(Me.dgvOperaciones, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvDetallesCaja, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
+        Me.ResumeLayout(False)
+
+    End Sub
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents dgvDetallesCaja As System.Windows.Forms.DataGridView
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents cmdRealizarOperacion As System.Windows.Forms.Button
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents txtMonto As System.Windows.Forms.TextBox
+    Friend WithEvents RadioDeposito As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioExtraccion As System.Windows.Forms.RadioButton
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents cmdAbrirCaja As System.Windows.Forms.Button
+    Friend WithEvents txtMontoInicial As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
+    Friend WithEvents txtEstado As System.Windows.Forms.TextBox
+    Friend WithEvents cmdCerrarCaja As System.Windows.Forms.Button
+    Friend WithEvents dgvOperaciones As System.Windows.Forms.DataGridView
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+End Class

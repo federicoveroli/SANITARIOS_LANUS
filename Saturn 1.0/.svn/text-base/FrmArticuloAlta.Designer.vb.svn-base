@@ -1,0 +1,474 @@
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FrmArticuloAlta
+    Inherits System.Windows.Forms.Form
+
+    'Form reemplaza a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Requerido por el Diseñador de Windows Forms
+    Private components As System.ComponentModel.IContainer
+
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.Label3 = New System.Windows.Forms.Label
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.Label11 = New System.Windows.Forms.Label
+        Me.Label12 = New System.Windows.Forms.Label
+        Me.cmdCONVERTIR = New System.Windows.Forms.Button
+        Me.cmbTipoProducto = New System.Windows.Forms.ComboBox
+        Me.cmbMarca = New System.Windows.Forms.ComboBox
+        Me.cmbProveedoR = New System.Windows.Forms.ComboBox
+        Me.txtDescripcION = New System.Windows.Forms.TextBox
+        Me.txtMedida = New System.Windows.Forms.TextBox
+        Me.txtPrecioCosto = New System.Windows.Forms.TextBox
+        Me.txtPorcDESC = New System.Windows.Forms.TextBox
+        Me.txtPorcGananciA = New System.Windows.Forms.TextBox
+        Me.txtPrecioVENTA = New System.Windows.Forms.TextBox
+        Me.txtSTOcK = New System.Windows.Forms.TextBox
+        Me.txtPrecioConDescuento = New System.Windows.Forms.TextBox
+        Me.txtValorDolar = New System.Windows.Forms.TextBox
+        Me.cmdSalir = New System.Windows.Forms.Button
+        Me.cmdAceptar = New System.Windows.Forms.Button
+        Me.cmdAgregarSimilar = New System.Windows.Forms.Button
+        Me.lblMisterioso = New System.Windows.Forms.Label
+        Me.cmdAgregarTipo = New System.Windows.Forms.Button
+        Me.cmdAgregarMarca = New System.Windows.Forms.Button
+        Me.chFraccionable = New System.Windows.Forms.CheckBox
+        Me.picEliminarTipoProducto = New System.Windows.Forms.PictureBox
+        Me.picEliminarMarca = New System.Windows.Forms.PictureBox
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        CType(Me.picEliminarTipoProducto, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picEliminarMarca, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 20)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(88, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Tipo de producto"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 47)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(37, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Marca"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 74)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(56, 13)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Proveedor"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(12, 101)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(63, 13)
+        Me.Label4.TabIndex = 3
+        Me.Label4.Text = "Descripcion"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 127)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(125, 13)
+        Me.Label5.TabIndex = 4
+        Me.Label5.Text = "Medida (longitud en mts.)"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(12, 153)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(66, 13)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = "Precio costo"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(12, 179)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(41, 13)
+        Me.Label7.TabIndex = 6
+        Me.Label7.Text = "% desc"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(12, 205)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(84, 13)
+        Me.Label8.TabIndex = 7
+        Me.Label8.Text = "Precio con desc"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(12, 231)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(77, 13)
+        Me.Label9.TabIndex = 8
+        Me.Label9.Text = "% de ganancia"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(12, 257)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(82, 13)
+        Me.Label10.TabIndex = 9
+        Me.Label10.Text = "Precio al cliente"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(12, 283)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(35, 13)
+        Me.Label11.TabIndex = 10
+        Me.Label11.Text = "Stock"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(12, 308)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(59, 13)
+        Me.Label12.TabIndex = 11
+        Me.Label12.Text = "Valor Dolar"
+        '
+        'cmdCONVERTIR
+        '
+        Me.cmdCONVERTIR.Location = New System.Drawing.Point(154, 331)
+        Me.cmdCONVERTIR.Name = "cmdCONVERTIR"
+        Me.cmdCONVERTIR.Size = New System.Drawing.Size(111, 21)
+        Me.cmdCONVERTIR.TabIndex = 12
+        Me.cmdCONVERTIR.Text = "Convertir a pesos"
+        Me.cmdCONVERTIR.UseVisualStyleBackColor = True
+        '
+        'cmbTipoProducto
+        '
+        Me.cmbTipoProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTipoProducto.FormattingEnabled = True
+        Me.cmbTipoProducto.Location = New System.Drawing.Point(118, 16)
+        Me.cmbTipoProducto.Name = "cmbTipoProducto"
+        Me.cmbTipoProducto.Size = New System.Drawing.Size(148, 21)
+        Me.cmbTipoProducto.TabIndex = 13
+        '
+        'cmbMarca
+        '
+        Me.cmbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbMarca.FormattingEnabled = True
+        Me.cmbMarca.Location = New System.Drawing.Point(118, 43)
+        Me.cmbMarca.Name = "cmbMarca"
+        Me.cmbMarca.Size = New System.Drawing.Size(148, 21)
+        Me.cmbMarca.TabIndex = 14
+        '
+        'cmbProveedoR
+        '
+        Me.cmbProveedoR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbProveedoR.FormattingEnabled = True
+        Me.cmbProveedoR.Location = New System.Drawing.Point(118, 70)
+        Me.cmbProveedoR.Name = "cmbProveedoR"
+        Me.cmbProveedoR.Size = New System.Drawing.Size(148, 21)
+        Me.cmbProveedoR.TabIndex = 15
+        '
+        'txtDescripcION
+        '
+        Me.txtDescripcION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtDescripcION.Location = New System.Drawing.Point(118, 97)
+        Me.txtDescripcION.MaxLength = 99
+        Me.txtDescripcION.Name = "txtDescripcION"
+        Me.txtDescripcION.Size = New System.Drawing.Size(148, 20)
+        Me.txtDescripcION.TabIndex = 16
+        '
+        'txtMedida
+        '
+        Me.txtMedida.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtMedida.Location = New System.Drawing.Point(143, 123)
+        Me.txtMedida.MaxLength = 19
+        Me.txtMedida.Name = "txtMedida"
+        Me.txtMedida.Size = New System.Drawing.Size(123, 20)
+        Me.txtMedida.TabIndex = 17
+        Me.txtMedida.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtPrecioCosto
+        '
+        Me.txtPrecioCosto.Location = New System.Drawing.Point(118, 149)
+        Me.txtPrecioCosto.MaxLength = 9
+        Me.txtPrecioCosto.Name = "txtPrecioCosto"
+        Me.txtPrecioCosto.Size = New System.Drawing.Size(148, 20)
+        Me.txtPrecioCosto.TabIndex = 18
+        Me.txtPrecioCosto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtPorcDESC
+        '
+        Me.txtPorcDESC.Location = New System.Drawing.Point(118, 175)
+        Me.txtPorcDESC.MaxLength = 9
+        Me.txtPorcDESC.Name = "txtPorcDESC"
+        Me.txtPorcDESC.Size = New System.Drawing.Size(148, 20)
+        Me.txtPorcDESC.TabIndex = 19
+        Me.txtPorcDESC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtPorcGananciA
+        '
+        Me.txtPorcGananciA.Location = New System.Drawing.Point(118, 227)
+        Me.txtPorcGananciA.MaxLength = 9
+        Me.txtPorcGananciA.Name = "txtPorcGananciA"
+        Me.txtPorcGananciA.Size = New System.Drawing.Size(148, 20)
+        Me.txtPorcGananciA.TabIndex = 20
+        Me.txtPorcGananciA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtPrecioVENTA
+        '
+        Me.txtPrecioVENTA.BackColor = System.Drawing.Color.LightBlue
+        Me.txtPrecioVENTA.Enabled = False
+        Me.txtPrecioVENTA.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPrecioVENTA.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.txtPrecioVENTA.Location = New System.Drawing.Point(118, 253)
+        Me.txtPrecioVENTA.Name = "txtPrecioVENTA"
+        Me.txtPrecioVENTA.Size = New System.Drawing.Size(148, 20)
+        Me.txtPrecioVENTA.TabIndex = 21
+        Me.txtPrecioVENTA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtSTOcK
+        '
+        Me.txtSTOcK.Location = New System.Drawing.Point(118, 279)
+        Me.txtSTOcK.MaxLength = 9
+        Me.txtSTOcK.Name = "txtSTOcK"
+        Me.txtSTOcK.Size = New System.Drawing.Size(148, 20)
+        Me.txtSTOcK.TabIndex = 22
+        Me.txtSTOcK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtPrecioConDescuento
+        '
+        Me.txtPrecioConDescuento.BackColor = System.Drawing.Color.LightBlue
+        Me.txtPrecioConDescuento.Enabled = False
+        Me.txtPrecioConDescuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPrecioConDescuento.ForeColor = System.Drawing.Color.Black
+        Me.txtPrecioConDescuento.Location = New System.Drawing.Point(118, 201)
+        Me.txtPrecioConDescuento.Name = "txtPrecioConDescuento"
+        Me.txtPrecioConDescuento.Size = New System.Drawing.Size(148, 20)
+        Me.txtPrecioConDescuento.TabIndex = 23
+        Me.txtPrecioConDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtValorDolar
+        '
+        Me.txtValorDolar.Location = New System.Drawing.Point(118, 305)
+        Me.txtValorDolar.Name = "txtValorDolar"
+        Me.txtValorDolar.Size = New System.Drawing.Size(148, 20)
+        Me.txtValorDolar.TabIndex = 26
+        Me.txtValorDolar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'cmdSalir
+        '
+        Me.cmdSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.cmdSalir.Location = New System.Drawing.Point(190, 358)
+        Me.cmdSalir.Name = "cmdSalir"
+        Me.cmdSalir.Size = New System.Drawing.Size(75, 23)
+        Me.cmdSalir.TabIndex = 29
+        Me.cmdSalir.Text = "&Salir"
+        Me.cmdSalir.UseVisualStyleBackColor = True
+        '
+        'cmdAceptar
+        '
+        Me.cmdAceptar.Location = New System.Drawing.Point(12, 358)
+        Me.cmdAceptar.Name = "cmdAceptar"
+        Me.cmdAceptar.Size = New System.Drawing.Size(75, 23)
+        Me.cmdAceptar.TabIndex = 27
+        Me.cmdAceptar.Text = "&Aceptar"
+        Me.cmdAceptar.UseVisualStyleBackColor = True
+        '
+        'cmdAgregarSimilar
+        '
+        Me.cmdAgregarSimilar.Location = New System.Drawing.Point(101, 358)
+        Me.cmdAgregarSimilar.Name = "cmdAgregarSimilar"
+        Me.cmdAgregarSimilar.Size = New System.Drawing.Size(75, 23)
+        Me.cmdAgregarSimilar.TabIndex = 28
+        Me.cmdAgregarSimilar.Text = "A. &Similar"
+        Me.cmdAgregarSimilar.UseVisualStyleBackColor = True
+        '
+        'lblMisterioso
+        '
+        Me.lblMisterioso.AutoSize = True
+        Me.lblMisterioso.Location = New System.Drawing.Point(308, 163)
+        Me.lblMisterioso.Name = "lblMisterioso"
+        Me.lblMisterioso.Size = New System.Drawing.Size(0, 13)
+        Me.lblMisterioso.TabIndex = 30
+        Me.lblMisterioso.Visible = False
+        '
+        'cmdAgregarTipo
+        '
+        Me.cmdAgregarTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdAgregarTipo.Location = New System.Drawing.Point(276, 15)
+        Me.cmdAgregarTipo.Name = "cmdAgregarTipo"
+        Me.cmdAgregarTipo.Size = New System.Drawing.Size(32, 23)
+        Me.cmdAgregarTipo.TabIndex = 31
+        Me.cmdAgregarTipo.Text = "+"
+        Me.cmdAgregarTipo.UseVisualStyleBackColor = True
+        '
+        'cmdAgregarMarca
+        '
+        Me.cmdAgregarMarca.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdAgregarMarca.Location = New System.Drawing.Point(276, 42)
+        Me.cmdAgregarMarca.Name = "cmdAgregarMarca"
+        Me.cmdAgregarMarca.Size = New System.Drawing.Size(32, 23)
+        Me.cmdAgregarMarca.TabIndex = 32
+        Me.cmdAgregarMarca.Text = "+"
+        Me.cmdAgregarMarca.UseVisualStyleBackColor = True
+        '
+        'chFraccionable
+        '
+        Me.chFraccionable.AutoSize = True
+        Me.chFraccionable.Location = New System.Drawing.Point(276, 126)
+        Me.chFraccionable.Name = "chFraccionable"
+        Me.chFraccionable.Size = New System.Drawing.Size(105, 17)
+        Me.chFraccionable.TabIndex = 33
+        Me.chFraccionable.Text = "Es fraccionable?"
+        Me.chFraccionable.UseVisualStyleBackColor = True
+        '
+        'picEliminarTipoProducto
+        '
+        Me.picEliminarTipoProducto.Image = Global.Saturn_1.Saturn.My.Resources.Resources.eliminar
+        Me.picEliminarTipoProducto.Location = New System.Drawing.Point(314, 16)
+        Me.picEliminarTipoProducto.Name = "picEliminarTipoProducto"
+        Me.picEliminarTipoProducto.Size = New System.Drawing.Size(27, 24)
+        Me.picEliminarTipoProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picEliminarTipoProducto.TabIndex = 34
+        Me.picEliminarTipoProducto.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.picEliminarTipoProducto, "Eliminar tipo de producto")
+        '
+        'picEliminarMarca
+        '
+        Me.picEliminarMarca.Image = Global.Saturn_1.Saturn.My.Resources.Resources.eliminar
+        Me.picEliminarMarca.Location = New System.Drawing.Point(314, 43)
+        Me.picEliminarMarca.Name = "picEliminarMarca"
+        Me.picEliminarMarca.Size = New System.Drawing.Size(27, 24)
+        Me.picEliminarMarca.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picEliminarMarca.TabIndex = 35
+        Me.picEliminarMarca.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.picEliminarMarca, "Eliminar marca")
+        '
+        'FrmArticuloAlta
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.cmdSalir
+        Me.ClientSize = New System.Drawing.Size(794, 576)
+        Me.Controls.Add(Me.picEliminarMarca)
+        Me.Controls.Add(Me.picEliminarTipoProducto)
+        Me.Controls.Add(Me.chFraccionable)
+        Me.Controls.Add(Me.cmdAgregarMarca)
+        Me.Controls.Add(Me.cmdAgregarTipo)
+        Me.Controls.Add(Me.lblMisterioso)
+        Me.Controls.Add(Me.cmdAgregarSimilar)
+        Me.Controls.Add(Me.cmdSalir)
+        Me.Controls.Add(Me.cmdAceptar)
+        Me.Controls.Add(Me.txtValorDolar)
+        Me.Controls.Add(Me.txtPrecioConDescuento)
+        Me.Controls.Add(Me.txtSTOcK)
+        Me.Controls.Add(Me.txtPrecioVENTA)
+        Me.Controls.Add(Me.txtPorcGananciA)
+        Me.Controls.Add(Me.txtPorcDESC)
+        Me.Controls.Add(Me.txtPrecioCosto)
+        Me.Controls.Add(Me.txtMedida)
+        Me.Controls.Add(Me.txtDescripcION)
+        Me.Controls.Add(Me.cmbProveedoR)
+        Me.Controls.Add(Me.cmbMarca)
+        Me.Controls.Add(Me.cmbTipoProducto)
+        Me.Controls.Add(Me.cmdCONVERTIR)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.KeyPreview = True
+        Me.MinimumSize = New System.Drawing.Size(512, 483)
+        Me.Name = "FrmArticuloAlta"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = " Alta de Articulos - Saturn 1.0"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.picEliminarTipoProducto, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picEliminarMarca, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents cmdCONVERTIR As System.Windows.Forms.Button
+    Friend WithEvents cmbTipoProducto As System.Windows.Forms.ComboBox
+    Friend WithEvents cmbMarca As System.Windows.Forms.ComboBox
+    Friend WithEvents cmbProveedoR As System.Windows.Forms.ComboBox
+    Friend WithEvents txtDescripcION As System.Windows.Forms.TextBox
+    Friend WithEvents txtMedida As System.Windows.Forms.TextBox
+    Friend WithEvents txtPrecioCosto As System.Windows.Forms.TextBox
+    Friend WithEvents txtPorcDESC As System.Windows.Forms.TextBox
+    Friend WithEvents txtPorcGananciA As System.Windows.Forms.TextBox
+    Friend WithEvents txtPrecioVENTA As System.Windows.Forms.TextBox
+    Friend WithEvents txtSTOcK As System.Windows.Forms.TextBox
+    Friend WithEvents txtPrecioConDescuento As System.Windows.Forms.TextBox
+    Friend WithEvents txtValorDolar As System.Windows.Forms.TextBox
+    Friend WithEvents cmdSalir As System.Windows.Forms.Button
+    Friend WithEvents cmdAceptar As System.Windows.Forms.Button
+    Friend WithEvents cmdAgregarSimilar As System.Windows.Forms.Button
+    Friend WithEvents lblMisterioso As System.Windows.Forms.Label
+    Friend WithEvents cmdAgregarTipo As System.Windows.Forms.Button
+    Friend WithEvents cmdAgregarMarca As System.Windows.Forms.Button
+    Friend WithEvents chFraccionable As System.Windows.Forms.CheckBox
+    Friend WithEvents picEliminarTipoProducto As System.Windows.Forms.PictureBox
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
+    Friend WithEvents picEliminarMarca As System.Windows.Forms.PictureBox
+End Class

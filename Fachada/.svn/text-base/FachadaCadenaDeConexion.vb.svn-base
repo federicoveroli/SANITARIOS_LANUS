@@ -1,0 +1,15 @@
+Imports Modelo
+Imports Datos
+
+Public Class FachadaCadenaDeConexion
+    Public Sub GuardarConexion(ByVal cn As CadenaDeConexion)
+        Dim regCon As New RegistroCadenaDeConexion
+        regCon.Guardar(cn)
+    End Sub
+    Public Function TraerConexion() As CadenaDeConexion
+        Dim regCon As New RegistroCadenaDeConexion
+        Return regCon.TraerCadenaDeConexion()
+    End Function
+
+
+End Class

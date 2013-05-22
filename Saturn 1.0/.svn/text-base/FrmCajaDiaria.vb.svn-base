@@ -1,0 +1,102 @@
+Imports Fachada
+Imports Modelo
+
+Public Class FrmCajaDiaria
+    Dim facCajaDiaria As New FachadaCajaDiaria
+
+    Private Sub cmdAbrirCaja_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAbrirCaja.Click
+        Dim caja As New CajaDiaria
+        If txtMontoInicial.Text = "" Then
+            MessageBox.Show("Debe ingresar el monto inicial de la caja.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            txtMontoInicial.Text = "0"
+            Exit Sub
+        End If
+        caja.SaldoInicial = txtMontoInicial.Text
+        caja.Fecha = CDate(Date.Now)
+        facCajaDiaria.AbrirCajaDiaria(caja)
+        cmdAbrirCaja.Enabled = False
+        cmdCerrarCaja.Enabled = True
+        cmdRealizarOperacion.Enabled = True
+    End Sub
+    
+
+    Public Sub cmdCerrarCaja_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCerrarCaja.Click
+        Dim caja As New CajaDiaria
+
+        If MessageBox.Show("Realmente desea cerrar la caja?" & vbCr & "Nota: una vez cerrada, quedará grabado el ingreso diario", "Confirme la operación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+
+            caja.Fecha = Date.Now
+            caja.SaldoInicial = facCajaDiaria.TraerSaldoInicial(Date.Now)
+            caja.Saldo = CDbl(txtEstado.Text) - caja.SaldoInicial
+            caja.SaldoFinal = CDbl(txtEstado.Text)
+            facCajaDiaria.CerrarCaja(caja)
+            cmdCerrarCaja.Enabled = False
+            cmdRealizarOperacion.Enabled = False
+        End If
+    End Sub
+
+    Private Sub FrmCajaDiaria_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
+        If Asc(e.KeyChar) = Keys.Enter Then
+            My.Computer.Keyboard.SendKeys(Chr(Keys.Tab))
+        End If
+        Dim SeparadorDecimal As String
+        SeparadorDecimal = System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator
+        If Asc(e.KeyChar) = 46 Or Asc(e.KeyChar) = 44 Then ' hay que cambiar el punto por la coma
+            e.KeyChar = Chr(Asc(SeparadorDecimal))
+        End If
+    End Sub
+
+    Private Sub FrmCajaDiaria_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        cmdAbrirCaja.Enabled = Not facCajaDiaria.estaAbierta(Date.Now)
+        cmdCerrarCaja.Enabled = Not cmdAbrirCaja.Enabled
+        If cmdAbrirCaja.Enabled = False Then cmdCerrarCaja.Enabled = Not facCajaDiaria.estaCerrada(Date.Now)
+        cmdRealizarOperacion.Enabled = cmdCerrarCaja.Enabled
+        dgvOperaciones.DataSource = facCajaDiaria.ListarOperaciones(Date.Now)
+        'traigo las ventas realizadas 
+        dgvDetallesCaja.DataSource = facCajaDiaria.ListarFacturas(Date.Now)
+        CalcularEstado()
+    End Sub
+
+    Private Sub cmdRealizarOperacion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdRealizarOperacion.Click
+        Dim ope As New OperacionCaja
+        If txtMonto.Text = "" Then
+            MsgBox("Debe ingresar el monto de la operaciòn", MsgBoxStyle.Exclamation, "Campos incompletos")
+            Exit Sub
+        End If
+        ope.Operacion = RadioDeposito.Checked
+        ope.Monto = txtMonto.Text
+        ope.Fecha = Date.Now
+        facCajaDiaria.RealizarOperacion(ope)
+        dgvOperaciones.DataSource = facCajaDiaria.ListarOperaciones(Date.Now)
+        txtMonto.Text = ""
+        CalcularEstado()
+    End Sub
+    Private Sub CalcularEstado()
+        Dim entrada As Double, salida As Double, saldoinicial As Double
+        entrada = 0
+        saldoinicial = 0
+        If facCajaDiaria.estaAbierta(Date.Now) Then saldoinicial = facCajaDiaria.TraerSaldoInicial(Date.Now)
+        For Each fila As DataGridViewRow In dgvDetallesCaja.Rows
+            entrada += fila.Cells(3).Value
+        Next
+        For Each fila As DataGridViewRow In dgvOperaciones.Rows
+            If fila.Cells(1).Value = True Then
+                entrada += fila.Cells(2).Value
+            Else
+                salida += fila.Cells(2).Value
+            End If
+        Next
+        txtEstado.Text = CStr(Math.Round(entrada - salida + saldoinicial, 2))
+    End Sub
+    Private Sub txtMonto_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtMonto.KeyPress
+        e.Handled = Not Validar.EsFlotante(e.KeyChar.ToString())
+    End Sub
+    Private Sub txtMontoInicial_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtMontoInicial.KeyPress
+        e.Handled = Not Validar.EsFlotante(e.KeyChar.ToString())
+    End Sub
+
+    Private Sub GroupBox5_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupBox5.Enter
+
+    End Sub
+End Class

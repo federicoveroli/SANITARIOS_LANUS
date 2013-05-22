@@ -1,0 +1,48 @@
+Public Class CajaDiaria
+    Private vIdCajaDiaria As Integer
+    Private vFecha As Date
+    Private vSaldoInicio As Double
+    Private vSaldoFinal As Double
+    Private vSaldo As Double
+    Public Property IdCajaDiaria() As Integer
+        Get
+            Return IdCajaDiaria
+        End Get
+        Set(ByVal value As Integer)
+            vIdCajaDiaria = value
+        End Set
+    End Property
+    Public Property Fecha() As Date
+        Get
+            Return vFecha
+        End Get
+        Set(ByVal value As Date)
+            vFecha = value
+        End Set
+    End Property
+    Public Property SaldoInicial() As Double
+        Get
+            Return vSaldoInicio
+        End Get
+        Set(ByVal value As Double)
+            vSaldoInicio = value
+        End Set
+    End Property
+    Public Property SaldoFinal() As Double
+        Get
+            Return vSaldoFinal
+        End Get
+        Set(ByVal value As Double)
+            vSaldoFinal = value
+        End Set
+    End Property
+    Public Property Saldo() As Double
+        Get
+            Return vSaldo
+        End Get
+        Set(ByVal value As Double)
+            vSaldo = value
+        End Set
+    End Property
+
+End Class

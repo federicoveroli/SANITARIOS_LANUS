@@ -1,0 +1,682 @@
+Imports Modelo
+Imports Fachada
+
+Public Class FrmFacturacion
+    Private WithEvents frmArtBuscar As New FrmArticuloBuscar
+    Dim facArticulo As New FachadaArticulo
+    Dim facCliente As New FachadaCliente
+    Dim facFactura As New FachadaFactura
+    Dim fu As New FachadaUsuario
+    Dim vta As New Venta
+    Dim tipoFacturaAnterior As String
+    Public notaDeCredito As Boolean
+    Public vtaOriginal As Venta
+    Public TotalFactura As String
+    Dim objNotaDeCredito As NotaDeCredito
+
+
+    Public Sub MostrarVenta(ByVal fac As Venta)
+        If notaDeCredito Then NotaDeCreditoToolStripMenuItem_Click(Me.CboTipoDeComprobante, New EventArgs())
+
+        vta = fac
+
+        'Selecciono el cliente
+        For Each idcli As IdCliente In cmbCliente.Items
+            If idcli.Id = vta.IdCliente Then
+                cmbCliente.SelectedItem = idcli
+                Exit For
+            End If
+        Next
+        For Each usu As Usuario In cmbVendedor.Items
+            If usu.Nick = vta.Nick Then
+                cmbVendedor.SelectedItem = usu
+                Exit For
+            End If
+        Next
+        Dim cat As String
+        Dim mar As String
+        For Each r As RenglonComprobante In fac.Renglones
+            If Not IsNothing(r.Articulo) Then
+                mar = facArticulo.traerMarcaPorId(r.Articulo.IdMarca)
+                cat = facArticulo.traerTipoPorId(r.Articulo.Idcategoria)
+                r.Descripcion = r.Descripcion & " " & cat & " " & mar
+            End If
+        Next
+        ActualizarRenglones()
+        cmbCliente.Enabled = False
+        CboTipoDeComprobante.Enabled = False
+        CboTipoDeComprobante.Text = vta.CondicionVenta
+        lblNumeroFactura.Text = vta.Numero
+
+        If notaDeCredito Then
+            objNotaDeCredito = New NotaDeCredito
+            objNotaDeCredito.IdVenta = fac.IdVenta
+            objNotaDeCredito.NumeroFactura = fac.Numero
+            CboTipoDeComprobante.Text = fac.CondicionVenta
+            Exit Sub
+        End If
+
+        CmdArmarRenglon.Enabled = False
+
+        cmdCancelar.Enabled = False
+        cmbVendedor.Enabled = False
+        cmdFinalizar.Enabled = False
+        cmdModificarItem.Enabled = False
+        cmdQuitarItem.Enabled = False
+        cboCantidadDeCopias.Enabled = False
+
+    End Sub
+
+    Public Sub MostrarNotaDeCredito(ByVal nc As NotaDeCredito)
+        NotaDeCreditoToolStripMenuItem_Click(Me.CboTipoDeComprobante, New EventArgs())
+        vta.Renglones = nc.Renglones
+
+        'Selecciono el cliente
+        For Each idcli As IdCliente In cmbCliente.Items
+            If idcli.Id = nc.IdCliente Then
+                cmbCliente.SelectedItem = idcli
+                Exit For
+            End If
+        Next
+        For Each usu As Usuario In cmbVendedor.Items
+            If usu.Nick = nc.Nick Then
+                cmbVendedor.SelectedItem = usu
+                Exit For
+            End If
+        Next
+        Dim cat As String
+        Dim mar As String
+        For Each r As RenglonComprobante In nc.Renglones
+            If Not IsNothing(r.Articulo) Then
+                mar = facArticulo.traerMarcaPorId(r.Articulo.IdMarca)
+                cat = facArticulo.traerTipoPorId(r.Articulo.Idcategoria)
+                r.Descripcion = r.Descripcion & " " & cat & " " & mar
+            End If
+        Next
+        ActualizarRenglones()
+        cmbCliente.Enabled = False
+        CboTipoDeComprobante.Enabled = False
+
+
+
+
+        CboTipoDeComprobante.Text = nc.CondicionVenta
+        lblNumeroFactura.Text = nc.Numero
+        CmdArmarRenglon.Enabled = False
+
+        cmdCancelar.Enabled = False
+        cmbVendedor.Enabled = False
+        cmdFinalizar.Enabled = False
+        cmdModificarItem.Enabled = False
+        cmdQuitarItem.Enabled = False
+        cboCantidadDeCopias.Enabled = False
+    End Sub
+
+    Public Sub ImportarPedido(ByVal ped As Venta)
+        vta = ped
+
+        'Selecciono el cliente
+        For Each idcli As IdCliente In cmbCliente.Items
+            If idcli.Id = vta.IdCliente Then
+                cmbCliente.SelectedItem = idcli
+                Exit For
+            End If
+        Next
+        For Each usu As Usuario In cmbVendedor.Items
+            If usu.Nick = vta.Nick Then
+                cmbVendedor.SelectedItem = usu
+                Exit For
+            End If
+        Next
+        CboTipoDeComprobante.Text = "X"
+        Dim cat As String
+        Dim mar As String
+        For Each r As RenglonComprobante In ped.Renglones
+            If Not IsNothing(r.Articulo) Then
+                mar = facArticulo.traerMarcaPorId(r.Articulo.IdMarca)
+                cat = facArticulo.traerTipoPorId(r.Articulo.Idcategoria)
+                r.Descripcion = r.Descripcion & " " & cat & " " & mar
+            End If
+
+        Next
+        ActualizarRenglones()
+
+        lblNumeroFactura.Text = vta.Numero
+
+
+    End Sub
+
+    Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+
+    Private Sub FrmFacturacion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CboTipoDeComprobante.SelectedIndex = 2
+        facCliente.CargarCombo(cmbCliente)
+        cmbVendedor.DataSource = fu.listarUsuarios()
+        cmbVendedor.DisplayMember = "nick"
+        lblNotadeCredito.Visible = False
+        cmbCliente.Text = "AA"
+        cmbVendedor.Text = Sesion.getSesion.UsuarioActivo.Nick
+        CboTipoDeComprobante.Text = "X"
+    End Sub
+
+    Private Sub NuevaFacturaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NuevaFacturaToolStripMenuItem.Click
+        cmdCancelar_Click(sender, e)
+        GroupBox1.Visible = True
+        cmbCliente.Text = "AA"
+        lblNotadeCredito.Visible = False
+        CboTipoDeComprobante.Items.Clear()
+        CboTipoDeComprobante.Items.Add("X")
+        CboTipoDeComprobante.Items.Add("B")
+        CboTipoDeComprobante.Items.Add("A")
+        CboTipoDeComprobante.Items.Add("P")
+        CboTipoDeComprobante.Text = "X"
+
+    End Sub
+
+
+
+    Private Sub picBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles picBuscar.Click
+        'FrmClienteBuscar.MdiParent = Me.MdiParent
+        FrmClienteBuscar.cmdNuevoCliente.Visible = True
+        FrmClienteBuscar.cmdSeleccionar.Visible = True
+        FrmClienteBuscar.ShowDialog()
+        facCliente.CargarCombo(cmbCliente)
+        If FrmClienteBuscar.idClienteSeleccionado = 0 Then Exit Sub
+        For Each clie As IdCliente In cmbCliente.Items
+            If clie.Id = FrmClienteBuscar.idClienteSeleccionado Then
+                cmbCliente.SelectedItem = clie
+            End If
+        Next
+    End Sub
+
+    Private Sub CmdArmarRenglon_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdArmarRenglon.Click
+        If vta.Renglones.Count > 47 Then
+            MessageBox.Show("Debe confeccionar una nueva factura, esta ha llegado al limite de renglones permitidos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Exit Sub
+        End If
+        tipoFacturaAnterior = CboTipoDeComprobante.Text
+        If cmbCliente.SelectedIndex = -1 Then
+            MessageBox.Show("Debe seleccionar un cliente para realizar la operación", "Seleccione el cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Exit Sub
+        End If
+        'If frmArtBuscar.IsDisposed Then frmArtBuscar = New FrmArticuloBuscar
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.MdiParent = Me.MdiParent
+        frmArtBuscar.GroupBox2.Visible = False
+
+        frmArtBuscar.txtCantidadItems.Text = Me.txtCantidadItems.Text
+        frmArtBuscar.Show()
+    End Sub
+
+    Private Sub AgregarRenglon(ByVal idArticulo As Integer, ByVal cantidad As Double, ByVal PU As Double) Handles frmArtBuscar.AgregarRenglon
+        Dim art As Articulo = facArticulo.TraerArticulo(idArticulo)
+        If vta.Renglones.Count > 47 Then
+            MessageBox.Show("Debe confeccionar una nueva factura, esta ha llegado al limite de renglones permitidos (48 máx.)", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Exit Sub
+        End If
+        Try
+            'verifico que no este agregado el articulo
+            'For Each r As RenglonComprobante In vta.Renglones
+            '    If Not IsNothing(r.Articulo) Then
+            '        If r.Articulo.IdArticulo = idArticulo Then
+            '            Throw New Exception("El articulo ya esta ingresado")
+            '        End If
+            '    End If
+
+            'Next
+            art.Precio = PU
+            Dim renglon As New RenglonComprobante
+            renglon.CantADisminuir = cantidad
+            renglon.Cantidad = cantidad
+
+            If art.esFraccionable Then
+
+                frmFraccionar.PasarArticulo(art, cantidad)
+                frmFraccionar.ShowDialog()
+                If frmFraccionar.Cancelo = False Then
+                    PU = frmFraccionar.precioFraccion
+                    art = frmFraccionar.a
+                    renglon.CantADisminuir = frmFraccionar.cantidadAsisminUIR
+                Else
+                    Exit Sub
+                End If
+            End If
+
+            If notaDeCredito = False And renglon.CantADisminuir > art.Stock Then
+                Throw New StockInsuficienteException
+            End If
+            renglon.PrecioUnitario = PU
+            If CboTipoDeComprobante.Text = "A" Then
+                'discrimino el iva
+                renglon.PrecioUnitario = PU / 1.21
+
+            End If
+
+            renglon.Articulo = art
+            Dim cat As String
+            Dim mar As String
+
+            mar = facArticulo.traerMarcaPorId(art.IdMarca)
+            cat = facArticulo.traerTipoPorId(art.Idcategoria)
+            renglon.Descripcion = art.Descripcion & " " & cat & " " & mar
+            If notaDeCredito Then
+                'verifico si la cantidad a acreditar es mayor que la vendida
+                Dim estaElArticulo As Boolean
+                estaElArticulo = False
+                For Each r As RenglonComprobante In vtaOriginal.Renglones
+                    If Not IsNothing(r.Articulo) Then
+                        If renglon.Articulo.IdArticulo = r.Articulo.IdArticulo Then
+                            estaElArticulo = True
+                            If renglon.Cantidad > r.Cantidad Then
+                                MessageBox.Show("No puede ingresar una cantidad mayor a la vendida", "Operación invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                Exit Sub
+                            End If
+                        End If
+                    End If
+                Next
+                If estaElArticulo = False Then
+                    MessageBox.Show("No puede ingresar un articulo que no fue vendido en la factura", "Operación invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Exit Sub
+                End If
+            End If
+
+            vta.Renglones.Add(renglon)
+            dgvRenglones.DataSource = Nothing
+
+
+
+            ActualizarRenglones()
+
+        Catch ex As StockInsuficienteException
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Stock insuficiente")
+            frmArtBuscar.txtCantidadItems.Text -= 1
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Articulo existente")
+            frmArtBuscar.txtCantidadItems.Text -= 1
+        End Try
+
+
+    End Sub
+ 
+    Private Sub AgregarInexistente(ByVal desc As String, ByVal cant As Double, ByVal pu As Double) Handles frmArtBuscar.AgregarInexistente
+        Dim rc As New RenglonComprobante
+        rc.Cantidad = cant
+        rc.Descripcion = desc
+        rc.PrecioUnitario = pu
+        vta.Renglones.Add(rc)
+        dgvRenglones.DataSource = Nothing
+        ActualizarRenglones()
+    End Sub
+    Private Sub ActualizarRenglones()
+        dgvRenglones.DataSource = Nothing
+        dgvRenglones.Rows.Clear()
+        If dgvRenglones.Columns.Count = 0 Then
+            dgvRenglones.Columns.Add("articulo", "Descripcion")
+            dgvRenglones.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
+            dgvRenglones.Columns(0).Width = 257
+
+            dgvRenglones.Columns.Add("cantidad", "Cantidad")
+            dgvRenglones.Columns(1).SortMode = DataGridViewColumnSortMode.NotSortable
+            dgvRenglones.Columns(1).Width = 50
+            dgvRenglones.Columns.Add("PU", "PU")
+            dgvRenglones.Columns(2).SortMode = DataGridViewColumnSortMode.NotSortable
+            dgvRenglones.Columns(2).Width = 51
+            dgvRenglones.Columns.Add("SubTotal", "SubTotal")
+            dgvRenglones.Columns(3).SortMode = DataGridViewColumnSortMode.NotSortable
+            dgvRenglones.Columns(3).Width = 70
+
+
+         
+
+        End If
+        For Each rc As RenglonComprobante In vta.Renglones
+            dgvRenglones.Rows.Add(rc.Descripcion, rc.Cantidad, Math.Round(rc.PrecioUnitario, 2), Math.Round(rc.SubTotal, 2))
+            If IsNothing(rc.Articulo) = False Then
+                dgvRenglones.Rows(dgvRenglones.Rows.Count - 1).Tag = rc.Articulo.IdArticulo
+            End If
+
+        Next
+        lblSubtotal.Text = "" & Math.Round(vta.Total, 2)
+        If CboTipoDeComprobante.Text = "A" Then
+            lblToTaL.Text = "" & Math.Round(vta.TotalMasIVA, 2)
+            lblIva.Text = CStr(Math.Round(vta.TotalIVA, 2))
+            lblSubtotal.Text = CStr(Math.Round(vta.Total, 2))
+        Else
+            lblIva.Text = 0
+            lblSubtotal.Text = 0
+            lblToTaL.Text = "" & Math.Round(vta.Total, 2)
+        End If
+        txtCantidadItems.Text = vta.Renglones.Count
+        frmArtBuscar.txtTotalFac.Text = lblToTaL.Text
+    End Sub
+
+    Private Sub TipoDeProductoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TipoDeProductoToolStripMenuItem.Click
+
+        If frmArtBuscar.IsDisposed Then frmArtBuscar = New FrmArticuloBuscar
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.MdiParent = Me.MdiParent
+        frmArtBuscar.GroupBox2.Visible = False
+        frmArtBuscar.txtCantidadItems.Text = Me.txtCantidadItems.Text
+        frmArtBuscar.seleccionBusqueda = True
+        frmArtBuscar.cmbBuscarPor.SelectedIndex = 1
+        frmArtBuscar.txtQueContenga.Text = ""
+        frmArtBuscar.txtQueContenga.Select()
+        frmArtBuscar.Show()
+
+    End Sub
+
+    Private Sub MarcaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MarcaToolStripMenuItem.Click
+        If frmArtBuscar.IsDisposed Then frmArtBuscar = New FrmArticuloBuscar
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.MdiParent = Me.MdiParent
+        frmArtBuscar.GroupBox2.Visible = False
+        frmArtBuscar.seleccionBusqueda = True
+        frmArtBuscar.txtCantidadItems.Text = Me.txtCantidadItems.Text
+        frmArtBuscar.cmbBuscarPor.SelectedIndex = 3
+        frmArtBuscar.txtQueContenga.Text = ""
+        frmArtBuscar.txtQueContenga.Select()
+        frmArtBuscar.Show()
+    End Sub
+
+    Private Sub DescripcionToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DescripcionToolStripMenuItem.Click
+        If frmArtBuscar.IsDisposed Then frmArtBuscar = New FrmArticuloBuscar
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.MdiParent = Me.MdiParent
+        frmArtBuscar.GroupBox2.Visible = False
+        frmArtBuscar.seleccionBusqueda = True
+        frmArtBuscar.cmbBuscarPor.SelectedIndex = 2
+        frmArtBuscar.txtQueContenga.Text = ""
+        frmArtBuscar.txtQueContenga.Select()
+        frmArtBuscar.Show()
+    End Sub
+
+    Private Sub ClientePredeterminadoF12ToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ClientePredeterminadoF12ToolStripMenuItem.Click
+        cmbCliente.Text = "aa"
+    End Sub
+
+    Private Sub NotaDeCreditoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotaDeCreditoToolStripMenuItem.Click
+        lblNotadeCredito.Visible = True
+        GroupBox1.Visible = False
+        CboTipoDeComprobante.Items.Clear()
+        CboTipoDeComprobante.Items.Add("A")
+        CboTipoDeComprobante.Items.Add("B")
+        CboTipoDeComprobante.Items.Add("X")
+        CboTipoDeComprobante.Text = "X"
+        objNotaDeCredito = New NotaDeCredito
+        vta = New Venta
+    End Sub
+
+    Private Sub cmdQuitarItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdQuitarItem.Click
+        If dgvRenglones.Rows.Count = 0 Then
+            Exit Sub
+        End If
+        Dim indice As Integer
+        indice = dgvRenglones.SelectedRows(0).Index
+        vta.Renglones.RemoveAt(indice)
+        ActualizarRenglones()
+    End Sub
+
+    Private Sub cmdModificarItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdModificarItem.Click
+        If dgvRenglones.Rows.Count = 0 Then
+            Exit Sub
+        End If
+        If IsNothing(vta.Renglones(dgvRenglones.SelectedRows(0).Index).Articulo) Then
+            'es un inexistente muestro el form de agregar inexistente ocn los datos del articulo
+            MessageBox.Show("Debe eliminar el inexistente, y luego agregar otro", "Articulo inexistente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Exit Sub
+        End If
+        If frmArtBuscar.IsDisposed Then frmArtBuscar = New FrmArticuloBuscar
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.MdiParent = Me.MdiParent
+        frmArtBuscar.GroupBox2.Visible = False
+        frmArtBuscar.Show()
+        Dim valor As String
+        valor = dgvRenglones.SelectedRows(0).Cells(0).Value
+        frmArtBuscar.cmbBuscarPor.SelectedIndex = 0
+        frmArtBuscar.cmdBuscar_Click(sender, e)
+        Dim desc As String
+        desc = vta.Renglones(dgvRenglones.SelectedRows(0).Index).Articulo.Descripcion
+        Dim idArt As Integer
+        idArt = dgvRenglones.SelectedRows(0).Tag
+        For Each fila As DataGridViewRow In frmArtBuscar.DataGridView1.Rows
+            If CInt(fila.Cells(0).Value.ToString()) = idArt Then
+                fila.Selected = True
+                frmArtBuscar.DataGridView1.CurrentCell = fila.Cells(0)
+                Exit For
+            End If
+        Next
+
+        frmArtBuscar.txtCantidad.Text = dgvRenglones.SelectedRows(0).Cells(1).Value
+        frmArtBuscar.txtDetalle.Text = dgvRenglones.SelectedRows(0).Cells(0).Value
+        frmArtBuscar.txtPU.Text = dgvRenglones.SelectedRows(0).Cells(2).Value
+        frmArtBuscar.txtCantidad.Select()
+        Dim indice As Integer
+        indice = dgvRenglones.SelectedRows(0).Index
+        vta.Renglones.RemoveAt(indice)
+        ActualizarRenglones()
+    End Sub
+
+    Private Sub cmdFinalizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdFinalizar.Click
+        'Valido que esten ingresados todos los campos necesarios
+
+
+
+
+        If cmbVendedor.SelectedIndex = -1 Then
+            MessageBox.Show("Debe seleccionar un vendedor para realizar la operación", "Seleccione el vendedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            cmbVendedor.Select()
+            Exit Sub
+        End If
+        If RadioButCtaCte.Checked = True Then
+            Dim fachadaV As New FachadaFactura
+            Dim x As Integer
+            x = CType(cmbCliente.SelectedItem, IdCliente).Id
+            Dim suma As DataTable
+            suma = fachadaV.SumarLasVentas(x)
+            Dim sumaTotal As Double
+            If IsDBNull(suma.Columns(0).Table.Rows(0).Item(0)) Then
+                sumaTotal = 0
+            Else
+                sumaTotal = suma.Columns(0).Table.Rows(0).Item(0)
+            End If
+            sumaTotal = sumaTotal + lblToTaL.Text
+            Dim facha As New FachadaFactura
+            Dim credito As DataTable
+            credito = facha.ChequearCredito(x)
+            Dim creditoTotal As Double
+            creditoTotal = credito.Columns(0).Table.Rows(0).Item(0)
+            Dim fachada3 As New FachadaFactura
+            Dim dta As DataTable
+            dta = fachada3.SumarPagos(CType(cmbCliente.SelectedItem, IdCliente).Id)
+            Dim montoPagado As Double
+            montoPagado = 0
+            If Not IsDBNull(dta.Rows(0).Item(0)) Then
+                montoPagado = dta.Rows(0).Item(0)
+            End If
+
+            If sumaTotal - montoPagado > creditoTotal Then
+                MsgBox("El cliente ha llegado a su limite de credito!!")
+                Exit Sub
+            End If
+        End If
+
+        If MessageBox.Show("¿Desea Finalizar la operación?", "Finalizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
+            Exit Sub
+        End If
+
+        Try
+            
+            'verifico si es una nota de credito  
+
+            If lblNotadeCredito.Visible = True Then
+
+                objNotaDeCredito.Renglones = vta.Renglones
+                With objNotaDeCredito
+                    .FechaEmision = Date.Now
+                    .IdCliente = CType(cmbCliente.SelectedItem, IdCliente).Id
+                    .IdTipoVenta = RadioButCtaCte.Checked
+                    .Nick = CType(cmbVendedor.SelectedItem, Usuario).Nick
+                    .Numero = facFactura.TraerNumeroNotaDeCredito(CboTipoDeComprobante.Text)
+                    .NumeroFactura = vta.Numero
+                    .Hora = Date.Now
+                    .CondicionVenta = CboTipoDeComprobante.Text
+                End With
+
+                facFactura.ingresarNotaDeCredito(objNotaDeCredito)
+
+                frmVisualizarInformes.VisualizarNotaDeCredito(objNotaDeCredito)
+
+                frmVisualizarInformes.Show()
+                dgvRenglones.Rows.Clear()
+                objNotaDeCredito = New NotaDeCredito
+                vta = New Venta
+            Else
+                'cargo los datos a la venta y la persisto 
+                'solicito el monto del pago para calcular el vuelto
+                Dim montoPagado As Double
+                montoPagado = Double.Parse(InputBox("Ingrese el monto pagado", "Monto pagado", lblToTaL.Text))
+                Dim vuelto As Double
+                vuelto = montoPagado - vta.Total
+                MessageBox.Show("El vuelto a entregar es de $: " & CStr(vuelto), "Vuelto", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                'termino el calculo del vuelto 
+                With vta
+                    .FechaEmision = Date.Now
+                    .IdCliente = CType(cmbCliente.SelectedItem, IdCliente).Id
+                    .IdTipoVenta = RadioButCtaCte.Checked
+                    .Nick = CType(cmbVendedor.SelectedItem, Usuario).Nick
+                    .Numero = facFactura.TraerNumero(CboTipoDeComprobante.Text)
+                    .Pagado = False
+                    .Hora = Date.Now
+                    .CondicionVenta = CboTipoDeComprobante.Text
+                    .Pagado = RadioButContado.Checked
+                End With
+
+                facFactura.ingresarFactura(vta)
+
+                ''frmVisualizarInformes.Show()
+
+                frmVisualizarInformes.Visualizar(vta, cboCantidadDeCopias.Text)
+
+                'dgvRenglones.Rows.Clear()
+
+                MessageBox.Show("Operación realizada correctamente", "Saturn 1.0", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                'vta = New Venta
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
+        txtCantidadItems.Text = 0
+        lblToTaL.Text = "0"
+        cboCantidadDeCopias.Text = 1
+    End Sub
+
+    Private Sub CboTipoDeComprobante_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboTipoDeComprobante.SelectedIndexChanged
+        'traigo el numero de factura que corresponde dependiendo del tipo de comprobante
+        CambiarColor()
+        If CboTipoDeComprobante.Text = "A" Then
+            For Each r As RenglonComprobante In vta.Renglones
+                r.PrecioUnitario = r.PrecioUnitario / 1.21
+            Next
+        End If
+        If tipoFacturaAnterior = "A" And CboTipoDeComprobante.Text <> "A" Then
+            For Each r As RenglonComprobante In vta.Renglones
+                r.PrecioUnitario = r.PrecioUnitario * 1.21
+            Next
+        Else
+
+        End If
+        tipoFacturaAnterior = CboTipoDeComprobante.Text
+        lblNumeroFactura.Text = facFactura.TraerNumero(CboTipoDeComprobante.Text)
+        Call ActualizarRenglones()
+    End Sub
+
+    Private Sub ListadoTotalToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoTotalToolStripMenuItem.Click
+        If frmArtBuscar.IsDisposed Then frmArtBuscar = New FrmArticuloBuscar
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.grupoRenglon.Visible = True
+        frmArtBuscar.MdiParent = Me.MdiParent
+        frmArtBuscar.GroupBox2.Visible = False
+        frmArtBuscar.Show()
+    End Sub
+
+    Private Sub cmbCliente_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCliente.SelectedIndexChanged
+        Dim cli As Cliente
+        cli = facCliente.TraerPorId(CType(cmbCliente.SelectedItem, IdCliente).Id)
+        Select Case cli.IdIva
+            Case 1 'CONSUMIDOR FINAL
+                CboTipoDeComprobante.Text = "B"
+            Case 2 'EXENTO
+                CboTipoDeComprobante.Text = "B"
+            Case 3 'RESPONSABLE INSCRIPTO
+                CboTipoDeComprobante.Text = "A"
+            Case 4 'RESPONSABLE NO INSCRIPTO
+                CboTipoDeComprobante.Text = "A"
+            Case 5 'MONOTRIBUTO
+                CboTipoDeComprobante.Text = "B"
+            Case 6 'NO RESPONSABLE
+        End Select
+    End Sub
+
+
+    Private Sub AnularFacturaF3ToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AnularFacturaF3ToolStripMenuItem.Click
+        frmFacturasBuscar.MdiParent = FrmPrincipal
+        frmFacturasBuscar.Show()
+
+    End Sub
+
+    Private Sub cmdCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdCancelar.Click
+        If MessageBox.Show("Realmente desea cancelar la Factura?", "Confirme la cancelación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+            dgvRenglones.DataSource = Nothing
+            vta = New Venta
+            ActualizarRenglones()
+        End If
+    End Sub
+    Private Sub CambiarColor()
+        Select Case CboTipoDeComprobante.Text
+            Case "A"
+                dgvRenglones.BackgroundColor = Color.FromArgb(255, 255, 192)
+            Case "B"
+                dgvRenglones.BackgroundColor = Color.FromArgb(192, 192, 255)
+            Case "X"
+                dgvRenglones.BackgroundColor = Color.FromArgb(235, 254, 251)
+            Case "P"
+                dgvRenglones.BackgroundColor = Color.FromArgb(255, 224, 192)
+        End Select
+    End Sub
+
+    Private Sub btnIngresarCliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIngresarCliente.Click
+        Dim cli As New Cliente
+        cli.Nombre = InputBox("Ingrese el nombre:", "Nuevo Cliente")
+        cli.CUIT = "11111111111"
+        cli.FechaAlta = Date.Now
+        cli.IdRubro = 1
+        cli.IdIva = 1
+        If cli.Nombre.Trim() = "" Then Exit Sub
+        Dim dom As Domicilio
+        frmDomicilio.LimpiarFormulario()
+        frmDomicilio.txtCalle.Select()
+        frmDomicilio.ShowDialog()
+        If frmDomicilio.cancelo Then
+            MessageBox.Show("El cliente no ha sido dado de alta", "Cliente no ingresado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+        dom = frmDomicilio.DataSource
+        cli.Domicilios.Add(dom.Calle & dom.Altura, dom)
+        facCliente.AltaCliente(cli)
+        cmbCliente.Items.Clear()
+        facCliente.CargarCombo(cmbCliente)
+        For Each id As IdCliente In cmbCliente.Items
+            If id.Id = cli.IdCliente Then
+                cmbCliente.SelectedItem = id
+            End If
+        Next
+        ''cmbCliente.Text = cli.Nombre
+        CboTipoDeComprobante.Text = "X"
+    End Sub
+
+   
+End Class

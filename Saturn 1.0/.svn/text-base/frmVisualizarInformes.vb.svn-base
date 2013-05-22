@@ -1,0 +1,208 @@
+Imports Fachada
+Imports Modelo
+Imports CrystalDecisions
+
+Public Class frmVisualizarInformes
+
+    Dim facCliente As New FachadaCliente
+    Dim facTel As New FachadaTelefono
+    Dim facDom As New FachadaDomicilio
+    Dim facIVa As New FachadaIva
+
+    Public Sub Visualizar(ByVal vta As Venta, ByVal cantCopias As Integer) 'ByVal numeroFac As Integer, ByVal tipofac As String, ByVal idCliente As Integer, ByVal condicion As String, ByVal numfac As String)
+        Try
+            Dim rc As New clsReportCreator
+            Dim rd As New rptVenta ''rptVenta
+            Dim dt As DataTable
+            Dim fac As New FachadaReporte
+            Dim cli As Cliente
+            Dim txt As CrystalDecisions.CrystalReports.Engine.TextObject
+            dt = fac.ImpresionDeFactura(vta.Numero, vta.CondicionVenta)
+            If dt.Rows.Count < 15 Then
+            Else
+                ImprimirReporteA4(vta, cantCopias)
+                Exit Sub
+            End If
+            cli = facCliente.TraerPorId(vta.IdCliente)
+            If facTel.colTelefonosEnte(cli.IdEnte).Count > 0 Then
+                txt = CType(rd.Section1.ReportObjects("txtTelefono"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = facTel.colTelefonosEnte(cli.IdEnte).Item(0).Numero
+            End If
+
+            txt = CType(rd.Section1.ReportObjects("txtCuit"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = cli.CUIT
+            txt = CType(rd.Section1.ReportObjects("txtTipoFac"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = vta.CondicionVenta
+
+            txt = CType(rd.Section1.ReportObjects("txtcondicion"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            If vta.IdTipoVenta = True Then
+                txt.Text = "Cuenta Corriente"
+            Else
+                txt.Text = "Contado"
+            End If
+            txt = CType(rd.Section1.ReportObjects("txtNroFac"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = vta.Numero
+            txt = CType(rd.Section1.ReportObjects("txtLocalidad"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            If facDom.colDomiciliosEnte(cli.IdEnte).Count > 0 Then
+                Dim dom As Domicilio
+                dom = facDom.colDomiciliosEnte(cli.IdEnte).Item(0)
+                txt.Text = dom.Localidad
+                txt = CType(rd.Section4.ReportObjects("lblFacturaRelacionada"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = "Domicilio:"
+
+                txt = CType(rd.Section4.ReportObjects("txtFacturaRelacionada"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = dom.Calle & " " & dom.Altura & " " & dom.Piso & " " & dom.Depto
+
+            End If
+            txt = CType(rd.Section1.ReportObjects("txtIva"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = facIVa.traerPorId(cli.IdIva).Descripcion
+
+            If vta.CondicionVenta = "A" Then
+                txt = CType(rd.Section4.ReportObjects("txtSubtotal"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = Math.Round(vta.Total, 2)
+                txt = CType(rd.Section4.ReportObjects("txtTotalIVA"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = Math.Round(vta.TotalIVA, 2)
+            ElseIf vta.CondicionVenta = "X" Or vta.CondicionVenta = "P" Then
+                txt = CType(rd.Section4.ReportObjects("txtNoValido"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = "DOCUMENTO NO VÁLIDO COMO FACTURA"
+            End If
+
+            ' rd.SetParameterValue("tipoFac", tipofac)
+            rd.SetDataSource(dt)
+            rd.Subreports(0).SetDataSource(dt)
+            Me.CrystalReportViewer1.ReportSource = rd
+            
+            ''rd.PrintOptions.PaperOrientation = [Shared].PaperOrientation.Landscape 'imprime apaizado
+            rd.PrintToPrinter(cantCopias, False, 0, 1)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Sub VisualizarNotaDeCredito(ByVal nc As NotaDeCredito)
+        Dim rc As New clsReportCreator
+        Dim rd As New rptVenta
+        Dim dt As DataTable
+        Dim fac As New FachadaReporte
+        Dim cli As Cliente
+        Dim txt As CrystalDecisions.CrystalReports.Engine.TextObject
+
+        txt = CType(rd.Section4.ReportObjects("txtNotaDeCredito"), CrystalDecisions.CrystalReports.Engine.TextObject)
+        txt.Text = "NOTA DE CREDITO"
+
+        txt = CType(rd.Section4.ReportObjects("lblFacturaRelacionada"), CrystalDecisions.CrystalReports.Engine.TextObject)
+        txt.Text = "Fac. Relacionada:"
+        If nc.NumeroFactura <> 0 Then
+            txt = CType(rd.Section4.ReportObjects("txtFacturaRelacionada"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = "" & nc.NumeroFactura
+        End If
+
+        cli = facCliente.TraerPorId(nc.IdCliente)
+        If facTel.colTelefonosEnte(cli.IdEnte).Count > 0 Then
+            txt = CType(rd.Section1.ReportObjects("txtTelefono"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = facTel.colTelefonosEnte(cli.IdEnte).Item(0).Numero
+        End If
+
+        txt = CType(rd.Section1.ReportObjects("txtCuit"), CrystalDecisions.CrystalReports.Engine.TextObject)
+        txt.Text = cli.CUIT
+        txt = CType(rd.Section1.ReportObjects("txtTipoFac"), CrystalDecisions.CrystalReports.Engine.TextObject)
+        txt.Text = nc.CondicionVenta
+
+        txt = CType(rd.Section1.ReportObjects("txtcondicion"), CrystalDecisions.CrystalReports.Engine.TextObject)
+        If nc.IdTipoVenta = True Then
+            txt.Text = "Cuenta Corriente"
+        Else
+            txt.Text = "Contado"
+        End If
+        txt = CType(rd.Section1.ReportObjects("txtNroFac"), CrystalDecisions.CrystalReports.Engine.TextObject)
+        txt.Text = nc.Numero
+        txt = CType(rd.Section1.ReportObjects("txtLocalidad"), CrystalDecisions.CrystalReports.Engine.TextObject)
+        txt.Text = "Desconocida"
+        If facDom.colDomiciliosEnte(cli.IdEnte).Count > 0 Then
+            txt.Text = facDom.colDomiciliosEnte(cli.IdEnte).Item(0).Localidad
+        End If
+        txt = CType(rd.Section1.ReportObjects("txtIva"), CrystalDecisions.CrystalReports.Engine.TextObject)
+        txt.Text = facIVa.traerPorId(cli.IdIva).Descripcion
+
+        If nc.CondicionVenta = "A" Then
+            txt = CType(rd.Section4.ReportObjects("txtSubtotal"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = Math.Round(nc.Total, 2)
+            txt = CType(rd.Section4.ReportObjects("txtTotalIVA"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = Math.Round(nc.TotalIVA, 2)
+        End If
+        dt = fac.ImpNot(nc.Numero, nc.CondicionVenta)
+        ' rd.SetParameterValue("tipoFac", tipofac)
+        rd.SetDataSource(dt)
+        Me.CrystalReportViewer1.ReportSource = rd
+    End Sub
+
+
+    Private Sub err(ByVal source As System.Object, ByVal e As CrystalDecisions.Windows.Forms.ExceptionEventArgs) Handles CrystalReportViewer1.Error
+        MsgBox("No se pudo imprimir el listado")
+        Exit Sub
+    End Sub
+    Private Sub ImprimirReporteA4(ByVal vta As Venta, ByVal cantCopias As Integer)
+        Try
+            Dim rc As New clsReportCreator
+            Dim rd As New rptVentaA4 ''rptVenta
+            Dim dt As DataTable
+            Dim fac As New FachadaReporte
+            Dim cli As Cliente
+            Dim txt As CrystalDecisions.CrystalReports.Engine.TextObject
+            dt = fac.ImpresionDeFactura(vta.Numero, vta.CondicionVenta)
+            cli = facCliente.TraerPorId(vta.IdCliente)
+            If facTel.colTelefonosEnte(cli.IdEnte).Count > 0 Then
+                txt = CType(rd.Section1.ReportObjects("txtTelefono"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = facTel.colTelefonosEnte(cli.IdEnte).Item(0).Numero
+            End If
+
+            txt = CType(rd.Section1.ReportObjects("txtCuit"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = cli.CUIT
+            txt = CType(rd.Section1.ReportObjects("txtTipoFac"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = vta.CondicionVenta
+
+            txt = CType(rd.Section1.ReportObjects("txtcondicion"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            If vta.IdTipoVenta = True Then
+                txt.Text = "Cuenta Corriente"
+            Else
+                txt.Text = "Contado"
+            End If
+            txt = CType(rd.Section1.ReportObjects("txtNroFac"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = vta.Numero
+            txt = CType(rd.Section1.ReportObjects("txtLocalidad"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            If facDom.colDomiciliosEnte(cli.IdEnte).Count > 0 Then
+                Dim dom As Domicilio
+                dom = facDom.colDomiciliosEnte(cli.IdEnte).Item(0)
+                txt.Text = dom.Localidad
+                txt = CType(rd.Section4.ReportObjects("lblFacturaRelacionada"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = "Domicilio:"
+
+                txt = CType(rd.Section4.ReportObjects("txtFacturaRelacionada"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = dom.Calle & " " & dom.Altura & " " & dom.Piso & " " & dom.Depto
+
+            End If
+            txt = CType(rd.Section1.ReportObjects("txtIva"), CrystalDecisions.CrystalReports.Engine.TextObject)
+            txt.Text = facIVa.traerPorId(cli.IdIva).Descripcion
+
+            If vta.CondicionVenta = "A" Then
+                txt = CType(rd.Section4.ReportObjects("txtSubtotal"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = Math.Round(vta.Total, 2)
+                txt = CType(rd.Section4.ReportObjects("txtTotalIVA"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = Math.Round(vta.TotalIVA, 2)
+            ElseIf vta.CondicionVenta = "X" Or vta.CondicionVenta = "P" Then
+                txt = CType(rd.Section4.ReportObjects("txtNoValido"), CrystalDecisions.CrystalReports.Engine.TextObject)
+                txt.Text = "DOCUMENTO NO VÁLIDO COMO FACTURA"
+            End If
+
+            ' rd.SetParameterValue("tipoFac", tipofac)
+            rd.SetDataSource(dt)
+            rd.Subreports(0).SetDataSource(dt)
+            Me.CrystalReportViewer1.ReportSource = rd
+          
+            rd.PrintToPrinter(cantCopias, False, 0, 1)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+End Class
