@@ -344,52 +344,73 @@ Public Class FrmArticuloAlta
             'alta.Stock = txtSTOcK.Text
             'alta.Utilidad = 0
             'alta.CodBarra = txtCodBarras.Text
-
-            vArticulo = New Articulo
-
-            Dim facArticulo_Desc_gan_iva As New FachadaArticuloDescuentoGananciaIva
-            vArticulo_Desc_Gan_IVA = New Articulo_descuento_ganancia_iva
-
-            With vArticulo
-                .Idcategoria = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo
-                .Costo = txtPrecioLista.Text
-                .Descripcion = txtDescripcION.Text
-                .IdMarca = CType(cmbMarca.SelectedItem, Marca).IdMarca
-                .Idproveedor = CType(cmbProveedoR.SelectedItem, IdProveedor).Id
-                .Medida = txtMedida.Text
-                .PorcDesc = txtIVA.Text
-                .Precio = txtPrecioFinal.Text
-                .Stock = txtSTOcK.Text
-                .Utilidad = 0
-                .esFraccionable = chFraccionable.Checked
-                .CodBarra = txtCodBarras.Text
-                .PtoReposicion = txtPtoReposicion.Text
-                .IdArticulo = txtidArticulo.Text
-            End With
-
-            Try
-                facArt.ingresarArticulo(vArticulo)
-                txtidArticulo.Text = facArt.TraerNuevoIdArticulo()
-                MsgBox("Artículo cargado exitosamente!", MsgBoxStyle.Information, "Articulo ingresado")
-                txtMedida.Text = ""
-                'txtPrecioConDescuento.Text = "0"
-            Catch ex As CodigoBarraNoDisponibleException
-                Dim art As Articulo
-                art = facArt.TraerArticulo(txtCodBarras.Text)
-                Dim detallesArt As String
-                detallesArt = "Detalles del articulo:" & vbCr
-                detallesArt += "Descripción: " & art.Descripcion & vbCr & "Precio: " & art.Precio & vbCr & "Codigo de Barras: " & art.CodBarra
-                If MessageBox.Show("El codigo de barra se encuentra utilizado por otro articulo, desea modificar la información de ese articulo?" & vbCr & vbCr & detallesArt, "Codigo de barra existente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
-                    facArt.ActualizarArticulo(vArticulo)
-                    facArticulo_Desc_gan_iva.Modificar_Articulo_descuento_ganancia_iva(vArticulo_Desc_Gan_IVA)
-                End If
-                MsgBox("Artículo modificado exitosamente!", MsgBoxStyle.Information, "Articulo modificado")
-            Catch ex As IdNoDisponibleException
-                MessageBox.Show("El id que intenta ingresar esta siendo utilizado por otro articulo, ingrese otro id o modifique ese articulo", "Id no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If txtDescripcION.Text = "" Or txtIVA.Text = "" Or txtPrecioCosto.Text = "" Or txtPrecioLista.Text = "" Or txtSTOcK.Text = "" Or txtPtoReposicion.Text = "" Then
+                MsgBox("Debe completar todos los campos!!", MsgBoxStyle.Exclamation, "Campos incompletos")
                 Exit Sub
-            End Try
+            Else
+
+                vArticulo = New Articulo
+
+                Dim facArticulo_Desc_gan_iva As New FachadaArticuloDescuentoGananciaIva
+                vArticulo_Desc_Gan_IVA = New Articulo_descuento_ganancia_iva
+                Try
+                    With vArticulo
+                        .Idcategoria = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo
+                        .Costo = txtPrecioLista.Text
+                        .Descripcion = txtDescripcION.Text
+                        .IdMarca = CType(cmbMarca.SelectedItem, Marca).IdMarca
+                        .Idproveedor = CType(cmbProveedoR.SelectedItem, IdProveedor).Id
+                        .Medida = txtMedida.Text
+                        .PorcDesc = txtIVA.Text
+                        .Precio = txtPrecioFinal.Text
+                        .Stock = txtSTOcK.Text
+                        .Utilidad = 0
+                        .esFraccionable = chFraccionable.Checked
+                        .CodBarra = txtCodBarras.Text
+                        .PtoReposicion = txtPtoReposicion.Text
+                        .IdArticulo = txtidArticulo.Text
+                    End With
 
 
+                    facArt.ingresarArticulo(vArticulo)
+                    txtidArticulo.Text = facArt.TraerNuevoIdArticulo()
+
+                    vArticulo_Desc_Gan_IVA.Descuento1 = txtDesc1.Text
+                    vArticulo_Desc_Gan_IVA.Descuento2 = txtDesc2.Text
+                    vArticulo_Desc_Gan_IVA.Descuento3 = txtDesc3.Text
+                    vArticulo_Desc_Gan_IVA.Descuento4 = txtDesc4.Text
+                    vArticulo_Desc_Gan_IVA.Ganancia1 = txtgcia1.Text
+                    vArticulo_Desc_Gan_IVA.Ganancia2 = txtgcia2.Text
+                    vArticulo_Desc_Gan_IVA.Ganancia3 = txtGcia3.Text
+                    vArticulo_Desc_Gan_IVA.Ganancia4 = txtGcia4.Text
+                    vArticulo_Desc_Gan_IVA.IdArticulo = txtidArticulo.Text - 1
+                    vArticulo_Desc_Gan_IVA.IVA = txtIVA.Text
+                    vArticulo_Desc_Gan_IVA.PrecioListaProveedor = txtPrecioCosto.Text
+
+
+                    facArticulo_Desc_gan_iva.ingresarArticulo_descuento_ganancia_iva(vArticulo_Desc_Gan_IVA)
+
+                    MsgBox("Artículo cargado exitosamente!", MsgBoxStyle.Information, "Articulo ingresado")
+                    txtMedida.Text = ""
+                    'txtPrecioConDescuento.Text = "0"
+                Catch ex As CodigoBarraNoDisponibleException
+                    Dim art As Articulo
+                    art = facArt.TraerArticulo(txtCodBarras.Text)
+                    Dim detallesArt As String
+                    detallesArt = "Detalles del articulo:" & vbCr
+                    detallesArt += "Descripción: " & art.Descripcion & vbCr & "Precio: " & art.Precio & vbCr & "Codigo de Barras: " & art.CodBarra
+                    If MessageBox.Show("El codigo de barra se encuentra utilizado por otro articulo, desea modificar la información de ese articulo?" & vbCr & vbCr & detallesArt, "Codigo de barra existente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
+                        facArt.ActualizarArticulo(vArticulo)
+                        facArticulo_Desc_gan_iva.Modificar_Articulo_descuento_ganancia_iva(vArticulo_Desc_Gan_IVA)
+                    End If
+                    MsgBox("Artículo modificado exitosamente!", MsgBoxStyle.Information, "Articulo modificado")
+                Catch ex As IdNoDisponibleException
+                    MessageBox.Show("El id que intenta ingresar esta siendo utilizado por otro articulo, ingrese otro id o modifique ese articulo", "Id no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End Try
+
+
+            End If
         End If
     End Sub
 
