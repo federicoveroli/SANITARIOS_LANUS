@@ -332,25 +332,61 @@ Public Class FrmArticuloAlta
         If txtDescripcION.Text = "" Or txtIVA.Text = "" Or txtPrecioCosto.Text = "" Or txtPrecioLista.Text = "" Or txtSTOcK.Text = "" Then
             MsgBox("Debe completar todos los campos!!", MsgBoxStyle.Exclamation, "Campos incompletos")
         Else
-            Dim alta As New Articulo
-            alta.Idcategoria = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo 'cmbTipoProducto.Text
-            alta.Costo = txtPrecioLista.Text
-            alta.Descripcion = txtDescripcION.Text
-            alta.IdMarca = CType(cmbMarca.SelectedItem, Marca).IdMarca
-            alta.Idproveedor = CType(cmbProveedoR.SelectedItem, IdProveedor).Id
-            alta.Medida = txtMedida.Text
-            alta.PorcDesc = txtIVA.Text
-            alta.Precio = txtPrecioFinal.Text
-            alta.Stock = txtSTOcK.Text
-            alta.Utilidad = 0
-            alta.CodBarra = txtCodBarras.Text
+            'Dim alta As New Articulo
+            'alta.Idcategoria = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo 'cmbTipoProducto.Text
+            'alta.Costo = txtPrecioLista.Text
+            'alta.Descripcion = txtDescripcION.Text
+            'alta.IdMarca = CType(cmbMarca.SelectedItem, Marca).IdMarca
+            'alta.Idproveedor = CType(cmbProveedoR.SelectedItem, IdProveedor).Id
+            'alta.Medida = txtMedida.Text
+            'alta.PorcDesc = txtIVA.Text
+            'alta.Precio = txtPrecioFinal.Text
+            'alta.Stock = txtSTOcK.Text
+            'alta.Utilidad = 0
+            'alta.CodBarra = txtCodBarras.Text
+
+            vArticulo = New Articulo
+
+            Dim facArticulo_Desc_gan_iva As New FachadaArticuloDescuentoGananciaIva
+            vArticulo_Desc_Gan_IVA = New Articulo_descuento_ganancia_iva
+
+            With vArticulo
+                .Idcategoria = CType(cmbTipoProducto.SelectedItem, TipoArticulo).IdTipo
+                .Costo = txtPrecioLista.Text
+                .Descripcion = txtDescripcION.Text
+                .IdMarca = CType(cmbMarca.SelectedItem, Marca).IdMarca
+                .Idproveedor = CType(cmbProveedoR.SelectedItem, IdProveedor).Id
+                .Medida = txtMedida.Text
+                .PorcDesc = txtIVA.Text
+                .Precio = txtPrecioFinal.Text
+                .Stock = txtSTOcK.Text
+                .Utilidad = 0
+                .esFraccionable = chFraccionable.Checked
+                .CodBarra = txtCodBarras.Text
+                .PtoReposicion = txtPtoReposicion.Text
+                .IdArticulo = txtidArticulo.Text
+            End With
+
             Try
-                facArt.ingresarArticulo(alta)
+                facArt.ingresarArticulo(vArticulo)
+                txtidArticulo.Text = facArt.TraerNuevoIdArticulo()
                 MsgBox("Artículo cargado exitosamente!", MsgBoxStyle.Information, "Articulo ingresado")
                 txtMedida.Text = ""
                 'txtPrecioConDescuento.Text = "0"
-            Catch ex As Exception
-                MsgBox("Error: " + ex.Message)
+            Catch ex As CodigoBarraNoDisponibleException
+                Dim art As Articulo
+                art = facArt.TraerArticulo(txtCodBarras.Text)
+                Dim detallesArt As String
+                detallesArt = "Detalles del articulo:" & vbCr
+                detallesArt += "Descripción: " & art.Descripcion & vbCr & "Precio: " & art.Precio & vbCr & "Codigo de Barras: " & art.CodBarra
+                If MessageBox.Show("El codigo de barra se encuentra utilizado por otro articulo, desea modificar la información de ese articulo?" & vbCr & vbCr & detallesArt, "Codigo de barra existente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
+                    facArt.ActualizarArticulo(vArticulo)
+                    facArticulo_Desc_gan_iva.Modificar_Articulo_descuento_ganancia_iva(vArticulo_Desc_Gan_IVA)
+                End If
+                MsgBox("Artículo modificado exitosamente!", MsgBoxStyle.Information, "Articulo modificado")
+            Catch ex As IdNoDisponibleException
+                MessageBox.Show("El id que intenta ingresar esta siendo utilizado por otro articulo, ingrese otro id o modifique ese articulo", "Id no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
             End Try
 
 

@@ -59,6 +59,8 @@ Public Class Registro_articulo_descuento_ganancia_iva
     Public Function traerArticuloPorId(ByVal idArticulo As Integer) As Articulo_descuento_ganancia_iva
         Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("Select * from Articulo_descuento_ganancia_iva where idarticulo=" & CStr(idArticulo))
         Dim art As New Articulo_descuento_ganancia_iva
+        'If dt.Rows.Count = 0 Then Return art
+
         Dim fila As DataRow = dt.Rows(0)
 
         art = MapearArticulo(fila)

@@ -32,7 +32,7 @@ Public Class FrmPrincipal
     End Sub
 
     Private Sub SalirF7ToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirF7ToolStripMenuItem.Click
-        Application.Exit()
+        Me.Close()
     End Sub
 
     Private Sub ABMArticulosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ABMArticulosToolStripMenuItem.Click
@@ -275,7 +275,7 @@ Public Class FrmPrincipal
                 End If
             End If
         End If
-        Application.Exit()
+        Me.Close()
     End Sub
 
 
@@ -335,6 +335,8 @@ Public Class FrmPrincipal
     Private Sub FrmPrincipal_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         If MessageBox.Show("Realmente desea salir de Saturn?", "Desea Salir?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
             e.Cancel = True
+        Else
+            Me.Finalize()
         End If
     End Sub
 

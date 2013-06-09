@@ -171,27 +171,27 @@ Public Class FrmArticuloBuscar
         End If
     End Sub
     Private Sub cmdModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdModificar.Click
-        Try
-            Dim idarticulo As Integer
-            idarticulo = DataGridView1.SelectedRows(0).Cells(0).Value
-            'FrmArticuloAlta.MdiParent = FrmPrincipal
-            'FrmArticuloAlta.Show()
-            'FrmArticuloAlta.Hide()
-            FrmArticuloAlta.lblMisterioso.Text = idarticulo
-            FrmArticuloAlta.CompletarArticulo(idarticulo)
-            FrmArticuloAlta.cmdAceptar.Text = "Modificar"
+        'Try
+        Dim idarticulo As Integer
+        idarticulo = DataGridView1.SelectedRows(0).Cells(0).Value
+        'FrmArticuloAlta.MdiParent = FrmPrincipal
+        'FrmArticuloAlta.Show()
+        'FrmArticuloAlta.Hide()
+        FrmArticuloAlta.lblMisterioso.Text = idarticulo
+        FrmArticuloAlta.CompletarArticulo(idarticulo)
+        FrmArticuloAlta.cmdAceptar.Text = "Modificar"
 
-            FrmArticuloAlta.cmdAgregarSimilar.Visible = False
-            FrmArticuloAlta.ShowDialog()
-            'actualiza el listado de articulos
-            'If FrmArticuloAlta.Acepto Then
-            '    'actualizo el listado de articulos
-            '    cmdBuscar_Click(sender, e)
-            'End If
-         
-        Catch ex As Exception
-            'MsgBox("Debe seleccionar un artículo para modificar...")
-        End Try
+        FrmArticuloAlta.cmdAgregarSimilar.Visible = False
+        FrmArticuloAlta.ShowDialog()
+        'actualiza el listado de articulos
+        'If FrmArticuloAlta.Acepto Then
+        '    'actualizo el listado de articulos
+        '    cmdBuscar_Click(sender, e)
+        'End If
+
+        'Catch ex As Exception
+        '    'MsgBox("Debe seleccionar un artículo para modificar...")
+        'End Try
 
 
     End Sub

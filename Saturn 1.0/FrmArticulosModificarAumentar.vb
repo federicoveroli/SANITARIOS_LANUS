@@ -50,23 +50,23 @@ Public Class FrmArticulosModificarAumentar
         Try
             DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             DataGridView1.Columns(0).Visible = False
-            DataGridView1.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            DataGridView1.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(5).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(6).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(7).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(8).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(9).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(10).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(12).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(13).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(14).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(15).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(16).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            DataGridView1.Columns(17).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            'DataGridView1.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(5).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(6).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(7).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(8).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(9).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(10).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(12).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(13).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(14).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(15).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(16).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'DataGridView1.Columns(17).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
         Catch ex As Exception
 
         End Try
