@@ -175,8 +175,8 @@ Public Class RegistroArticulo
         params.Add(New MySqlParameter("inIdMarca", idMarca))
         AccesoDatos.Instancia.EjecutarComando("marca_delete", params)
     End Sub
-    Public Function TraerArticuloPorDescripcion(ByVal desc As String) As DataTable
-        Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("select a.idarticulo as 'Id', a.descripcion as 'Descripcion', ca.descripcion as 'Tipo Producto',p.razonsocial as 'Provedor',m.descripcion as 'Marca',a.precio as 'Precio',a.stock as 'Stock' , a.cod_barra as 'Cod de barra' from articulo a inner join categoriaarticulo ca on a.idcategoria = ca.idcategoria inner join proveedor p on a.idproveedor=p.idproveedor inner join marca m on a.idmarca=m.idmarca	where a.descripcion like '%" & desc & "%'" & " order by a.descripcion")
+    Public Function TraerArticuloPorDescripcion(ByVal Criterio1 As String, ByVal Criterio2 As String, ByVal Criterio3 As String) As DataTable
+        Dim dt As DataTable = AccesoDatos.Instancia.EjecutarConsulta("select a.idarticulo as 'Id', a.descripcion as 'Descripcion', ca.descripcion as 'Tipo Producto',p.razonsocial as 'Provedor',m.descripcion as 'Marca',a.precio as 'Precio',a.stock as 'Stock' , a.cod_barra as 'Cod de barra' from articulo a inner join categoriaarticulo ca on a.idcategoria = ca.idcategoria inner join proveedor p on a.idproveedor=p.idproveedor inner join marca m on a.idmarca=m.idmarca	 where a.descripcion like '%" & Criterio1 & "%'" & " and a.descripcion like '%" & Criterio2 & "%'" & " and a.descripcion like '%" & Criterio3 & "%'" & " order by a.descripcion")
         Return dt
     End Function
     Public Function TraerArticuloPorCodBarras(ByVal codigo_barras As String) As DataTable

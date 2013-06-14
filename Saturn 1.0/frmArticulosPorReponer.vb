@@ -67,7 +67,7 @@ Public Class frmArticulosPorReponer
                 Case 2
                     Dim z As String 'Descripcion
                     z = txtQueContenga.Text
-                    DataGridView1.DataSource = lista.ListarArticulosXDescripcion(z)
+                    DataGridView1.DataSource = lista.ListarArticulosXDescripcion(z, "", "")
                 Case 3 'marca
                     Dim z As String
                     z = txtQueContenga.Text

@@ -58,6 +58,10 @@ Partial Class FrmArticulosModificarAumentar
         Me.cmdImprimir = New System.Windows.Forms.Button
         Me.ToolTipLector = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.btnDto4 = New System.Windows.Forms.Button
+        Me.btnDto3 = New System.Windows.Forms.Button
+        Me.btnDto2 = New System.Windows.Forms.Button
+        Me.btnDto1 = New System.Windows.Forms.Button
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtdto4 = New System.Windows.Forms.TextBox
         Me.Label5 = New System.Windows.Forms.Label
@@ -68,6 +72,10 @@ Partial Class FrmArticulosModificarAumentar
         Me.Button1 = New System.Windows.Forms.Button
         Me.txtdto1 = New System.Windows.Forms.TextBox
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
+        Me.btnGcia4 = New System.Windows.Forms.Button
+        Me.btnGcia3 = New System.Windows.Forms.Button
+        Me.btnGcia2 = New System.Windows.Forms.Button
+        Me.btnGcia1 = New System.Windows.Forms.Button
         Me.Label14 = New System.Windows.Forms.Label
         Me.Label13 = New System.Windows.Forms.Label
         Me.Label12 = New System.Windows.Forms.Label
@@ -101,7 +109,7 @@ Partial Class FrmArticulosModificarAumentar
         Me.cmbBuscarPor.Location = New System.Drawing.Point(105, 37)
         Me.cmbBuscarPor.Name = "cmbBuscarPor"
         Me.cmbBuscarPor.Size = New System.Drawing.Size(164, 21)
-        Me.cmbBuscarPor.TabIndex = 1
+        Me.cmbBuscarPor.TabIndex = 0
         '
         'Label2
         '
@@ -119,7 +127,7 @@ Partial Class FrmArticulosModificarAumentar
         Me.txtQueContenga.MaxLength = 99
         Me.txtQueContenga.Name = "txtQueContenga"
         Me.txtQueContenga.Size = New System.Drawing.Size(241, 20)
-        Me.txtQueContenga.TabIndex = 3
+        Me.txtQueContenga.TabIndex = 1
         '
         'DataGridView1
         '
@@ -161,7 +169,7 @@ Partial Class FrmArticulosModificarAumentar
         Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.ShowEditingIcon = False
-        Me.DataGridView1.Size = New System.Drawing.Size(737, 343)
+        Me.DataGridView1.Size = New System.Drawing.Size(940, 343)
         Me.DataGridView1.TabIndex = 4
         '
         'cmdBuscar
@@ -169,7 +177,7 @@ Partial Class FrmArticulosModificarAumentar
         Me.cmdBuscar.Location = New System.Drawing.Point(695, 35)
         Me.cmdBuscar.Name = "cmdBuscar"
         Me.cmdBuscar.Size = New System.Drawing.Size(75, 23)
-        Me.cmdBuscar.TabIndex = 5
+        Me.cmdBuscar.TabIndex = 2
         Me.cmdBuscar.Text = "Buscar"
         Me.cmdBuscar.UseVisualStyleBackColor = True
         '
@@ -177,10 +185,10 @@ Partial Class FrmArticulosModificarAumentar
         '
         Me.CmdSalir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CmdSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.CmdSalir.Location = New System.Drawing.Point(695, 554)
+        Me.CmdSalir.Location = New System.Drawing.Point(898, 554)
         Me.CmdSalir.Name = "CmdSalir"
         Me.CmdSalir.Size = New System.Drawing.Size(75, 23)
-        Me.CmdSalir.TabIndex = 6
+        Me.CmdSalir.TabIndex = 4
         Me.CmdSalir.Text = "&Salir"
         Me.CmdSalir.UseVisualStyleBackColor = True
         '
@@ -200,7 +208,7 @@ Partial Class FrmArticulosModificarAumentar
         Me.mnuArticulos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BusquedaToolStripMenuItem})
         Me.mnuArticulos.Location = New System.Drawing.Point(0, 0)
         Me.mnuArticulos.Name = "mnuArticulos"
-        Me.mnuArticulos.Size = New System.Drawing.Size(794, 24)
+        Me.mnuArticulos.Size = New System.Drawing.Size(997, 24)
         Me.mnuArticulos.TabIndex = 11
         Me.mnuArticulos.Text = "MenuStrip1"
         '
@@ -299,7 +307,7 @@ Partial Class FrmArticulosModificarAumentar
         Me.GroupBox2.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.GroupBox2.Location = New System.Drawing.Point(33, 408)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(465, 47)
+        Me.GroupBox2.Size = New System.Drawing.Size(363, 47)
         Me.GroupBox2.TabIndex = 27
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Ingresar porcentaje para modificar el precio de lista del proveedor"
@@ -311,12 +319,12 @@ Partial Class FrmArticulosModificarAumentar
         Me.Label18.Location = New System.Drawing.Point(86, 19)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(20, 17)
-        Me.Label18.TabIndex = 6
+        Me.Label18.TabIndex = 1
         Me.Label18.Text = "%"
         '
         'cmdAceptarAumento
         '
-        Me.cmdAceptarAumento.Location = New System.Drawing.Point(373, 17)
+        Me.cmdAceptarAumento.Location = New System.Drawing.Point(261, 17)
         Me.cmdAceptarAumento.Name = "cmdAceptarAumento"
         Me.cmdAceptarAumento.Size = New System.Drawing.Size(75, 23)
         Me.cmdAceptarAumento.TabIndex = 4
@@ -352,13 +360,13 @@ Partial Class FrmArticulosModificarAumentar
         Me.txtVariable.MaxLength = 6
         Me.txtVariable.Name = "txtVariable"
         Me.txtVariable.Size = New System.Drawing.Size(71, 20)
-        Me.txtVariable.TabIndex = 1
+        Me.txtVariable.TabIndex = 0
         Me.txtVariable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'cmdEliminarSeleccionado
         '
         Me.cmdEliminarSeleccionado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdEliminarSeleccionado.Location = New System.Drawing.Point(659, 412)
+        Me.cmdEliminarSeleccionado.Location = New System.Drawing.Point(862, 412)
         Me.cmdEliminarSeleccionado.Name = "cmdEliminarSeleccionado"
         Me.cmdEliminarSeleccionado.Size = New System.Drawing.Size(111, 23)
         Me.cmdEliminarSeleccionado.TabIndex = 5
@@ -377,16 +385,20 @@ Partial Class FrmArticulosModificarAumentar
         'cmdImprimir
         '
         Me.cmdImprimir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdImprimir.Location = New System.Drawing.Point(614, 554)
+        Me.cmdImprimir.Location = New System.Drawing.Point(817, 554)
         Me.cmdImprimir.Name = "cmdImprimir"
         Me.cmdImprimir.Size = New System.Drawing.Size(75, 23)
-        Me.cmdImprimir.TabIndex = 21
+        Me.cmdImprimir.TabIndex = 3
         Me.cmdImprimir.Text = "Imprimir"
         Me.cmdImprimir.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.btnDto4)
+        Me.GroupBox1.Controls.Add(Me.btnDto3)
+        Me.GroupBox1.Controls.Add(Me.btnDto2)
+        Me.GroupBox1.Controls.Add(Me.btnDto1)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.txtdto4)
         Me.GroupBox1.Controls.Add(Me.Label5)
@@ -399,66 +411,102 @@ Partial Class FrmArticulosModificarAumentar
         Me.GroupBox1.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.GroupBox1.Location = New System.Drawing.Point(33, 461)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(465, 55)
+        Me.GroupBox1.Size = New System.Drawing.Size(465, 86)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Modificar descuentos del proveedor"
+        '
+        'btnDto4
+        '
+        Me.btnDto4.Location = New System.Drawing.Point(261, 47)
+        Me.btnDto4.Name = "btnDto4"
+        Me.btnDto4.Size = New System.Drawing.Size(75, 23)
+        Me.btnDto4.TabIndex = 12
+        Me.btnDto4.Text = "Solo Dto4"
+        Me.btnDto4.UseVisualStyleBackColor = True
+        '
+        'btnDto3
+        '
+        Me.btnDto3.Location = New System.Drawing.Point(177, 47)
+        Me.btnDto3.Name = "btnDto3"
+        Me.btnDto3.Size = New System.Drawing.Size(75, 23)
+        Me.btnDto3.TabIndex = 11
+        Me.btnDto3.Text = "Solo Dto3"
+        Me.btnDto3.UseVisualStyleBackColor = True
+        '
+        'btnDto2
+        '
+        Me.btnDto2.Location = New System.Drawing.Point(93, 47)
+        Me.btnDto2.Name = "btnDto2"
+        Me.btnDto2.Size = New System.Drawing.Size(75, 23)
+        Me.btnDto2.TabIndex = 10
+        Me.btnDto2.Text = "Solo Dto2"
+        Me.btnDto2.UseVisualStyleBackColor = True
+        '
+        'btnDto1
+        '
+        Me.btnDto1.Location = New System.Drawing.Point(9, 47)
+        Me.btnDto1.Name = "btnDto1"
+        Me.btnDto1.Size = New System.Drawing.Size(75, 23)
+        Me.btnDto1.TabIndex = 9
+        Me.btnDto1.Text = "Solo Dto1"
+        Me.btnDto1.UseVisualStyleBackColor = True
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(270, 25)
+        Me.Label6.Location = New System.Drawing.Point(258, 25)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(36, 13)
-        Me.Label6.TabIndex = 14
+        Me.Label6.TabIndex = 6
         Me.Label6.Text = "Dto. 4"
         '
         'txtdto4
         '
-        Me.txtdto4.Location = New System.Drawing.Point(314, 21)
+        Me.txtdto4.Location = New System.Drawing.Point(300, 21)
         Me.txtdto4.MaxLength = 6
         Me.txtdto4.Name = "txtdto4"
         Me.txtdto4.Size = New System.Drawing.Size(36, 20)
-        Me.txtdto4.TabIndex = 13
+        Me.txtdto4.TabIndex = 7
         Me.txtdto4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(182, 25)
+        Me.Label5.Location = New System.Drawing.Point(174, 25)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(36, 13)
-        Me.Label5.TabIndex = 12
+        Me.Label5.TabIndex = 4
         Me.Label5.Text = "Dto. 3"
         '
         'txtdto3
         '
-        Me.txtdto3.Location = New System.Drawing.Point(226, 21)
+        Me.txtdto3.Location = New System.Drawing.Point(216, 21)
         Me.txtdto3.MaxLength = 6
         Me.txtdto3.Name = "txtdto3"
         Me.txtdto3.Size = New System.Drawing.Size(36, 20)
-        Me.txtdto3.TabIndex = 11
+        Me.txtdto3.TabIndex = 5
         Me.txtdto3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(94, 25)
+        Me.Label4.Location = New System.Drawing.Point(90, 25)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(36, 13)
-        Me.Label4.TabIndex = 10
+        Me.Label4.TabIndex = 2
         Me.Label4.Text = "Dto. 2"
         '
         'txtdto2
         '
-        Me.txtdto2.Location = New System.Drawing.Point(138, 21)
+        Me.txtdto2.Location = New System.Drawing.Point(132, 21)
         Me.txtdto2.MaxLength = 6
         Me.txtdto2.Name = "txtdto2"
         Me.txtdto2.Size = New System.Drawing.Size(36, 20)
-        Me.txtdto2.TabIndex = 9
+        Me.txtdto2.TabIndex = 3
         Me.txtdto2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label3
@@ -468,21 +516,21 @@ Partial Class FrmArticulosModificarAumentar
         Me.Label3.Location = New System.Drawing.Point(6, 25)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(36, 13)
-        Me.Label3.TabIndex = 8
+        Me.Label3.TabIndex = 0
         Me.Label3.Text = "Dto. 1"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(373, 19)
+        Me.Button1.Location = New System.Drawing.Point(342, 19)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Aceptar"
+        Me.Button1.Size = New System.Drawing.Size(106, 23)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "Modif todos"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'txtdto1
         '
-        Me.txtdto1.Location = New System.Drawing.Point(50, 21)
+        Me.txtdto1.Location = New System.Drawing.Point(48, 21)
         Me.txtdto1.MaxLength = 6
         Me.txtdto1.Name = "txtdto1"
         Me.txtdto1.Size = New System.Drawing.Size(36, 20)
@@ -492,6 +540,10 @@ Partial Class FrmArticulosModificarAumentar
         'GroupBox3
         '
         Me.GroupBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox3.Controls.Add(Me.btnGcia4)
+        Me.GroupBox3.Controls.Add(Me.btnGcia3)
+        Me.GroupBox3.Controls.Add(Me.btnGcia2)
+        Me.GroupBox3.Controls.Add(Me.btnGcia1)
         Me.GroupBox3.Controls.Add(Me.Label14)
         Me.GroupBox3.Controls.Add(Me.Label13)
         Me.GroupBox3.Controls.Add(Me.Label12)
@@ -502,68 +554,104 @@ Partial Class FrmArticulosModificarAumentar
         Me.GroupBox3.Controls.Add(Me.Button2)
         Me.GroupBox3.Controls.Add(Me.txtg1)
         Me.GroupBox3.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.GroupBox3.Location = New System.Drawing.Point(33, 522)
+        Me.GroupBox3.Location = New System.Drawing.Point(505, 461)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(465, 55)
+        Me.GroupBox3.Size = New System.Drawing.Size(465, 86)
         Me.GroupBox3.TabIndex = 29
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Modificar Utilidad del artículo"
+        '
+        'btnGcia4
+        '
+        Me.btnGcia4.Location = New System.Drawing.Point(261, 47)
+        Me.btnGcia4.Name = "btnGcia4"
+        Me.btnGcia4.Size = New System.Drawing.Size(75, 23)
+        Me.btnGcia4.TabIndex = 16
+        Me.btnGcia4.Text = "Solo gcia. 4"
+        Me.btnGcia4.UseVisualStyleBackColor = True
+        '
+        'btnGcia3
+        '
+        Me.btnGcia3.Location = New System.Drawing.Point(177, 47)
+        Me.btnGcia3.Name = "btnGcia3"
+        Me.btnGcia3.Size = New System.Drawing.Size(75, 23)
+        Me.btnGcia3.TabIndex = 15
+        Me.btnGcia3.Text = "Solo gcia. 3"
+        Me.btnGcia3.UseVisualStyleBackColor = True
+        '
+        'btnGcia2
+        '
+        Me.btnGcia2.Location = New System.Drawing.Point(93, 47)
+        Me.btnGcia2.Name = "btnGcia2"
+        Me.btnGcia2.Size = New System.Drawing.Size(75, 23)
+        Me.btnGcia2.TabIndex = 14
+        Me.btnGcia2.Text = "Solo gcia. 2"
+        Me.btnGcia2.UseVisualStyleBackColor = True
+        '
+        'btnGcia1
+        '
+        Me.btnGcia1.Location = New System.Drawing.Point(9, 47)
+        Me.btnGcia1.Name = "btnGcia1"
+        Me.btnGcia1.Size = New System.Drawing.Size(75, 23)
+        Me.btnGcia1.TabIndex = 13
+        Me.btnGcia1.Text = "Solo gcia. 1"
+        Me.btnGcia1.UseVisualStyleBackColor = True
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(267, 25)
+        Me.Label14.Location = New System.Drawing.Point(261, 25)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(41, 13)
-        Me.Label14.TabIndex = 16
+        Me.Label14.TabIndex = 6
         Me.Label14.Text = "Gcia. 4"
         '
         'Label13
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(91, 25)
+        Me.Label13.Location = New System.Drawing.Point(90, 25)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(41, 13)
-        Me.Label13.TabIndex = 15
+        Me.Label13.TabIndex = 2
         Me.Label13.Text = "Gcia. 2"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(179, 25)
+        Me.Label12.Location = New System.Drawing.Point(174, 25)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(41, 13)
-        Me.Label12.TabIndex = 14
+        Me.Label12.TabIndex = 4
         Me.Label12.Text = "Gcia. 3"
         '
         'txtg4
         '
-        Me.txtg4.Location = New System.Drawing.Point(314, 21)
+        Me.txtg4.Location = New System.Drawing.Point(300, 21)
         Me.txtg4.MaxLength = 6
         Me.txtg4.Name = "txtg4"
         Me.txtg4.Size = New System.Drawing.Size(36, 20)
-        Me.txtg4.TabIndex = 13
+        Me.txtg4.TabIndex = 7
         Me.txtg4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtg3
         '
-        Me.txtg3.Location = New System.Drawing.Point(226, 21)
+        Me.txtg3.Location = New System.Drawing.Point(219, 21)
         Me.txtg3.MaxLength = 6
         Me.txtg3.Name = "txtg3"
         Me.txtg3.Size = New System.Drawing.Size(36, 20)
-        Me.txtg3.TabIndex = 11
+        Me.txtg3.TabIndex = 5
         Me.txtg3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtg2
         '
-        Me.txtg2.Location = New System.Drawing.Point(138, 21)
+        Me.txtg2.Location = New System.Drawing.Point(132, 21)
         Me.txtg2.MaxLength = 6
         Me.txtg2.Name = "txtg2"
         Me.txtg2.Size = New System.Drawing.Size(36, 20)
-        Me.txtg2.TabIndex = 9
+        Me.txtg2.TabIndex = 3
         Me.txtg2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label15
@@ -573,21 +661,21 @@ Partial Class FrmArticulosModificarAumentar
         Me.Label15.Location = New System.Drawing.Point(3, 25)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(41, 13)
-        Me.Label15.TabIndex = 8
+        Me.Label15.TabIndex = 0
         Me.Label15.Text = "Gcia. 1"
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(373, 19)
+        Me.Button2.Location = New System.Drawing.Point(342, 19)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 4
-        Me.Button2.Text = "Aceptar"
+        Me.Button2.Size = New System.Drawing.Size(106, 23)
+        Me.Button2.TabIndex = 8
+        Me.Button2.Text = "Modif todos"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'txtg1
         '
-        Me.txtg1.Location = New System.Drawing.Point(50, 21)
+        Me.txtg1.Location = New System.Drawing.Point(48, 21)
         Me.txtg1.MaxLength = 6
         Me.txtg1.Name = "txtg1"
         Me.txtg1.Size = New System.Drawing.Size(36, 20)
@@ -600,7 +688,7 @@ Partial Class FrmArticulosModificarAumentar
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.CancelButton = Me.CmdSalir
-        Me.ClientSize = New System.Drawing.Size(794, 589)
+        Me.ClientSize = New System.Drawing.Size(997, 589)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.cmdEliminarSeleccionado)
@@ -690,4 +778,12 @@ Partial Class FrmArticulosModificarAumentar
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents txtg1 As System.Windows.Forms.TextBox
+    Friend WithEvents btnDto4 As System.Windows.Forms.Button
+    Friend WithEvents btnDto3 As System.Windows.Forms.Button
+    Friend WithEvents btnDto2 As System.Windows.Forms.Button
+    Friend WithEvents btnDto1 As System.Windows.Forms.Button
+    Friend WithEvents btnGcia4 As System.Windows.Forms.Button
+    Friend WithEvents btnGcia3 As System.Windows.Forms.Button
+    Friend WithEvents btnGcia2 As System.Windows.Forms.Button
+    Friend WithEvents btnGcia1 As System.Windows.Forms.Button
 End Class

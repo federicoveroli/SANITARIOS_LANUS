@@ -382,11 +382,11 @@ Public Class FrmArticulosModificarAumentar
 
 
 
-        Dim fachhh As New FachadaBitacora
+        Dim FacBitacora As New FachadaBitacora
         Dim stringDescripcionBitacora As String
         stringDescripcionBitacora = "Se modificaron los articulos filtrados por  " & cmbBuscarPor.Text & " y que contenga " & txtQueContenga.Text & " con un descuento de " & listaDesc(0) & " %, " & listaDesc(1) & "%, " & listaDesc(2) & "%, " & listaDesc(3) & "%"""
 
-        fachhh.RegistrarBitacora(Sesion.getSesion.UsuarioActivo.Nick, Date.Now, stringDescripcionBitacora)
+        FacBitacora.RegistrarBitacora(Sesion.getSesion.UsuarioActivo.Nick, Date.Now, stringDescripcionBitacora)
 
         cmdBuscar_Click(sender, e)
         'End If

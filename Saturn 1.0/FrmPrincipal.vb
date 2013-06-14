@@ -1,4 +1,5 @@
 Imports Fachada
+Imports Modelo
 Imports System.Text
 
 Public Class FrmPrincipal
@@ -337,6 +338,7 @@ Public Class FrmPrincipal
             e.Cancel = True
         Else
             Me.Finalize()
+            Threading.Thread.CurrentThread.Abort()
         End If
     End Sub
 
@@ -474,5 +476,42 @@ Public Class FrmPrincipal
         End If
         objFrmArticulosModificarAumentar = FrmArticulosModificarAumentar
         objFrmArticulosModificarAumentar.Show()
+    End Sub
+
+    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim facArt As FachadaArticulo
+        Dim facArtIVA As FachadaArticuloDescuentoGananciaIva
+        Dim dtarts As DataTable
+        Dim Modificados As Integer
+        facArt = New FachadaArticulo
+        facArtIVA = New FachadaArticuloDescuentoGananciaIva
+        Dim objADGI As Articulo_descuento_ganancia_iva
+
+        dtarts = facArt.listarArticulos()
+        Dim i = 0
+        Modificados = 0
+        For i = 0 To dtarts.Rows.Count - 1
+            If facArtIVA.traerArticuloPorId(CInt(dtarts.Rows(i)(0).ToString)) Is Nothing Then
+                'MessageBox.Show("entro " & dtarts.Rows(i)(0).ToString)
+                objADGI = New Articulo_descuento_ganancia_iva
+                objADGI.Descuento1 = 0
+                objADGI.Descuento2 = 0
+                objADGI.Descuento3 = 0
+                objADGI.Descuento4 = 0
+                objADGI.Ganancia1 = 0
+                objADGI.Ganancia2 = 0
+                objADGI.Ganancia3 = 0
+                objADGI.Ganancia4 = 0
+                objADGI.IdArticulo = CInt(dtarts.Rows(i)(0).ToString)
+                objADGI.IVA = 21
+                objADGI.PrecioListaProveedor = 0
+                facArtIVA.ingresarArticulo_descuento_ganancia_iva(objADGI)
+                Modificados = Modificados + 1
+            End If
+
+        Next
+        MessageBox.Show("Listo, se actulizaron " & Modificados & " articulos")
+
+
     End Sub
 End Class

@@ -98,11 +98,9 @@ Public Class FachadaArticulo
         Dim RegArticulo As New RegistroArticulo
         Return RegArticulo.TaerArticuloXTipo(d)
     End Function
-    Public Function ListarArticulosXDescripcion(ByVal desc As String) As DataTable
-        Dim d As String
-        d = desc
+    Public Function ListarArticulosXDescripcion(ByVal Criterio1 As String, ByVal Criterio2 As String, ByVal Criterio3 As String) As DataTable
         Dim RegArticulo As New RegistroArticulo
-        Return RegArticulo.TraerArticuloPorDescripcion(d)
+        Return RegArticulo.TraerArticuloPorDescripcion(Criterio1, Criterio2, Criterio3)
     End Function
 
     Public Function ListarArticulosXCodBarras(ByVal codigo_barras As String) As DataTable
@@ -405,14 +403,14 @@ Public Class FachadaArticulo
                     art.Medida = ""
                     art.Stock += cantidad
                     facArt.ModificarArticulo2(art)
-                    artCosto.Descuento1 = xlHoja1.Range("Q" & i).Value.ToString
-                    artCosto.Descuento2 = xlHoja1.Range("R" & i).Value.ToString
-                    artCosto.Descuento3 = xlHoja1.Range("S" & i).Value.ToString
-                    artCosto.Descuento4 = xlHoja1.Range("T" & i).Value.ToString
-                    artCosto.Ganancia1 = xlHoja1.Range("V" & i).Value.ToString
-                    artCosto.Ganancia2 = xlHoja1.Range("W" & i).Value.ToString
-                    artCosto.Ganancia3 = xlHoja1.Range("X" & i).Value.ToString
-                    artCosto.Ganancia4 = xlHoja1.Range("Y" & i).Value.ToString
+                    artCosto.Descuento1 = xlHoja1.Range("H" & i).Value.ToString
+                    artCosto.Descuento2 = xlHoja1.Range("I" & i).Value.ToString
+                    artCosto.Descuento3 = xlHoja1.Range("J" & i).Value.ToString
+                    artCosto.Descuento4 = xlHoja1.Range("K" & i).Value.ToString
+                    artCosto.Ganancia1 = xlHoja1.Range("L" & i).Value.ToString
+                    artCosto.Ganancia2 = xlHoja1.Range("M" & i).Value.ToString
+                    artCosto.Ganancia3 = xlHoja1.Range("N" & i).Value.ToString
+                    artCosto.Ganancia4 = xlHoja1.Range("O" & i).Value.ToString
                     artCosto.IdArticulo = art.IdArticulo
                     artCosto.IVA = xlHoja1.Range("P" & i).Value.ToString
                     artCosto.PrecioListaProveedor = xlHoja1.Range("G" & i).Value.ToString

@@ -1,6 +1,7 @@
 Imports Fachada
 Imports Modelo
 Public Class FrmArticuloBuscar
+    Dim dtConsulta As DataTable
     Dim fa As New Fachada.FachadaArticulo
     Dim facBit As New FachadaBitacora
     Public Event AgregarRenglon(ByVal idArticulo As Integer, ByVal cantidad As Double, ByVal PU As Double)
@@ -128,9 +129,15 @@ Public Class FrmArticuloBuscar
                     z = txtQueContenga.Text
                     DataGridView1.DataSource = lista.ListarArticulosXTipo(z)
                 Case 2
-                    Dim z As String 'Descripcion
-                    z = txtQueContenga.Text
-                    DataGridView1.DataSource = lista.ListarArticulosXDescripcion(z)
+                    Dim Criterio1 As String 'Descripcion 1
+                    Dim Criterio2 As String 'Descripcion 2
+                    Dim Criterio3 As String 'Descripcion 3
+                    Criterio1 = txtQueContenga.Text
+                    Criterio2 = txtQueContenga2.Text
+                    Criterio3 = txtQueContenga3.Text
+                    DataGridView1.DataSource = lista.ListarArticulosXDescripcion(Criterio1, Criterio2, Criterio3)
+                    dtConsulta = lista.ListarArticulosXDescripcion(Criterio1, Criterio2, Criterio3)
+
                 Case 3 'marca
                     Dim z As String
                     z = txtQueContenga.Text
@@ -449,7 +456,7 @@ Public Class FrmArticuloBuscar
         frmArtiBuscar.txtDescripcion.Text = ""
         frmArtiBuscar.txtDescripcion.Select()
         frmArtiBuscar.ShowDialog()
-        
+
     End Sub
 
     Private Sub grupoRenglon_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles grupoRenglon.Enter
@@ -460,20 +467,20 @@ Public Class FrmArticuloBuscar
 
     End Sub
 
-   
+
     Private Sub GrabarCambiosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         fa.grabarScript()
 
     End Sub
 
-  
+
     Private Sub btnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevo.Click
         FrmArticuloAlta.ShowDialog()
         cmdBuscar_Click(sender, e)
 
     End Sub
 
-   
+
     Private Sub txtQueContenga_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtQueContenga.TextChanged
         RemoveHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
         BuscarArticulo()
@@ -526,5 +533,32 @@ Public Class FrmArticuloBuscar
 
         cmdBuscar_Click(sender, e)
 
+    End Sub
+
+    Private Sub txtQueContenga2_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtQueContenga2.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+            DataGridView1.Select()
+            Exit Sub
+        End If
+    End Sub
+
+
+    Private Sub txtQueContenga2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtQueContenga2.TextChanged
+        RemoveHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
+        BuscarArticulo()
+        AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
+    End Sub
+
+    Private Sub txtQueContenga3_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtQueContenga3.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+            DataGridView1.Select()
+            Exit Sub
+        End If
+    End Sub
+
+    Private Sub txtQueContenga3_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtQueContenga3.TextChanged
+        RemoveHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
+        BuscarArticulo()
+        AddHandler DataGridView1.SelectionChanged, AddressOf DataGridView1_SelectionChanged
     End Sub
 End Class

@@ -70,6 +70,7 @@ Partial Class FrmPrincipal
         Me.opf = New System.Windows.Forms.OpenFileDialog
         Me.ofdExcel = New System.Windows.Forms.OpenFileDialog
         Me.imgPlay = New System.Windows.Forms.PictureBox
+        Me.Button1 = New System.Windows.Forms.Button
         Me.MenuStrip1.SuspendLayout()
         CType(Me.imgPlay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -379,11 +380,21 @@ Partial Class FrmPrincipal
         Me.imgPlay.TabStop = False
         Me.imgPlay.Visible = False
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(683, 27)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(159, 23)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "Reparar BD"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FrmPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(875, 561)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.imgPlay)
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
@@ -447,5 +458,6 @@ Partial Class FrmPrincipal
     Friend WithEvents ImportarDesdeExcelToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ofdExcel As System.Windows.Forms.OpenFileDialog
     Friend WithEvents ModificacionDePreciosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

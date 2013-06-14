@@ -80,6 +80,8 @@ Partial Class FrmArticuloBuscar
         Me.btnAceptarCambioStock = New System.Windows.Forms.Button
         Me.txtNuevoStock = New System.Windows.Forms.TextBox
         Me.Label16 = New System.Windows.Forms.Label
+        Me.txtQueContenga2 = New System.Windows.Forms.TextBox
+        Me.txtQueContenga3 = New System.Windows.Forms.TextBox
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grupoRenglon.SuspendLayout()
         Me.mnuArticulos.SuspendLayout()
@@ -90,7 +92,7 @@ Partial Class FrmArticuloBuscar
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(30, 40)
+        Me.Label1.Location = New System.Drawing.Point(30, 47)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(58, 13)
         Me.Label1.TabIndex = 0
@@ -101,15 +103,15 @@ Partial Class FrmArticuloBuscar
         Me.cmbBuscarPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBuscarPor.FormattingEnabled = True
         Me.cmbBuscarPor.Items.AddRange(New Object() {"Listado total", "Tipo de Producto", "Descripcion", "Marca", "Proveedor", "Codigo de Barras"})
-        Me.cmbBuscarPor.Location = New System.Drawing.Point(105, 37)
+        Me.cmbBuscarPor.Location = New System.Drawing.Point(94, 43)
         Me.cmbBuscarPor.Name = "cmbBuscarPor"
         Me.cmbBuscarPor.Size = New System.Drawing.Size(164, 21)
-        Me.cmbBuscarPor.TabIndex = 1
+        Me.cmbBuscarPor.TabIndex = 0
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(317, 40)
+        Me.Label2.Location = New System.Drawing.Point(275, 47)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(79, 13)
         Me.Label2.TabIndex = 2
@@ -118,11 +120,11 @@ Partial Class FrmArticuloBuscar
         'txtQueContenga
         '
         Me.txtQueContenga.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtQueContenga.Location = New System.Drawing.Point(406, 37)
+        Me.txtQueContenga.Location = New System.Drawing.Point(360, 43)
         Me.txtQueContenga.MaxLength = 99
         Me.txtQueContenga.Name = "txtQueContenga"
-        Me.txtQueContenga.Size = New System.Drawing.Size(241, 20)
-        Me.txtQueContenga.TabIndex = 3
+        Me.txtQueContenga.Size = New System.Drawing.Size(90, 20)
+        Me.txtQueContenga.TabIndex = 1
         '
         'DataGridView1
         '
@@ -149,7 +151,7 @@ Partial Class FrmArticuloBuscar
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridView1.Location = New System.Drawing.Point(33, 59)
+        Me.DataGridView1.Location = New System.Drawing.Point(33, 71)
         Me.DataGridView1.Name = "DataGridView1"
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
@@ -160,15 +162,15 @@ Partial Class FrmArticuloBuscar
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(737, 362)
-        Me.DataGridView1.TabIndex = 4
+        Me.DataGridView1.Size = New System.Drawing.Size(737, 340)
+        Me.DataGridView1.TabIndex = 5
         '
         'cmdBuscar
         '
-        Me.cmdBuscar.Location = New System.Drawing.Point(695, 35)
+        Me.cmdBuscar.Location = New System.Drawing.Point(695, 42)
         Me.cmdBuscar.Name = "cmdBuscar"
         Me.cmdBuscar.Size = New System.Drawing.Size(75, 23)
-        Me.cmdBuscar.TabIndex = 5
+        Me.cmdBuscar.TabIndex = 4
         Me.cmdBuscar.Text = "Buscar"
         Me.cmdBuscar.UseVisualStyleBackColor = True
         '
@@ -176,7 +178,7 @@ Partial Class FrmArticuloBuscar
         '
         Me.CmdSalir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CmdSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.CmdSalir.Location = New System.Drawing.Point(695, 431)
+        Me.CmdSalir.Location = New System.Drawing.Point(695, 428)
         Me.CmdSalir.Name = "CmdSalir"
         Me.CmdSalir.Size = New System.Drawing.Size(75, 23)
         Me.CmdSalir.TabIndex = 6
@@ -186,7 +188,7 @@ Partial Class FrmArticuloBuscar
         'cmdBaja
         '
         Me.cmdBaja.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdBaja.Location = New System.Drawing.Point(695, 486)
+        Me.cmdBaja.Location = New System.Drawing.Point(695, 483)
         Me.cmdBaja.Name = "cmdBaja"
         Me.cmdBaja.Size = New System.Drawing.Size(75, 23)
         Me.cmdBaja.TabIndex = 7
@@ -197,7 +199,7 @@ Partial Class FrmArticuloBuscar
         'cmdModificar
         '
         Me.cmdModificar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdModificar.Location = New System.Drawing.Point(695, 458)
+        Me.cmdModificar.Location = New System.Drawing.Point(695, 455)
         Me.cmdModificar.Name = "cmdModificar"
         Me.cmdModificar.Size = New System.Drawing.Size(75, 23)
         Me.cmdModificar.TabIndex = 8
@@ -224,7 +226,7 @@ Partial Class FrmArticuloBuscar
         Me.grupoRenglon.Controls.Add(Me.Label4)
         Me.grupoRenglon.Controls.Add(Me.txtCantidad)
         Me.grupoRenglon.Controls.Add(Me.Label3)
-        Me.grupoRenglon.Location = New System.Drawing.Point(33, 427)
+        Me.grupoRenglon.Location = New System.Drawing.Point(33, 421)
         Me.grupoRenglon.Name = "grupoRenglon"
         Me.grupoRenglon.Size = New System.Drawing.Size(639, 85)
         Me.grupoRenglon.TabIndex = 9
@@ -311,6 +313,7 @@ Partial Class FrmArticuloBuscar
         '
         'txtTotal
         '
+        Me.txtTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotal.Location = New System.Drawing.Point(560, 24)
         Me.txtTotal.MaxLength = 9
         Me.txtTotal.Name = "txtTotal"
@@ -366,6 +369,7 @@ Partial Class FrmArticuloBuscar
         '
         'txtCantidad
         '
+        Me.txtCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCantidad.Location = New System.Drawing.Point(67, 24)
         Me.txtCantidad.Name = "txtCantidad"
         Me.txtCantidad.Size = New System.Drawing.Size(40, 20)
@@ -386,7 +390,7 @@ Partial Class FrmArticuloBuscar
         '
         Me.btnNuevo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnNuevo.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnNuevo.Location = New System.Drawing.Point(695, 459)
+        Me.btnNuevo.Location = New System.Drawing.Point(695, 456)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
         Me.btnNuevo.TabIndex = 29
@@ -589,7 +593,7 @@ Partial Class FrmArticuloBuscar
         'cmdImprimir
         '
         Me.cmdImprimir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdImprimir.Location = New System.Drawing.Point(695, 485)
+        Me.cmdImprimir.Location = New System.Drawing.Point(695, 482)
         Me.cmdImprimir.Name = "cmdImprimir"
         Me.cmdImprimir.Size = New System.Drawing.Size(75, 23)
         Me.cmdImprimir.TabIndex = 21
@@ -635,6 +639,24 @@ Partial Class FrmArticuloBuscar
         Me.Label16.TabIndex = 0
         Me.Label16.Text = "Stock:"
         '
+        'txtQueContenga2
+        '
+        Me.txtQueContenga2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtQueContenga2.Location = New System.Drawing.Point(456, 43)
+        Me.txtQueContenga2.MaxLength = 99
+        Me.txtQueContenga2.Name = "txtQueContenga2"
+        Me.txtQueContenga2.Size = New System.Drawing.Size(95, 20)
+        Me.txtQueContenga2.TabIndex = 2
+        '
+        'txtQueContenga3
+        '
+        Me.txtQueContenga3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtQueContenga3.Location = New System.Drawing.Point(557, 43)
+        Me.txtQueContenga3.MaxLength = 99
+        Me.txtQueContenga3.Name = "txtQueContenga3"
+        Me.txtQueContenga3.Size = New System.Drawing.Size(95, 20)
+        Me.txtQueContenga3.TabIndex = 3
+        '
         'FrmArticuloBuscar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -642,13 +664,13 @@ Partial Class FrmArticuloBuscar
         Me.BackColor = System.Drawing.Color.White
         Me.CancelButton = Me.CmdSalir
         Me.ClientSize = New System.Drawing.Size(794, 510)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.txtQueContenga3)
+        Me.Controls.Add(Me.txtQueContenga2)
         Me.Controls.Add(Me.btnNuevo)
         Me.Controls.Add(Me.cmdBaja)
         Me.Controls.Add(Me.cmdModificar)
         Me.Controls.Add(Me.cmdImprimir)
         Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
@@ -662,6 +684,8 @@ Partial Class FrmArticuloBuscar
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.mnuArticulos)
         Me.Controls.Add(Me.grupoRenglon)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
         Me.MainMenuStrip = Me.mnuArticulos
@@ -736,4 +760,6 @@ Partial Class FrmArticuloBuscar
     Friend WithEvents btnAceptarCambioStock As System.Windows.Forms.Button
     Friend WithEvents txtNuevoStock As System.Windows.Forms.TextBox
     Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents txtQueContenga2 As System.Windows.Forms.TextBox
+    Friend WithEvents txtQueContenga3 As System.Windows.Forms.TextBox
 End Class
