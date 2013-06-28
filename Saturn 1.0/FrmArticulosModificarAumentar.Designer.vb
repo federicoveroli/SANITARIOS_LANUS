@@ -23,10 +23,10 @@ Partial Class FrmArticulosModificarAumentar
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Label1 = New System.Windows.Forms.Label
         Me.cmbBuscarPor = New System.Windows.Forms.ComboBox
         Me.Label2 = New System.Windows.Forms.Label
@@ -58,9 +58,6 @@ Partial Class FrmArticulosModificarAumentar
         Me.cmdImprimir = New System.Windows.Forms.Button
         Me.ToolTipLector = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.btnDto4 = New System.Windows.Forms.Button
-        Me.btnDto3 = New System.Windows.Forms.Button
-        Me.btnDto2 = New System.Windows.Forms.Button
         Me.btnDto1 = New System.Windows.Forms.Button
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtdto4 = New System.Windows.Forms.TextBox
@@ -69,13 +66,8 @@ Partial Class FrmArticulosModificarAumentar
         Me.Label4 = New System.Windows.Forms.Label
         Me.txtdto2 = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
-        Me.Button1 = New System.Windows.Forms.Button
         Me.txtdto1 = New System.Windows.Forms.TextBox
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
-        Me.btnGcia4 = New System.Windows.Forms.Button
-        Me.btnGcia3 = New System.Windows.Forms.Button
-        Me.btnGcia2 = New System.Windows.Forms.Button
-        Me.btnGcia1 = New System.Windows.Forms.Button
         Me.Label14 = New System.Windows.Forms.Label
         Me.Label13 = New System.Windows.Forms.Label
         Me.Label12 = New System.Windows.Forms.Label
@@ -132,41 +124,41 @@ Partial Class FrmArticulosModificarAumentar
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridView1.Location = New System.Drawing.Point(33, 63)
         Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.ShowEditingIcon = False
         Me.DataGridView1.Size = New System.Drawing.Size(940, 343)
@@ -395,9 +387,6 @@ Partial Class FrmArticulosModificarAumentar
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.btnDto4)
-        Me.GroupBox1.Controls.Add(Me.btnDto3)
-        Me.GroupBox1.Controls.Add(Me.btnDto2)
         Me.GroupBox1.Controls.Add(Me.btnDto1)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.txtdto4)
@@ -406,50 +395,22 @@ Partial Class FrmArticulosModificarAumentar
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.txtdto2)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.txtdto1)
         Me.GroupBox1.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.GroupBox1.Location = New System.Drawing.Point(33, 461)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(465, 86)
+        Me.GroupBox1.Size = New System.Drawing.Size(363, 86)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Modificar descuentos del proveedor"
-        '
-        'btnDto4
-        '
-        Me.btnDto4.Location = New System.Drawing.Point(261, 47)
-        Me.btnDto4.Name = "btnDto4"
-        Me.btnDto4.Size = New System.Drawing.Size(75, 23)
-        Me.btnDto4.TabIndex = 12
-        Me.btnDto4.Text = "Solo Dto4"
-        Me.btnDto4.UseVisualStyleBackColor = True
-        '
-        'btnDto3
-        '
-        Me.btnDto3.Location = New System.Drawing.Point(177, 47)
-        Me.btnDto3.Name = "btnDto3"
-        Me.btnDto3.Size = New System.Drawing.Size(75, 23)
-        Me.btnDto3.TabIndex = 11
-        Me.btnDto3.Text = "Solo Dto3"
-        Me.btnDto3.UseVisualStyleBackColor = True
-        '
-        'btnDto2
-        '
-        Me.btnDto2.Location = New System.Drawing.Point(93, 47)
-        Me.btnDto2.Name = "btnDto2"
-        Me.btnDto2.Size = New System.Drawing.Size(75, 23)
-        Me.btnDto2.TabIndex = 10
-        Me.btnDto2.Text = "Solo Dto2"
-        Me.btnDto2.UseVisualStyleBackColor = True
         '
         'btnDto1
         '
         Me.btnDto1.Location = New System.Drawing.Point(9, 47)
         Me.btnDto1.Name = "btnDto1"
-        Me.btnDto1.Size = New System.Drawing.Size(75, 23)
+        Me.btnDto1.Size = New System.Drawing.Size(327, 23)
         Me.btnDto1.TabIndex = 9
-        Me.btnDto1.Text = "Solo Dto1"
+        Me.btnDto1.Text = "Modif. solo descuentos completos"
         Me.btnDto1.UseVisualStyleBackColor = True
         '
         'Label6
@@ -519,15 +480,6 @@ Partial Class FrmArticulosModificarAumentar
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Dto. 1"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(342, 19)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(106, 23)
-        Me.Button1.TabIndex = 8
-        Me.Button1.Text = "Modif todos"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'txtdto1
         '
         Me.txtdto1.Location = New System.Drawing.Point(48, 21)
@@ -540,10 +492,6 @@ Partial Class FrmArticulosModificarAumentar
         'GroupBox3
         '
         Me.GroupBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox3.Controls.Add(Me.btnGcia4)
-        Me.GroupBox3.Controls.Add(Me.btnGcia3)
-        Me.GroupBox3.Controls.Add(Me.btnGcia2)
-        Me.GroupBox3.Controls.Add(Me.btnGcia1)
         Me.GroupBox3.Controls.Add(Me.Label14)
         Me.GroupBox3.Controls.Add(Me.Label13)
         Me.GroupBox3.Controls.Add(Me.Label12)
@@ -554,48 +502,12 @@ Partial Class FrmArticulosModificarAumentar
         Me.GroupBox3.Controls.Add(Me.Button2)
         Me.GroupBox3.Controls.Add(Me.txtg1)
         Me.GroupBox3.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.GroupBox3.Location = New System.Drawing.Point(505, 461)
+        Me.GroupBox3.Location = New System.Drawing.Point(406, 461)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(465, 86)
+        Me.GroupBox3.Size = New System.Drawing.Size(350, 86)
         Me.GroupBox3.TabIndex = 29
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Modificar Utilidad del artículo"
-        '
-        'btnGcia4
-        '
-        Me.btnGcia4.Location = New System.Drawing.Point(261, 47)
-        Me.btnGcia4.Name = "btnGcia4"
-        Me.btnGcia4.Size = New System.Drawing.Size(75, 23)
-        Me.btnGcia4.TabIndex = 16
-        Me.btnGcia4.Text = "Solo gcia. 4"
-        Me.btnGcia4.UseVisualStyleBackColor = True
-        '
-        'btnGcia3
-        '
-        Me.btnGcia3.Location = New System.Drawing.Point(177, 47)
-        Me.btnGcia3.Name = "btnGcia3"
-        Me.btnGcia3.Size = New System.Drawing.Size(75, 23)
-        Me.btnGcia3.TabIndex = 15
-        Me.btnGcia3.Text = "Solo gcia. 3"
-        Me.btnGcia3.UseVisualStyleBackColor = True
-        '
-        'btnGcia2
-        '
-        Me.btnGcia2.Location = New System.Drawing.Point(93, 47)
-        Me.btnGcia2.Name = "btnGcia2"
-        Me.btnGcia2.Size = New System.Drawing.Size(75, 23)
-        Me.btnGcia2.TabIndex = 14
-        Me.btnGcia2.Text = "Solo gcia. 2"
-        Me.btnGcia2.UseVisualStyleBackColor = True
-        '
-        'btnGcia1
-        '
-        Me.btnGcia1.Location = New System.Drawing.Point(9, 47)
-        Me.btnGcia1.Name = "btnGcia1"
-        Me.btnGcia1.Size = New System.Drawing.Size(75, 23)
-        Me.btnGcia1.TabIndex = 13
-        Me.btnGcia1.Text = "Solo gcia. 1"
-        Me.btnGcia1.UseVisualStyleBackColor = True
         '
         'Label14
         '
@@ -666,9 +578,9 @@ Partial Class FrmArticulosModificarAumentar
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(342, 19)
+        Me.Button2.Location = New System.Drawing.Point(6, 47)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(106, 23)
+        Me.Button2.Size = New System.Drawing.Size(330, 23)
         Me.Button2.TabIndex = 8
         Me.Button2.Text = "Modif todos"
         Me.Button2.UseVisualStyleBackColor = True
@@ -766,7 +678,6 @@ Partial Class FrmArticulosModificarAumentar
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents txtdto2 As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents txtdto1 As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
@@ -778,12 +689,5 @@ Partial Class FrmArticulosModificarAumentar
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents txtg1 As System.Windows.Forms.TextBox
-    Friend WithEvents btnDto4 As System.Windows.Forms.Button
-    Friend WithEvents btnDto3 As System.Windows.Forms.Button
-    Friend WithEvents btnDto2 As System.Windows.Forms.Button
     Friend WithEvents btnDto1 As System.Windows.Forms.Button
-    Friend WithEvents btnGcia4 As System.Windows.Forms.Button
-    Friend WithEvents btnGcia3 As System.Windows.Forms.Button
-    Friend WithEvents btnGcia2 As System.Windows.Forms.Button
-    Friend WithEvents btnGcia1 As System.Windows.Forms.Button
 End Class

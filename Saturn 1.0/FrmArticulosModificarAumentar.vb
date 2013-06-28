@@ -326,7 +326,7 @@ Public Class FrmArticulosModificarAumentar
         End If
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         If txtdto1.Text.Length < 1 Or txtdto2.Text.Length < 1 Or txtdto3.Text.Length < 1 Or txtdto4.Text.Length < 1 Then
             MsgBox("Debe completar los 4 descuentos!")
@@ -352,7 +352,7 @@ Public Class FrmArticulosModificarAumentar
         Next
 
         TodosLosId = TodosLosId.Substring(0, TodosLosId.Length - 1)
-     
+
         cmdBuscar_Click(sender, e)
 
         For i = 0 To DataGridView1.RowCount - 1
@@ -564,4 +564,88 @@ Public Class FrmArticulosModificarAumentar
 
     
  
+    Private Sub btnDto1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDto1.Click
+        ModificarDescuento()
+
+    End Sub
+
+
+
+
+    Private Sub ModificarDescuento()
+        'If txtdto1.Text.Length < 1 Or txtdto2.Text.Length < 1 Or txtdto3.Text.Length < 1 Or txtdto4.Text.Length < 1 Then
+        '    MsgBox("Debe completar los 4 descuentos!")
+        '    Exit Sub
+        'End If
+        If MessageBox.Show("¿Está seguro que desea modificar el descuento de los articulos listados?", "Confirme operación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
+            Exit Sub
+        End If
+
+        Dim updetearLista As New FachadaArticulo
+        Dim i As Integer
+        Dim TodosLosId As String
+        Dim idarticulo As Integer
+        Dim variable As Double
+        Dim Fach As New FachadaArticulo
+        Dim fADGI As New FachadaArticuloDescuentoGananciaIva
+        Dim listaDeAdgi As New List(Of Articulo_descuento_ganancia_iva)
+        'aca
+        For i = 0 To DataGridView1.RowCount - 1
+            idarticulo = DataGridView1.Rows(i).Cells(0).Value
+            TodosLosId = idarticulo & "," & TodosLosId
+
+        Next
+
+        TodosLosId = TodosLosId.Substring(0, TodosLosId.Length - 1)
+
+        'cmdBuscar_Click(sender, e)
+
+        For i = 0 To DataGridView1.RowCount - 1
+            Dim adgi As New Articulo_descuento_ganancia_iva
+            With adgi
+                .IdArticulo = DataGridView1.Rows(i).Cells(0).Value
+                .Descuento1 = DataGridView1.Rows(i).Cells(6).Value
+                .Descuento2 = DataGridView1.Rows(i).Cells(7).Value
+                .Descuento3 = DataGridView1.Rows(i).Cells(8).Value
+                .Descuento4 = DataGridView1.Rows(i).Cells(9).Value
+                .Ganancia1 = DataGridView1.Rows(i).Cells(11).Value
+                .Ganancia2 = DataGridView1.Rows(i).Cells(12).Value
+                .Ganancia3 = DataGridView1.Rows(i).Cells(13).Value
+                .Ganancia4 = DataGridView1.Rows(i).Cells(14).Value
+                .PrecioListaProveedor = DataGridView1.Rows(i).Cells(5).Value
+                .IVA = 21
+            End With
+            listaDeAdgi.Add(adgi)
+        Next
+        Dim listaDesc As New List(Of Double)
+        If txtdto1.Text.Length = 0 Then txtdto1.Text = -1
+        If txtdto2.Text.Length = 0 Then txtdto2.Text = -1
+        If txtdto3.Text.Length = 0 Then txtdto3.Text = -1
+        If txtdto4.Text.Length = 0 Then txtdto4.Text = -1
+        listaDesc.Add(CDbl(txtdto1.Text))
+        listaDesc.Add(CDbl(txtdto2.Text))
+        listaDesc.Add(CDbl(txtdto3.Text))
+        listaDesc.Add(CDbl(txtdto4.Text))
+        fADGI.ModificarDescuento(TodosLosId, listaDesc, listaDeAdgi)
+
+
+
+        Dim FacBitacora As New FachadaBitacora
+        Dim stringDescripcionBitacora As String
+        stringDescripcionBitacora = "Se modificaron los articulos filtrados por  " & cmbBuscarPor.Text & " y que contenga " & txtQueContenga.Text & " con un descuento de " & listaDesc(0) & " %, " & listaDesc(1) & "%, " & listaDesc(2) & "%, " & listaDesc(3) & "%"""
+
+        FacBitacora.RegistrarBitacora(Sesion.getSesion.UsuarioActivo.Nick, Date.Now, stringDescripcionBitacora)
+
+     
+
+        cmdBuscar_Click(New Object(), New EventArgs())
+
+        txtdto1.Text = ""
+        txtdto2.Text = ""
+        txtdto3.Text = ""
+        txtdto4.Text = ""
+
+        MessageBox.Show("Se ha modificado el descuento en los productos filtrados", "Cambio de descuentos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'End If
+    End Sub
 End Class

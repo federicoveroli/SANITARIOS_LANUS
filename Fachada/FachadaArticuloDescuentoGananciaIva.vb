@@ -40,6 +40,16 @@ Public Class FachadaArticuloDescuentoGananciaIva
     Public Sub ModificarDescuentos(ByVal IdsAactualizar As String, ByVal listaDeDescuentos As List(Of Double), ByVal listaadgi As List(Of Articulo_descuento_ganancia_iva))
         regArt.ModificarDescuentos(IdsAactualizar, listaDeDescuentos, listaadgi)
     End Sub
+
+    Public Sub ModificarDescuento(ByVal IdsAactualizar As String, ByVal listaDeDescuentos As List(Of Double), ByVal listaadgi As List(Of Articulo_descuento_ganancia_iva))
+        regArt.ModificarDescuento(IdsAactualizar, listaDeDescuentos, listaadgi)
+    End Sub
+
+    Public Sub ModificarDescuento1(ByVal IdsAactualizar As String, ByVal Dto1 As Double, ByVal Dto2 As Double, ByVal Dto3 As Double, ByVal Dto4 As Double, ByVal listaadgi As List(Of Articulo_descuento_ganancia_iva))
+        regArt.ModificarDescuento1(IdsAactualizar, Dto1, Dto2, Dto3, Dto4, listaadgi)
+    End Sub
+
+
     Public Sub ModificarUtilidades(ByVal IdsAactualizar As String, ByVal listaDeDescuentos As List(Of Double), ByVal listaadgi As List(Of Articulo_descuento_ganancia_iva), ByVal articulos As List(Of Articulo))
         regArt.ModificarUtilidades(IdsAactualizar, listaDeDescuentos, listaadgi, articulos)
     End Sub

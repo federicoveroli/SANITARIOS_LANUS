@@ -138,6 +138,91 @@ Public Class Registro_articulo_descuento_ganancia_iva
 
         Next
     End Sub
+    ' ESTE METODO UTILIZARÁ EL SIGUIENTE PROTOCOLO, ACTUALIZARÁ LOS DESCUENTOS DISTINTO DE -1
+    ' SI ES DISTINTO DE -1 REALIZARÁ EL CALCULO DEL NUEVO DESCUENTO
+    Public Sub ModificarDescuento(ByVal IdsAactualizar As String, ByVal listaDeDescuentos As List(Of Double), ByVal listaadgi As List(Of Articulo_descuento_ganancia_iva))
+        Dim consulta As String
+        consulta = "update articulo_descuento_ganancia_iva set"
+        If listaDeDescuentos(0) <> -1 Then
+            consulta += " dto1= " & listaDeDescuentos(0).ToString().Replace(",", ".") & " "
+        End If
+        If listaDeDescuentos(1) <> -1 Then
+            If consulta.Contains("dto1") Then consulta += ", "
+            consulta += " dto2 = " & listaDeDescuentos(1).ToString().Replace(",", ".")
+        End If
+        If listaDeDescuentos(2) <> -1 Then
+            If consulta.Contains("dto2") Then consulta += ", "
+            consulta += " dto3 = " & listaDeDescuentos(2).ToString().Replace(",", ".")
+        End If
+        If listaDeDescuentos(3) <> -1 Then
+            If consulta.Contains("dto3") Then consulta += ", "
+            consulta += " dto4 =  " & listaDeDescuentos(3).ToString().Replace(",", ".")
+        End If
+        consulta += " where articulo_descuento_ganancia_iva.idarticulo in (" & IdsAactualizar & ")"
+
+
+        AccesoDatos.Instancia.EjecutarConsulta(consulta)
+
+        Dim precioCostoMasIva As Double = 0
+        For Each adgi As Articulo_descuento_ganancia_iva In listaadgi
+
+
+            If listaDeDescuentos(0) <> -1 Then
+                precioCostoMasIva = adgi.PrecioListaProveedor - (adgi.PrecioListaProveedor * listaDeDescuentos(0) / 100)
+            Else
+                precioCostoMasIva = adgi.PrecioListaProveedor
+            End If
+            If listaDeDescuentos(1) <> -1 Then
+                precioCostoMasIva = precioCostoMasIva - (precioCostoMasIva * listaDeDescuentos(1) / 100)
+            End If
+            If listaDeDescuentos(2) <> -1 Then
+                precioCostoMasIva = precioCostoMasIva - (precioCostoMasIva * listaDeDescuentos(2) / 100)
+            End If
+            If listaDeDescuentos(3) <> -1 Then
+                precioCostoMasIva = precioCostoMasIva - (precioCostoMasIva * listaDeDescuentos(3) / 100)
+            End If
+
+            precioCostoMasIva = Math.Round(precioCostoMasIva + (precioCostoMasIva * 21 / 100), 3)
+
+            Dim RdoGcia As Double = 0
+            Dim precioBaseParaCalcularGanancia As Double
+            precioBaseParaCalcularGanancia = precioCostoMasIva
+
+            RdoGcia = precioBaseParaCalcularGanancia + (precioBaseParaCalcularGanancia * adgi.Ganancia1 / 100)
+            RdoGcia = RdoGcia + (RdoGcia * adgi.Ganancia2 / 100)
+            RdoGcia = RdoGcia + (RdoGcia * adgi.Ganancia3 / 100)
+            RdoGcia = RdoGcia + (RdoGcia * adgi.Ganancia4 / 100)
+            RdoGcia = Math.Round(RdoGcia, 3)
+
+            AccesoDatos.Instancia.EjecutarConsulta("update articulo set costo = " & precioCostoMasIva.ToString().Replace(",", ".") & " , precio = " & RdoGcia.ToString().Replace(",", ".") & " where articulo.idarticulo = " & adgi.IdArticulo)
+
+        Next
+    End Sub
+
+    Public Sub ModificarDescuento1(ByVal IdsAactualizar As String, ByVal Dto1 As Double, ByVal Dto2 As Double, ByVal Dto3 As Double, ByVal Dto4 As Double, ByVal listaadgi As List(Of Articulo_descuento_ganancia_iva))
+        AccesoDatos.Instancia.EjecutarConsulta("update articulo_descuento_ganancia_iva set dto1= " & Dto1.ToString().Replace(",", ".") & " where articulo_descuento_ganancia_iva.idarticulo in (" & IdsAactualizar & ")")
+        Dim precioCostoMasIva As Double = 0
+        For Each adgi As Articulo_descuento_ganancia_iva In listaadgi
+            precioCostoMasIva = adgi.PrecioListaProveedor - (adgi.PrecioListaProveedor * Dto1 / 100)
+            precioCostoMasIva = precioCostoMasIva - (precioCostoMasIva * Dto2 / 100)
+            precioCostoMasIva = precioCostoMasIva - (precioCostoMasIva * Dto3 / 100)
+            precioCostoMasIva = precioCostoMasIva - (precioCostoMasIva * Dto4 / 100)
+            precioCostoMasIva = Math.Round(precioCostoMasIva + (precioCostoMasIva * 21 / 100), 3)
+
+            Dim RdoGcia As Double = 0
+            Dim precioBaseParaCalcularGanancia As Double
+            precioBaseParaCalcularGanancia = precioCostoMasIva
+
+            RdoGcia = precioBaseParaCalcularGanancia + (precioBaseParaCalcularGanancia * adgi.Ganancia1 / 100)
+            RdoGcia = RdoGcia + (RdoGcia * adgi.Ganancia2 / 100)
+            RdoGcia = RdoGcia + (RdoGcia * adgi.Ganancia3 / 100)
+            RdoGcia = RdoGcia + (RdoGcia * adgi.Ganancia4 / 100)
+            RdoGcia = Math.Round(RdoGcia, 3)
+
+            AccesoDatos.Instancia.EjecutarConsulta("update articulo set costo = " & precioCostoMasIva.ToString().Replace(",", ".") & " , precio = " & RdoGcia.ToString().Replace(",", ".") & " where articulo.idarticulo = " & adgi.IdArticulo)
+
+        Next
+    End Sub
 
     Public Sub ModificarUtilidades(ByVal IdsAactualizar As String, ByVal listaDeDescuentos As List(Of Double), ByVal listaadgi As List(Of Articulo_descuento_ganancia_iva), ByVal articulos As List(Of Articulo))
         AccesoDatos.Instancia.EjecutarConsulta("update articulo_descuento_ganancia_iva set gcia1= " & listaDeDescuentos(0).ToString().Replace(",", ".") & " , gcia2 = " & listaDeDescuentos(1).ToString().Replace(",", ".") & " , gcia3 = " & listaDeDescuentos(2).ToString().Replace(",", ".") & ", gcia4 =  " & listaDeDescuentos(3).ToString().Replace(",", ".") & " where articulo_descuento_ganancia_iva.idarticulo in (" & IdsAactualizar & ")")

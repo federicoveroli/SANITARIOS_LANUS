@@ -14,6 +14,7 @@ Public Class RegistroFacturas
         AccesoDatos.Instancia.EjecutarConsulta(script)
     End Sub
 
+   
     Public Function TraerUnidadesVendidas(ByVal condicionStr As String) As DataTable
         Dim consulta As String
         If condicionStr.Length > 0 Then condicionStr = " where " & condicionStr & " and rc.cantidad > 0 "

@@ -249,8 +249,8 @@ Public Class FrmFacturacion
 
     Private Sub AgregarRenglon(ByVal idArticulo As Integer, ByVal cantidad As Double, ByVal PU As Double) Handles frmArtBuscar.AgregarRenglon
         Dim art As Articulo = facArticulo.TraerArticulo(idArticulo)
-        If vta.Renglones.Count > 15 Then
-            MessageBox.Show("Debe confeccionar una nueva factura, esta ha llegado al limite de renglones permitidos (15 máx.)", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        If vta.Renglones.Count > 35 Then
+            MessageBox.Show("Debe confeccionar una nueva factura, esta ha llegado al limite de renglones permitidos (35 máx.)", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Exit Sub
         End If
         Try
@@ -575,6 +575,18 @@ Public Class FrmFacturacion
                 cmbVendedor.Select()
                 Exit Sub
             End If
+
+            '############ MATI MODIF----------######################
+
+            If RadioButTarjeta.Checked = True Then
+                agregarRenlonInteres()
+            End If
+            If CDbl(txtDescuento.Text > 0) Then
+                agregarRenlonDescuento()
+            End If
+            '############FIN MATI MODIF----------######################
+
+
             If RadioButCtaCte.Checked = True Then
                 Dim fachadaV As New FachadaFactura
                 Dim x As Integer
@@ -745,12 +757,12 @@ Public Class FrmFacturacion
                     .Porcentaje = txtPorcentajeTarjeta.Text
                 End With
                 vta.Descuento = frmMonto.GetInstancia.Descuento
-                If RadioButTarjeta.Checked = True Then
-                    agregarRenlonInteres()
-                End If
-                If CDbl(txtDescuento.Text > 0) Then
-                    agregarRenlonDescuento()
-                End If
+                'If RadioButTarjeta.Checked = True Then
+                '    agregarRenlonInteres()
+                'End If
+                'If CDbl(txtDescuento.Text > 0) Then
+                '    agregarRenlonDescuento()
+                'End If
 
                 facFactura.ingresarFactura(vta)
 

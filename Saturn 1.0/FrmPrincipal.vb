@@ -276,7 +276,7 @@ Public Class FrmPrincipal
                 End If
             End If
         End If
-        Me.Close()
+        Me.Finalize()
     End Sub
 
 
@@ -337,8 +337,9 @@ Public Class FrmPrincipal
         If MessageBox.Show("Realmente desea salir de Saturn?", "Desea Salir?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
             e.Cancel = True
         Else
+            e.Cancel = False
             Me.Finalize()
-            Threading.Thread.CurrentThread.Abort()
+            'Threading.Thread.CurrentThread.Abort()
         End If
     End Sub
 
@@ -513,5 +514,9 @@ Public Class FrmPrincipal
         MessageBox.Show("Listo, se actulizaron " & Modificados & " articulos")
 
 
+    End Sub
+
+    Protected Overrides Sub Finalize()
+        End
     End Sub
 End Class
